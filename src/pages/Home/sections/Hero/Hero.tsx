@@ -40,10 +40,19 @@ const Hero = () => {
                             <Box position="absolute" width={"150%"} top={-100} right={0}> 
                                 <AnimatedBackground />
                             </Box>
-                            <Box position="relative" textAlign="center"> 
+                            <Box 
+                                position="relative" 
+                                sx={{ 
+                                    textAlign: {
+                                        xs: "center",
+                                        md: "left"
+                                    }
+                                }}
+                            > 
                                 <StyledImg src={Avatar} alt="Foto do Lucas"/> 
                             </Box>
                         </Box>
+
                     </Grid>
                     <Grid item xs={12} md={7}>
                         <Typography variant="h1" color="primary.contrastText" textAlign="center" pb={2}>Lucas Falcão</Typography>
@@ -54,7 +63,6 @@ const Hero = () => {
                                 <StyledButton> 
                                     <CloudDownloadIcon />
                                     <Typography>Download CV</Typography>
-                                    
                                 </StyledButton>
                             </Grid>
                             <Grid item xs={12} md={4} display="flex" justifyContent="center">
