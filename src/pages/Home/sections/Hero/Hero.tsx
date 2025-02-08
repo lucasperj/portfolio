@@ -1,4 +1,4 @@
-import { Container, Grid2, styled, Typography } from "@mui/material"
+import { Box, Container, Grid2, styled, Typography } from "@mui/material"
 import Grid from '@mui/material/Grid';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
@@ -6,6 +6,7 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 
 import Avatar from "../../../../assets/images/avatar.jpg"
 import StyledButton from "../../../../components/StyledButton/StyledButton";
+import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimatedBackground";
 
 const Hero = () => {
 
@@ -28,13 +29,20 @@ const Hero = () => {
             <Container maxWidth="lg">
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={5}>
-                        <StyledImg src={Avatar} alt="Foto do Lucas"/> 
+                        <Box position="relative"> 
+                            <Box position="absolute" width={"150%"} top={-100} right={0}> 
+                                <AnimatedBackground />
+                            </Box>
+                            <Box position="relative" textAlign="center"> 
+                                <StyledImg src={Avatar} alt="Foto do Lucas"/> 
+                            </Box>
+                        </Box>
                     </Grid>
                     <Grid item xs={12} md={7}>
-                        <Typography variant="h1" color="primary.contrastText" textAlign="center">Lucas Falcão</Typography>
+                        <Typography variant="h1" color="primary.contrastText" textAlign="center" pb={2}>Lucas Falcão</Typography>
                         <Typography variant="h2" color="secondary.light" textAlign="center">I'm a Automation and Quality Analyst</Typography>
                         
-                        <Grid2 container display="flex" justifyContent="center" spacing={3}> 
+                        <Grid2 container display="flex" justifyContent="center" spacing={3} pt={4}> 
                             <Grid item xs={12} md={4} display="flex" justifyContent="center">
                                 <StyledButton> 
                                     <CloudDownloadIcon />
