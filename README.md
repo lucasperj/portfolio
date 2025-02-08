@@ -55,7 +55,7 @@ export default tseslint.config({
 Portfolio pessoal desenvolvido em React + TypeScript, utilizando Material-UI para estilização e componentes.
 
 ## 🛠️ Tecnologias Utilizadas
-- React
+- React 18
 - TypeScript
 - Material-UI (MUI)
 - Emotion (para estilos)
@@ -66,11 +66,15 @@ Portfolio pessoal desenvolvido em React + TypeScript, utilizando Material-UI par
 
 ### Hero Section
 - **Avatar Responsivo**: 
-  - Centralizado em dispositivos móveis
-  - Alinhado à esquerda em desktop
+  - Centralizado em dispositivos móveis (xs)
+  - Alinhado à esquerda em desktop (md)
+  - Borda circular com contorno personalizado
+
 - **Animação de Background**: 
   - SVG animado customizado
   - Posicionamento dinâmico atrás do avatar
+  - Efeitos de gradiente e opacidade
+
 - **Download CV**: 
   - Botão para download automático do currículo
   - Sistema de cooldown de 10 segundos entre downloads
@@ -81,56 +85,91 @@ Portfolio pessoal desenvolvido em React + TypeScript, utilizando Material-UI par
     - Tempo de espera necessário
     - Erros gerais
   - Formato PDF
-  - Nome padronizado para download
+  - Nome padronizado para download: 'Lucas_Falcao_CV.pdf'
+
 - **Botão de Contato**: 
-  - Desktop:
-    - Menu colapsável ao hover
+  - Desktop (md):
+    - Menu colapsável (Popover) ao clicar
     - Opções: LinkedIn, Email, WhatsApp
     - Links diretos para cada plataforma
-  - Mobile:
+    - Efeito hover em cada opção
+  - Mobile (xs):
     - Ação direta para WhatsApp
   - Integração com:
-    - LinkedIn: Perfil profissional
-    - Email: Cliente de email padrão
-    - WhatsApp: Chat direto
+    - LinkedIn: Perfil profissional direto
+    - Email: Cliente de email padrão (mailto)
+    - WhatsApp: Chat direto via API do WhatsApp
 
-### Notificações Toast
-- Posicionamento customizado:
-  - Desktop: Alinhado à direita, abaixo da navbar
-  - Mobile: Centralizado, abaixo da navbar
-- Estilo adaptativo:
-  - Largura responsiva (90% em mobile)
-  - Texto centralizado em telas pequenas
-  - Bordas arredondadas
-  - Tema escuro
+### Sistema de Notificações
+- **Toast Notifications**:
+  - Posicionamento customizado:
+    - Desktop: Alinhado à direita, abaixo da navbar
+    - Mobile: Centralizado, abaixo da navbar
+  - Estilo adaptativo:
+    - Largura responsiva (90% em mobile)
+    - Texto centralizado em telas pequenas
+    - Bordas arredondadas (8px)
+    - Tema escuro
+  - Tipos de notificações:
+    - Sucesso (verde)
+    - Aviso (amarelo)
+    - Erro (vermelho)
+  - Duração: 3 segundos
+  - Interativo: Fechamento ao clicar
 
-## 🎨 Tema Personalizado
-O projeto utiliza um tema personalizado do Material-UI com:
+## 🎨 Design System
 
-### Paleta de Cores
-- **Primary**
-  - Main: #232730
-  - Light: #484D5B
-  - Dark: #16181F
-  - Contrast: #FFFFFF
+### Responsividade
+- **Breakpoints**:
+  - xs: < 600px (Mobile)
+  - md: ≥ 900px (Desktop)
 
-- **Secondary**
-  - Main: #945DD6
-  - Light: #B68EE3
-  - Dark: #6E45A0
-  - Contrast: #FFFFFF
+### Tema Personalizado
+- **Paleta de Cores**:
+  - Primary:
+    - Main: #232730
+    - Light: #484D5B
+    - Dark: #16181F
+    - Contrast: #FFFFFF
+  - Secondary:
+    - Main: #945DD6
+    - Light: #B68EE3
+    - Dark: #6E45A0
+    - Contrast: #FFFFFF
+  - Background:
+    - Default: #232730
+    - Paper: #2C3140
+  - Text:
+    - Primary: #FFFFFF
+    - Secondary: #B0B4BE
 
 ### Tipografia
-- Família de fontes: Roboto, Helvetica, Arial, sans-serif
-- H1: 
-  - Mobile: 2.5rem
-  - Desktop: 3.5rem
-  - Peso: 700
-- H2:
-  - Mobile: 1.75rem
-  - Desktop: 2.5rem
-  - Peso: 600
+- **Família de fontes**: Roboto, Helvetica, Arial, sans-serif
+- **Hierarquia**:
+  - H1: 
+    - Mobile: 2.5rem
+    - Desktop: 3.5rem
+    - Peso: 700
+  - H2:
+    - Mobile: 1.75rem
+    - Desktop: 2.5rem
+    - Peso: 600
 
 ### Componentes Customizados
-- Botões com bordas arredondadas (8px)
-- Texto sem transformação maiúscula
+- **Botões**:
+  - Bordas arredondadas (8px)
+  - Texto sem transformação maiúscula
+  - Efeitos hover
+  - Ícones integrados
+
+- **Menu de Contato**:
+  - Espaçamento interno: theme.spacing(2)
+  - Gap entre opções: theme.spacing(1)
+  - Transição suave no hover
+  - Ícones coloridos por categoria
+
+## 🔧 Configurações
+- Suporte a PDF via Vite
+- Declarações de tipos personalizadas
+- Tema MUI customizado
+- Toastify configurado globalmente
