@@ -20,6 +20,9 @@ const StyledButton: React.FC<StyledButtonProps> = ({children, onClick}) => {
         gap: "10px",
         '&:hover': {
             backgroundColor: theme.palette.secondary.main
+        },
+        '& .MuiSvgIcon-root': {
+            fontSize: '20px' // Ícones menores
         }
     }))
     

@@ -7,13 +7,13 @@ import styled from '@emotion/styled';
 
 const StyledToastContainer = styled(ToastContainer)`
   &.Toastify__toast-container {
-    margin-top: 80px; // Ajuste conforme a altura da sua navbar
+    margin-top: 80px;
 
     @media (max-width: 600px) {
       width: 90%;
       left: 50%;
       transform: translateX(-50%);
-      margin-top: 70px; // Pode ajustar para mobile se necessário
+      margin-top: 70px;
     }
   }
 
@@ -23,12 +23,22 @@ const StyledToastContainer = styled(ToastContainer)`
     @media (max-width: 600px) {
       margin-bottom: 1rem;
       text-align: center;
+      font-size: 14px;
+      padding: 12px;
     }
   }
 
   .Toastify__toast-body {
     @media (max-width: 600px) {
       justify-content: center;
+      gap: 8px;
+    }
+  }
+
+  .Toastify__toast-icon {
+    @media (max-width: 600px) {
+      width: 20px;
+      height: 20px;
     }
   }
 `;

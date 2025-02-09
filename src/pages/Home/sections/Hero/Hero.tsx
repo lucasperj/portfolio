@@ -1,4 +1,4 @@
-import { Box, Container, Grid2, Typography, Popover, useTheme, useMediaQuery} from "@mui/material"
+import { Box, Container, Grid2, Typography, useTheme, useMediaQuery, Collapse } from "@mui/material"
 import Grid from '@mui/material/Grid';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
@@ -16,23 +16,19 @@ import { StyledHero, StyledImg, ContactMenu, ContactOption } from "../../../../s
 import CV from "../../../../assets/files/cv_en.pdf"
 
 const Hero = () => {
-    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+    const [open, setOpen] = useState(false);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-    const handleContactClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleContactClick = () => {
         if (isMobile) {
             handleWhatsAppClick();
         } else {
-            setAnchorEl(event.currentTarget);
+            setOpen(!open);
         }
     };
 
-    const handleClose = () => setAnchorEl(null);
-    const open = Boolean(anchorEl);
-
     return (
-      <>
         <StyledHero> 
             <Container maxWidth="lg">
                 <Grid container spacing={2}>
@@ -53,7 +49,6 @@ const Hero = () => {
                                 <StyledImg src={Avatar} alt="Foto do Lucas"/> 
                             </Box>
                         </Box>
-
                     </Grid>
                     <Grid item xs={12} md={7}>
                         <Typography variant="h1" color="primary.contrastText" textAlign="center" pb={2}>Lucas Falcão</Typography>
@@ -61,56 +56,48 @@ const Hero = () => {
                         
                         <Grid2 container display="flex" justifyContent="center" spacing={3} pt={4}> 
                             <Grid item xs={12} md={4} display="flex" justifyContent="center">
-                                <StyledButton onClick={() => handleDownloadCV(CV)}>
-                                    <CloudDownloadIcon />
-                                    <Typography>Download CV</Typography>
-                                </StyledButton>
+                                <Box width="100%">
+                                    <StyledButton onClick={() => handleDownloadCV(CV)}>
+                                        <CloudDownloadIcon />
+                                        <Typography>Download CV</Typography>
+                                    </StyledButton>
+                                </Box>
                             </Grid>
                             <Grid item xs={12} md={4} display="flex" justifyContent="center">
-                                <StyledButton onClick={handleContactClick}>
-                                    <ContactMailIcon /> 
-                                    <Typography>Contact me</Typography>
-                                </StyledButton>
-                                {!isMobile && (
-                                    <Popover
-                                        open={open}
-                                        anchorEl={anchorEl}
-                                        onClose={handleClose}
-                                        anchorOrigin={{
-                                            vertical: 'bottom',
-                                            horizontal: 'center',
-                                        }}
-                                        transformOrigin={{
-                                            vertical: 'top',
-                                            horizontal: 'center',
-                                        }}
-                                    >
-                                        <ContactMenu>
-                                            <ContactOption onClick={handleLinkedInClick}>
-                                                <LinkedInIcon color="primary" />
-                                                <Typography>LinkedIn</Typography>
-                                            </ContactOption>
-                                            <ContactOption onClick={handleEmailClick}>
-                                                <EmailIcon color="primary" />
-                                                <Typography>Email</Typography>
-                                            </ContactOption>
-                                            <ContactOption onClick={handleWhatsAppClick}>
-                                                <WhatsAppIcon color="primary" />
-                                                <Typography>WhatsApp</Typography>
-                                            </ContactOption>
-                                        </ContactMenu>
-                                    </Popover>
-                                )}
+                                <Box position="relative" width="100%" sx={{ zIndex: 1 }}>
+                                    <StyledButton onClick={handleContactClick}>
+                                        <ContactMailIcon /> 
+                                        <Typography>Contact me</Typography>
+                                    </StyledButton>
+                                    {!isMobile && (
+                                        <Box position="absolute" width="100%" sx={{ marginTop: '8px' }}>
+                                            <Collapse in={open} timeout="auto">
+                                                <ContactMenu>
+                                                    <ContactOption onClick={handleLinkedInClick}>
+                                                        <LinkedInIcon className="linkedin" />
+                                                        <Typography>LinkedIn</Typography>
+                                                    </ContactOption>
+                                                    <ContactOption onClick={handleEmailClick}>
+                                                        <EmailIcon className="email" />
+                                                        <Typography>Email</Typography>
+                                                    </ContactOption>
+                                                    <ContactOption onClick={handleWhatsAppClick}>
+                                                        <WhatsAppIcon className="whatsapp" />
+                                                        <Typography>WhatsApp</Typography>
+                                                    </ContactOption>
+                                                </ContactMenu>
+                                            </Collapse>
+                                        </Box>
+                                    )}
+                                </Box>
                             </Grid>
                         </Grid2>
-
                     </Grid>
                 </Grid>
             </Container>
         </StyledHero>
-      </>
     )
-  }
-  
-  export default Hero
+}
+
+export default Hero
   

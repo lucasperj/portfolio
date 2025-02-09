@@ -50,6 +50,11 @@ const theme = createTheme({
       },
     },
   },
+  zIndex: {
+    modal: 1300,
+    popover: 1200,
+    tooltip: 1100
+  },
 });
 
 export default theme;
