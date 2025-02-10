@@ -5,19 +5,33 @@ import { useState, useEffect } from 'react';
 const NavBar = () => {
     const [activeSection, setActiveSection] = useState('');
 
+    const handleNavClick = (sectionId: string) => {
+        setActiveSection(sectionId); // Atualiza imediatamente ao clicar
+        scrollToSection(sectionId);
+    };
+
     useEffect(() => {
         const handleScroll = () => {
-            const sections = ['about', 'skills', 'projects'];
-            const current = sections.find(section => {
+            const sections = ['about', 'quality', 'projects'];
+            const scrollPosition = window.scrollY;
+            const navbarHeight = 64; // altura padrão da navbar do Material-UI
+
+            for (const section of sections) {
                 const element = document.getElementById(section);
                 if (element) {
-                    const rect = element.getBoundingClientRect();
-                    return rect.top <= 100 && rect.bottom >= 100;
+                    const { offsetTop, offsetHeight } = element;
+                    // Ajustando o cálculo considerando a altura da navbar
+                    if (scrollPosition + navbarHeight >= offsetTop && 
+                        scrollPosition + navbarHeight < offsetTop + offsetHeight) {
+                        setActiveSection(section);
+                        break;
+                    }
                 }
-                return false;
-            });
-            if (current) setActiveSection(current);
+            }
         };
+
+        // Executar handleScroll imediatamente após a montagem do componente
+        handleScroll();
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -54,6 +68,9 @@ const NavBar = () => {
             backgroundColor: theme.palette.primary.contrastText,
             transition: 'all 0.3s ease',
         },
+        '&.active': {
+            fontWeight: 'bold',
+        },
         '&.active::after': {
             width: '80%',
             left: '10%'
@@ -68,22 +85,22 @@ const NavBar = () => {
         <StyledAppBar position="fixed">
             <StyledToobar>
                 <StyledButton 
-                    onClick={() => scrollToSection('about')}
+                    onClick={() => handleNavClick('about')}
                     className={activeSection === 'about' ? 'active' : ''}
                 >
-                    About
+                    Sobre
                 </StyledButton>
                 <StyledButton 
-                    onClick={() => scrollToSection('skills')}
-                    className={activeSection === 'skills' ? 'active' : ''}
+                    onClick={() => handleNavClick('quality')}
+                    className={activeSection === 'quality' ? 'active' : ''}
                 >
-                    Skills
+                    Qualidade
                 </StyledButton>
                 <StyledButton 
-                    onClick={() => scrollToSection('projects')}
+                    onClick={() => handleNavClick('projects')}
                     className={activeSection === 'projects' ? 'active' : ''}
                 >
-                    Projects
+                    Projetos
                 </StyledButton>
             </StyledToobar>
         </StyledAppBar>

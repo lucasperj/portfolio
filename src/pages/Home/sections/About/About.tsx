@@ -66,6 +66,7 @@ const ExperienceCard = ({ experience }: {
         period: string;
         role: string;
         description: string;
+        highlights?: string[];
     };
 }) => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -101,9 +102,23 @@ const ExperienceCard = ({ experience }: {
                     <Typography variant="subtitle1" color="primary.contrastText" gutterBottom>
                         {experience.role}
                     </Typography>
-                    <Typography color="text.secondary">
+                    <Typography color="text.secondary" paragraph>
                         {experience.description}
                     </Typography>
+                    {experience.highlights && (
+                        <Box component="ul" sx={{ pl: 2, mt: 1 }}>
+                            {experience.highlights.map((highlight, index) => (
+                                <Typography 
+                                    key={index} 
+                                    component="li" 
+                                    color="text.secondary"
+                                    sx={{ mb: 1 }}
+                                >
+                                    {highlight}
+                                </Typography>
+                            ))}
+                        </Box>
+                    )}
                 </Box>
             </Collapse>
         </StyledPaper>
@@ -113,57 +128,70 @@ const ExperienceCard = ({ experience }: {
 const About = () => {
     const skills = [
         'Selenium WebDriver',
-        'Cypress',
+        'Playwright',
+        'Appium',
+        'Apache Ant',
         'JavaScript/TypeScript',
-        'Java',
-        'Python',
-        'React Testing Library',
-        'Jest',
         'JUnit',
         'TestNG',
-        'REST Assured',
         'Postman',
         'Git',
         'Jenkins',
-        'GitHub Actions',
+        'GitHub/Actions',
         'Docker',
-        'SQL'
+        'SQL',
+        'Liferay',
+        'Acessibilidade',
+        'SEO',
+        'Testes manuais',
+        'Gerenciamento de testes(Testmo, Testrail)',
     ];
 
     const metrics = [
-        'Redução de 40% no tempo de execução dos testes através de otimização e paralelização',
-        'Implementação de pipeline de CI/CD reduzindo o tempo de deploy em 60%',
-        'Cobertura de 90% dos casos de teste críticos com automação',
-        'Identificação proativa de mais de 200 bugs antes do deploy em produção'
+        'Ao longo de minha carreira, colaborei ativamente com diversas áreas, como desenvolvimento, produto, implantação e negócios, compreendendo as necessidades de cada stakeholder e contribuindo para a entrega de produtos de alta qualidade.',
+        'Minhas habilidades abrangem automação de testes, testes de software em diversas modalidades, metodologias ágeis, gerenciamento de testes, integração contínua, versionamento, acessibilidade, SEO, consultoria de qualidade e mentoria.',
+        'Busco constantemente aprimorar meus conhecimentos e habilidades para oferecer soluções inovadoras e eficientes para os desafios de cada projeto.'
     ];
 
     const experiences = [
         {
             company: 'Amigo Tech',
             logo: AmigoTechLogo,
-            period: '2020 - 2021',
-            role: 'QA Analyst',
-            description: `Iniciei minha jornada na área de QA na Amigo Tech, onde desenvolvi habilidades 
-            em testes manuais e automatizados. Participei da implementação de processos de qualidade e 
-            contribuí para a redução significativa de bugs em produção.`
+            period: '2024 - Hoje',
+            role: 'Consultor de qualidade',
+            description: 'Definindo estratégias de qualidade em um ecossistema fintech médico integrado, atuando por três produtos principais:',
+            highlights: [
+                "Aplicação web para Contabilidade Médica: Portal do contábil de clientes e quadro de informações PJ, com automação E2E usando Playwright",
+                "Aplicativo Mobile 'Amigo One': Prontuários inteligentes e gestão contábil, implementando testes mobile com Appium",
+                "ABU 'Amigo Pay': Sistema de pagamentos integrado com BaaS (Dock), garantindo qualidade em integrações críticas",
+                "Consultoria estratégica em qualidade para todo o ecossistema, estruturando casos de teste, processos e métricas"
+            ]
         },
         {
-            company: 'TeamSix',
+            company: 'Team Six Tech',
             logo: TeamSixLogo,
-            period: '2021 - 2022',
-            role: 'QA Analyst',
-            description: `Na TeamSix, fui responsável pela criação e execução de testes automatizados, 
-            contribuindo para a melhoria da qualidade do produto. Implementei frameworks de teste e 
-            trabalhei em estreita colaboração com desenvolvedores para garantir a qualidade das entregas.`
+            period: '2024',
+            role: 'Especialista em qualidade e acessibilidade',
+            description: 'Atuação no projeto de migração do portal NotreDame Intermédica/Hapvida para Liferay, com foco em acessibilidade:',
+            highlights: [
+                "Implementação de padrões WCAG para acessibilidade digital",
+                "Otimização de contraste, hierarquia e navegação para leitores de tela",
+                "Consultoria em SEO e performance web (LCP, CLS)",
+                "Aplicação da heurística CROP para melhor experiência do usuário"
+            ]
         },
         {
             company: 'Liferay',
             logo: LiferayLogo,
-            period: '2022 - Atual',
-            role: 'QA Engineer',
-            description: `Como QA Engineer na Liferay, atuo no desenvolvimento e manutenção de frameworks de automação, 
-            implementando testes end-to-end e de API. Trabalho com tecnologias como Selenium, Cypress e REST Assured, 
-            além de participar ativamente na implementação de práticas de CI/CD e na melhoria contínua dos processos de qualidade.`
+            period: '2022 - 2023',
+            role: 'Analista de qualidade',
+            description: 'Desenvolvimento e manutenção de frameworks de automação para o Liferay DXP, focando em qualidade e eficiência:',
+            highlights: [
+                "Liderança em iniciativas de automação com Poshi(Selenium)",
+                "Gerenciamento e configuração de ambientes com Apache Ant e Docker",
+                "Monitoramento de CI/CD com Jenkins e TestRail",
+                "Mentoria técnica e documentação de processos de QA"
+            ]
         }
     ];
 
@@ -206,7 +234,7 @@ const About = () => {
                             <Box display="flex" alignItems="center" mb={2}>
                                 <TimelineIcon className="sectionIcon" />
                                 <Typography variant="h5" color="primary.contrastText">
-                                    O que me trouxe até aqui
+                                    Jornada
                                 </Typography>
                             </Box>
                             <Box component="ul" sx={{ pl: 2, m: 0 }}>
@@ -230,11 +258,12 @@ const About = () => {
                             variant="h4" 
                             color="primary.contrastText" 
                             sx={{
-                                mb: 6,
+                                mb: 2,
                                 mt: {
-                                    xs: 6,  // 48px em telas pequenas
-                                    md: 0   // 0px em telas médias e maiores
-                                }
+                                    xs: 6,
+                                    md: 0
+                                },
+                                textAlign: 'center'
                             }}
                         >
                             Experiência profissional
@@ -242,7 +271,18 @@ const About = () => {
                     </Grid>
 
                     {experiences.map((exp) => (
-                        <Grid item xs={12} md={4} key={exp.company}>
+                        <Grid 
+                            item 
+                            xs={12} 
+                            md={4} 
+                            key={exp.company}
+                            sx={{
+                                mb: {
+                                    xs: 2, // 16px de margem bottom em telas pequenas
+                                    md: -7  // sem margem em telas médias e maiores
+                                }
+                            }}
+                        >
                             <ExperienceCard experience={exp} />
                         </Grid>
                     ))}

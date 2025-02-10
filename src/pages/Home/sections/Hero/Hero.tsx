@@ -52,7 +52,7 @@ const Hero = () => {
                     </Grid>
                     <Grid item xs={12} md={7}>
                         <Typography variant="h1" color="primary.contrastText" textAlign="center" pb={2}>Lucas Falcão</Typography>
-                        <Typography variant="h2" color="secondary.light" textAlign="center">I'm a Automation and Quality Analyst</Typography>
+                        <Typography variant="h2" color="secondary.light" textAlign="center">Analista de Qualidade e Automação</Typography>
                         
                         <Grid2 container display="flex" justifyContent="center" spacing={3} pt={4}> 
                             <Grid item xs={12} md={4} display="flex" justifyContent="center">
