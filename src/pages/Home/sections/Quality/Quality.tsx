@@ -99,7 +99,7 @@ const QualityCard = ({ topic }: { topic: QualityTopic }) => {
             </Box>
             <Collapse in={isExpanded} timeout="auto" unmountOnExit>
                 <Box mt={2}>
-                    <Typography color="text.secondary" paragraph>
+                    <Typography color="text.secondary" sx={{ mb: 2 }}>
                         {topic.description}
                     </Typography>
                     <Box component="ul" sx={{ pl: 2, mt: 1 }}>
@@ -277,7 +277,7 @@ const Quality = () => {
                         </ChallengeButton>
                         <ChallengeButton 
                             onClick={() => handleOptionClick(1)} 
-                            data-testid="correct-button"
+                            data-testid="incorrect-button"
                         >
                             Opção 2
                         </ChallengeButton>
@@ -455,7 +455,7 @@ const Quality = () => {
                             <Typography variant="h6" color="primary.contrastText" gutterBottom textAlign="left">
                                                 {challenges[currentChallenge].title}
                             </Typography>
-                            <Typography color="text.secondary" paragraph>
+                            <Typography color="text.secondary" sx={{ mb: 2 }}>
                                                 {challenges[currentChallenge].description}
                                             </Typography>
                                         </Grid>
