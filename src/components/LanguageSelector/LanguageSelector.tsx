@@ -110,10 +110,16 @@ const LanguageSelector = () => {
           },
         }}
       >
-        {/* Opções de idioma */}
-        <StyledMenuItem value="pt">Português</StyledMenuItem>
-        <StyledMenuItem value="en">English</StyledMenuItem>
-        <StyledMenuItem value="es">Español</StyledMenuItem>
+        {/* Opções de idioma com bandeira */}
+        <StyledMenuItem value="pt">
+          <span style={{ marginRight: 8 }}>🇧🇷</span>Português
+        </StyledMenuItem>
+        <StyledMenuItem value="en">
+          <span style={{ marginRight: 8 }}>🇺🇸</span>English
+        </StyledMenuItem>
+        <StyledMenuItem value="es">
+          <span style={{ marginRight: 8 }}>🇪🇸</span>Español
+        </StyledMenuItem>
       </StyledSelect>
     </Box>
   );
