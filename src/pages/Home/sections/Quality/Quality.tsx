@@ -87,6 +87,7 @@ const ColorOption = styled('div')<{ bg: string; fg: string }>(({ bg, fg }) => ({
 }));
 
 // Componente para exibir cada tópico teórico de qualidade
+// Recebe um tópico e exibe título, descrição e pontos-chave, com opção de expandir/colapsar
 const QualityCard = ({ topic }: { topic: QualityTopic }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -99,6 +100,7 @@ const QualityCard = ({ topic }: { topic: QualityTopic }) => {
                         {topic.title}
                     </Typography>
                 </Box>
+                {/* Botão para expandir/colapsar o card */}
                 <ExpandMore
                     onClick={() => setIsExpanded(!isExpanded)}
                     className={isExpanded ? 'expanded' : ''}
@@ -133,7 +135,13 @@ const QualityCard = ({ topic }: { topic: QualityTopic }) => {
 
 // Componente principal da seção de Qualidade
 const Quality = () => {
-     // Estados para controle dos desafios e feedbacks
+    // Estados para controle dos desafios e feedbacks
+    // bugFound: se o usuário já encontrou o bug
+    // attempts: número de tentativas no desafio atual
+    // currentChallenge: índice do desafio atual
+    // showFinalMessage: exibe mensagem final ao terminar todos desafios
+    // totalAttempts: array com tentativas de cada desafio
+    // error: mensagem de erro para feedback
     const [bugFound, setBugFound] = useState(false);
     const [attempts, setAttempts] = useState(0);
     const [currentChallenge, setCurrentChallenge] = useState(0);
@@ -141,13 +149,15 @@ const Quality = () => {
     const [totalAttempts, setTotalAttempts] = useState<number[]>([]);
     const [error, setError] = useState<string | null>(null);
 
-    // Dentro do componente Quality
+    // Refs para scroll automático ao avançar/finalizar desafios
     const exercitarRef = useRef<HTMLDivElement>(null);
     const finalCardRef = useRef<HTMLDivElement>(null);
 
+    // Hook de tradução para internacionalização dinâmica
     const { t } = useTranslation();
 
     // Monta os tópicos de qualidade dinamicamente para atualizar ao trocar idioma
+    // Isso garante que a troca de idioma reflita imediatamente na UI
     const qualityTopics: QualityTopic[] = [
         {
             title: t('quality.topics.0.title'),
@@ -185,10 +195,11 @@ const Quality = () => {
     ];
 
     // Função chamada ao clicar em uma opção de desafio
+    // Atualiza tentativas, verifica solução e controla feedback
     const handleOptionClick = async (index: number) => {
         try {
             if (!navigator.onLine) {
-                setError('Você está offline. Verifique sua conexão com a internet e tente novamente.');
+                setError(t('quality.error.offline'));
                 return;
             }
 
@@ -200,11 +211,12 @@ const Quality = () => {
             }
             setError(null);
         } catch (err) {
-            setError('Ocorreu um erro ao processar sua resposta. Por favor, tente novamente.');
+            setError(t('quality.error.generic'));
         }
     };
 
-     // Função para avançar para o próximo desafio ou mostrar mensagem final
+    // Avança para o próximo desafio ou mostra mensagem final
+    // Atualiza tentativas totais e faz scroll automático
     const resetChallenge = () => {
         if (currentChallenge === challenges.length - 1) {
             setShowFinalMessage(true);
@@ -223,10 +235,9 @@ const Quality = () => {
         }
     };
 
-    // Função para tentar outro desafio após 3 tentativas (usada no botão 'Tentar outro desafio')
+    // Permite tentar outro desafio após 3 tentativas
     const tryAnotherChallenge = () => {
         resetChallenge();
-        // Garante o scroll para a pergunta também nesse contexto
         setTimeout(() => {
             exercitarRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 300);
@@ -245,7 +256,8 @@ const Quality = () => {
         return (total / totalAttempts.length).toFixed(1);
     };
 
-    // Renderiza o desafio atual conforme o tipo
+    // Renderiza o desafio atual conforme o tipo (button, contrast, code, etc)
+    // Permite flexibilidade para novos tipos de desafios
     const renderChallenge = () => {
         const challenge = challenges[currentChallenge];
 

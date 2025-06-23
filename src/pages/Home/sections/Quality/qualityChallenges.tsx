@@ -7,6 +7,9 @@ import Typography from '@mui/material/Typography';
 import { translate } from '../../../../i18n/useTranslation';
 
 // Tipos para tópicos teóricos e desafios
+// QualityTopic: representa um tópico teórico de qualidade
+// OptionType: representa as opções de resposta dos desafios (pode ser cor, label, etc)
+// Challenge: representa um desafio interativo
 export interface QualityTopic {
   title: string;
   icon: React.ElementType;
@@ -15,9 +18,9 @@ export interface QualityTopic {
 }
 
 export type OptionType =
-  | { bg: string; fg: string; text: string }
-  | { label: string; value: string; type: string; pattern?: string }
-  | { label: string; value: string; pattern: string; type?: string };
+  | { bg: string; fg: string; text: string } // Opção de cor (usado em contraste)
+  | { label: string; value: string; type: string; pattern?: string } // Opção com label e valor
+  | { label: string; value: string; pattern: string; type?: string }; // Opção com pattern
 
 export interface Challenge {
   title: string;
@@ -30,6 +33,7 @@ export interface Challenge {
 }
 
 // Array de tópicos teóricos
+// Usamos translate para garantir internacionalização dinâmica
 export const qualityTopics: QualityTopic[] = [
   {
     title: translate('quality.topics.0.title'),
@@ -67,11 +71,13 @@ export const qualityTopics: QualityTopic[] = [
 ];
 
 // Array de desafios interativos
+// Cada desafio pode ter tipo diferente (button, contrast, code, multiple, form)
+// Para adicionar um novo desafio, basta seguir o padrão abaixo
 export const challenges: Challenge[] = [
   {
-    title: "Encontre o bug na interface",
-    description: "Um dos botões tem um data-testid inconsistente com o padrão.",
-    hint: "Observe o padrão button-X nos data-testids e procure o que foge desse padrão",
+    title: "Encontre o bug na interface", // TODO: internacionalizar
+    description: "Um dos botões tem um data-testid inconsistente com o padrão.", // TODO: internacionalizar
+    hint: "Observe o padrão button-X nos data-testids e procure o que foge desse padrão", // TODO: internacionalizar
     solution: 1,
     type: "button",
     explanation: (
