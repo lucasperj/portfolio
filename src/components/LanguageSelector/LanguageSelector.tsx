@@ -85,7 +85,10 @@ const LanguageSelector = () => {
       {/* Select customizado para trocar idioma */}
       <StyledSelect
         value={language}
-        onChange={e => setLanguage(e.target.value as string)}
+        onChange={e => {
+          setLanguage(e.target.value as string);
+          localStorage.setItem('language', e.target.value as string);
+        }}
         size="small"
         variant="outlined"
         disableUnderline

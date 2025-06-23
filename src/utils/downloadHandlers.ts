@@ -1,5 +1,6 @@
 // Funções utilitárias para exibir toasts
 import { showSuccessToast, showErrorToast, showWarningToast } from './toastHandlers';
+import { translate } from '../i18n/useTranslation';
 
 // Variável para controlar o tempo do último download
 let lastDownloadTime = 0;
@@ -15,13 +16,13 @@ export const handleDownloadCV = async (cvPath: string) => {
         // Impede downloads em sequência, respeitando o cooldown
         if (timeSinceLastDownload < COOLDOWN_TIME) {
             const remainingTime = Math.ceil((COOLDOWN_TIME - timeSinceLastDownload) / 1000);
-            showWarningToast(`Aguarde ${remainingTime} segundos para baixar novamente`);
+            showWarningToast(translate('toast.cooldown').replace('{seconds}', String(remainingTime)));
             return;
         }
 
         // Verifica conexão com a internet
         if (!navigator.onLine) {
-            showErrorToast('Sem conexão com a internet. Verifique sua conexão e tente novamente.');
+            showErrorToast(translate('toast.noConnection'));
             return;
         }
 
@@ -35,9 +36,9 @@ export const handleDownloadCV = async (cvPath: string) => {
 
         // Atualiza o tempo do último download
         lastDownloadTime = currentTime;
-        showSuccessToast('Download iniciado com sucesso!');
+        showSuccessToast(translate('toast.downloadSuccess'));
     } catch (error) {
         console.error('Erro ao fazer download:', error);
-        showErrorToast('Ocorreu um erro ao fazer o download. Tente novamente mais tarde.');
+        showErrorToast(translate('toast.downloadError'));
     }
 }; 

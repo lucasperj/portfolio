@@ -18,4 +18,17 @@ export function useTranslation() {
     return value || key;
   }
   return { t };
+}
+
+// Função utilitária para traduzir fora de componentes React
+export function translate(key: string): string {
+  // Tenta pegar o idioma do localStorage, senão usa 'pt'
+  const language = localStorage.getItem('language') || 'pt';
+  const keys = key.split('.');
+  let value = translations[language];
+  for (const k of keys) {
+    value = value?.[k];
+    if (!value) break;
+  }
+  return value || key;
 } 

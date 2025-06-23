@@ -47,5 +47,14 @@
     "title": "Proyectos",
     "soon": "Pronto compartiré aquí:",
     "development": "Contenido en desarrollo"
+  },
+  "toast": {
+    "noConnection": "Sin conexión a internet. Verifica tu conexión e inténtalo de nuevo.",
+    "linkedin": "¡Gracias por tu interés! ¡Responderé tu mensaje pronto! 😊",
+    "email": "¡Gracias por contactarme! ¡Estoy ansioso por leer tu correo! 📧",
+    "whatsapp": "¡Genial! ¡Responderé tu mensaje lo antes posible! 💬",
+    "cooldown": "Espera {seconds} segundos para descargar nuevamente",
+    "downloadSuccess": "¡Descarga iniciada con éxito!",
+    "downloadError": "Ocurrió un error al descargar. Inténtalo de nuevo más tarde."
   }
 } 

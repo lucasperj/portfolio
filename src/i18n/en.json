@@ -47,5 +47,14 @@
     "title": "Projects",
     "soon": "Soon, I will share here:",
     "development": "Content under development"
+  },
+  "toast": {
+    "noConnection": "No internet connection. Please check your connection and try again.",
+    "linkedin": "Thanks for your interest! I'll reply to your message soon! 😊",
+    "email": "Thanks for reaching out! I'm looking forward to reading your email! 📧",
+    "whatsapp": "Great! I'll reply to your message as soon as possible! 💬",
+    "cooldown": "Please wait {seconds} seconds before downloading again",
+    "downloadSuccess": "Download started successfully!",
+    "downloadError": "An error occurred while downloading. Please try again later."
   }
 } 
