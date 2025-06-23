@@ -7,6 +7,7 @@ import { useState } from "react";
 import AmigoTechLogo from "../../../../assets/images/amigotech-logo.jpg"
 import TeamSixLogo from "../../../../assets/images/teamsix-logo.jpg"
 import LiferayLogo from "../../../../assets/images/liferay-logo.png"
+import { useTranslation } from '../../../../i18n/useTranslation';
 
 const StyledAbout = styled("div")(({theme}) => ({
     backgroundColor: theme.palette.background.paper,
@@ -126,6 +127,8 @@ const ExperienceCard = ({ experience }: {
 };
 
 const About = () => {
+    const { t } = useTranslation();
+
     const skills = [
         'Selenium WebDriver',
         'Playwright',
@@ -207,7 +210,7 @@ const About = () => {
                 >
                     <Grid item xs={12} id="about">
                         <Typography variant="h2" color="primary.contrastText" textAlign="center" gutterBottom mb={4}>
-                            Sobre mim
+                            {t('about.title')}
                         </Typography>
                     </Grid>
 
@@ -217,7 +220,7 @@ const About = () => {
                             <Box display="flex" alignItems="center" mb={2}>
                                 <CodeIcon className="sectionIcon" />
                                 <Typography variant="h5" color="primary.contrastText">
-                                    Habilidades técnicas
+                                    {t('about.skills.title')}
                                 </Typography>
                             </Box>
                             <Box>
@@ -234,7 +237,7 @@ const About = () => {
                             <Box display="flex" alignItems="center" mb={2}>
                                 <TimelineIcon className="sectionIcon" />
                                 <Typography variant="h5" color="primary.contrastText">
-                                    Jornada
+                                    {t('about.metrics.title')}
                                 </Typography>
                             </Box>
                             <Box component="ul" sx={{ pl: 2, m: 0 }}>
@@ -266,7 +269,7 @@ const About = () => {
                                 textAlign: 'center'
                             }}
                         >
-                            Experiência profissional
+                            {t('about.experience.title')}
                         </Typography>
                     </Grid>
 

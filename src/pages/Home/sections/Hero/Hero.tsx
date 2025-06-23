@@ -6,6 +6,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { useState } from "react";
+import { useTranslation } from '../../../../i18n/useTranslation';
 
 import Avatar from "../../../../assets/images/avatar.jpg"
 import StyledButton from "../../../../components/StyledButton/StyledButton";
@@ -19,6 +20,7 @@ const Hero = () => {
     const [open, setOpen] = useState(false);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+    const { t } = useTranslation();
 
     const handleContactClick = () => {
         if (isMobile) {
@@ -51,15 +53,15 @@ const Hero = () => {
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={7}>
-                        <Typography variant="h1" color="primary.contrastText" textAlign="center" pb={2}>Lucas Falcão</Typography>
-                        <Typography variant="h2" color="secondary.light" textAlign="center">Analista de Qualidade e Automação</Typography>
+                        <Typography variant="h1" color="primary.contrastText" textAlign="center" pb={2}>{t('hero.name')}</Typography>
+                        <Typography variant="h2" color="secondary.light" textAlign="center">{t('hero.subtitle')}</Typography>
                         
                         <Grid2 container display="flex" justifyContent="center" spacing={3} pt={4}> 
                             <Grid item xs={12} md={4} display="flex" justifyContent="center">
                                 <Box width="100%">
                                     <StyledButton onClick={() => handleDownloadCV(CV)}>
                                         <CloudDownloadIcon />
-                                        <Typography>Baixar CV</Typography>
+                                        <Typography>{t('hero.downloadCV')}</Typography>
                                     </StyledButton>
                                 </Box>
                             </Grid>
@@ -67,7 +69,7 @@ const Hero = () => {
                                 <Box position="relative" width="100%" sx={{ zIndex: 1 }}>
                                     <StyledButton onClick={handleContactClick}>
                                         <ContactMailIcon /> 
-                                        <Typography>Entrar em contato</Typography>
+                                        <Typography>{t('hero.contact')}</Typography>
                                     </StyledButton>
                                     {!isMobile && (
                                         <Box position="absolute" width="100%" sx={{ marginTop: '8px' }}>
@@ -75,15 +77,15 @@ const Hero = () => {
                                                 <ContactMenu>
                                                     <ContactOption onClick={handleLinkedInClick}>
                                                         <LinkedInIcon className="linkedin" />
-                                                        <Typography>LinkedIn</Typography>
+                                                        <Typography>{t('hero.linkedin')}</Typography>
                                                     </ContactOption>
                                                     <ContactOption onClick={handleEmailClick}>
                                                         <EmailIcon className="email" />
-                                                        <Typography>Email</Typography>
+                                                        <Typography>{t('hero.email')}</Typography>
                                                     </ContactOption>
                                                     <ContactOption onClick={handleWhatsAppClick}>
                                                         <WhatsAppIcon className="whatsapp" />
-                                                        <Typography>WhatsApp</Typography>
+                                                        <Typography>{t('hero.whatsapp')}</Typography>
                                                     </ContactOption>
                                                 </ContactMenu>
                                             </Collapse>

@@ -12,6 +12,7 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import ErrorIcon from '@mui/icons-material/Error';
 import { qualityTopics, challenges, OptionType, QualityTopic } from './qualityChallenges.tsx';
+import { useTranslation } from '../../../../i18n/useTranslation';
 
 // Estilização da área de skills (tópicos teóricos)
 const StyledSkills = styled("div")(({theme}) => ({
@@ -140,6 +141,8 @@ const Quality = () => {
     // Dentro do componente Quality
     const exercitarRef = useRef<HTMLDivElement>(null);
     const finalCardRef = useRef<HTMLDivElement>(null);
+
+    const { t } = useTranslation();
 
     // Função chamada ao clicar em uma opção de desafio
     const handleOptionClick = async (index: number) => {
@@ -329,10 +332,10 @@ const Quality = () => {
                     <Grid container spacing={4} justifyContent="center">
                     <Grid item xs={12}>
                         <Typography variant="h2" color="primary.contrastText" textAlign="center" gutterBottom>
-                            Qualidade de software
+                            {t('quality.title')}
                         </Typography>
                         <Typography variant="h5" color="text.secondary" textAlign="center" mb={6}>
-                            Explorando os pilares fundamentais para garantir excelência em software
+                            {t('quality.subtitle')}
                         </Typography>
                     </Grid>
 
@@ -366,14 +369,14 @@ const Quality = () => {
                                         gap: 2
                                     }}
                                 >
-                                    Vamos exercitar? 🎯
+                                    {t('quality.exercise.title')} 🎯
                                 </Typography>
                                 <Typography 
                                     variant="subtitle1" 
                                     color="text.secondary"
                                     sx={{ mt: 1 }}
                                 >
-                                    Teste suas habilidades de QA encontrando bugs em diferentes cenários
+                                    {t('quality.exercise.subtitle')}
                                 </Typography>
                             </Box>
                         </Grid>
@@ -384,7 +387,7 @@ const Quality = () => {
                                     <Box display="flex" alignItems="center">
                                         <BugReportIcon className="sectionIcon" />
                                         <Typography variant="h6" color="primary.contrastText" textAlign="left">
-                                            Desafio QA #{currentChallenge + 1}
+                                            {t('quality.challenge.title')} #{currentChallenge + 1}
                                         </Typography>
                                     </Box>
                                     {currentChallenge > 0 && (
@@ -403,7 +406,7 @@ const Quality = () => {
                                                 }
                                             }}
                                         >
-                                            Voltar ao desafio anterior
+                                            {t('quality.challenge.back')}
                                         </Button>
                                     )}
                                 </Box>
@@ -426,12 +429,12 @@ const Quality = () => {
                                         <Box mt={2}>
                                             <Box p={2} bgcolor="success.main" borderRadius={1}>
                                                 <Typography color="white">
-                                                    Parabéns! 🎉 Você encontrou o bug em {attempts} {attempts === 1 ? 'tentativa' : 'tentativas'}!
+                                                    {t('quality.success')} 🎉 {t('quality.success.attempts')} {attempts === 1 ? t('quality.attempt') : t('quality.attempts')}!
                                                 </Typography>
                                             </Box>
                                             <Box mt={2} p={2} bgcolor={theme => theme.palette.background.paper} borderRadius={1}>
                                                 <Typography variant="subtitle1" color="primary.contrastText" gutterBottom>
-                                                    Explicação:
+                                                    {t('quality.explanation')}
                                                 </Typography>
                                                 <Typography color="text.secondary">
                                                     {challenges[currentChallenge].explanation}
@@ -443,14 +446,14 @@ const Quality = () => {
                                                     startIcon={<RefreshIcon />}
                                                     sx={{ mt: 2 }}
                                                 >
-                                                    Próximo Desafio
+                                                    {t('quality.next')}
                                                 </Button>
                                             </Box>
                                         </Box>
                                     ) : (
                                         <>
                                             <Typography color="text.secondary" sx={{ mt: 2, fontStyle: 'normal' }}>
-                                                Dica: {challenges[currentChallenge].hint}
+                                                {t('quality.hint')} {challenges[currentChallenge].hint}
                             </Typography>
                                             {attempts >= 3 && (
                                                 <Box>
@@ -462,8 +465,7 @@ const Quality = () => {
                                                             fontStyle: 'normal'
                                                         }}
                                                     >
-                                                        Está com dificuldade? Que tal estudar um pouco mais sobre o tema? 
-                                                        Fique à vontade para me contatar para discutirmos sobre! ✈️
+                                                        {t('quality.difficulty')} {t('quality.study')} ✈️
                                                     </Typography>
                                                     <Button
                                                         variant="contained"
@@ -479,7 +481,7 @@ const Quality = () => {
                                                             }
                                                         }}
                                                     >
-                                                        Tentar outro desafio
+                                                        {t('quality.try')}
                                                     </Button>
                                                 </Box>
                                             )}
@@ -505,7 +507,7 @@ const Quality = () => {
 
                                     <Box display="flex" justifyContent="space-between" alignItems="center" mt={2}>
                                         <Typography color="text.secondary">
-                                            Tentativas: {attempts}
+                                            {t('quality.attempts')} {attempts}
                             </Typography>
                                     </Box>
                                 </Box>
@@ -520,7 +522,7 @@ const Quality = () => {
                     >
                         <StyledPaper ref={finalCardRef} elevation={3} sx={{ position: 'relative', overflow: 'visible' }}>
                             {/* Botão de reset no canto superior esquerdo, apenas ícone, com tooltip */}
-                            <Tooltip title="Refazer desafio" placement="right">
+                            <Tooltip title={t('quality.reset')} placement="right">
                                 <IconButton
                                     onClick={restartChallenges}
                                     sx={{
@@ -553,25 +555,25 @@ const Quality = () => {
                                 </motion.div>
                                 
                                 <Typography variant="h4" color="primary.contrastText" gutterBottom>
-                                    Parabéns! 🎉 Você completou todos os desafios!
+                                    {t('quality.congratulations')} 🎉 {t('quality.complete')}!
                                 </Typography>
 
                                 <Box my={4}>
                                     <EmojiEventsIcon sx={{ fontSize: 40, color: 'warning.main', mb: 1 }} />
                                     <Typography variant="h6" color="warning.main" gutterBottom>
-                                        Suas Estatísticas
+                                        {t('quality.statistics')}
                                     </Typography>
                                     <Typography color="text.secondary">
-                                        Média de tentativas por desafio: {calculateAverageAttempts()}
+                                        {t('quality.average')} {calculateAverageAttempts()}
                                     </Typography>
                                 </Box>
 
                                 <Typography variant="body1" color="text.secondary" paragraph>
-                                    "A qualidade não é um ato, é um hábito. Continue aprimorando suas habilidades e fazendo a diferença no mundo do desenvolvimento de software!"
+                                    {t('quality.journey')}
                                 </Typography>
 
                                 <Typography variant="body1" color="text.secondary" paragraph>
-                                    Que tal continuarmos essa jornada juntos? Estou sempre disponível para trocar experiências e conhecimentos sobre QA.
+                                    {t('quality.continue')}
                                 </Typography>
 
                                 <Box mt={3} display="flex" justifyContent="center">
@@ -583,7 +585,7 @@ const Quality = () => {
                                         startIcon={<LinkedInIcon />}
                                         sx={{ minWidth: '250px', py: 1.5, fontSize: '1.1rem' }}
                                     >
-                                        Conecte-se comigo
+                                        {t('quality.connect')}
                                     </Button>
                                 </Box>
                             </Box>

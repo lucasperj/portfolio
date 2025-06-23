@@ -8,6 +8,7 @@ import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { useTranslation } from '../../../../i18n/useTranslation';
 
 // Estilização do container principal da seção de projetos
 const StyledProjects = styled("div")(({theme}) => ({
@@ -58,6 +59,8 @@ const SocialButtons = styled(Box)(({theme}) => ({
 
 // Componente principal da seção de Projetos
 const Projects = () => {
+    const { t } = useTranslation();
+
     // Variantes de animação para o container principal (usado pelo Framer Motion)
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -102,7 +105,7 @@ const Projects = () => {
                         {/* Título animado */}
                         <motion.div variants={itemVariants}>
                             <Typography variant="h2" color="primary.contrastText" gutterBottom>
-                                Projetos
+                                {t('projects.title')}
                             </Typography>
                         </motion.div>
                         {/* Subtítulo animado */}
@@ -113,7 +116,7 @@ const Projects = () => {
                                 paragraph
                                 sx={{ mb: 2 }}
                             >
-                                Em breve, compartilharei aqui:
+                                {t('projects.soon')}
                             </Typography>
                         </motion.div>
                         {/* Ícones de categorias de projetos, cada um com animação ao passar o mouse */}
@@ -181,7 +184,7 @@ const Projects = () => {
                                         gap: 1
                                     }}
                                 >
-                                    Conteúdo em desenvolvimento
+                                    {t('projects.development')}
                                     {/* Foguete animado */}
                                     <motion.span
                                         animate={{ 

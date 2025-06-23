@@ -1,0 +1,51 @@
+{
+  "navbar": {
+    "about": "Sobre",
+    "quality": "Qualidade",
+    "projects": "Projetos"
+  },
+  "hero": {
+    "name": "Lucas Falcão",
+    "subtitle": "Analista de Qualidade e Automação",
+    "downloadCV": "Baixar CV",
+    "contact": "Entrar em contato",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "whatsapp": "WhatsApp"
+  },
+  "about": {
+    "title": "Sobre mim",
+    "skills": { "title": "Habilidades técnicas" },
+    "metrics": { "title": "Jornada" },
+    "experience": { "title": "Experiência profissional" }
+  },
+  "quality": {
+    "title": "Qualidade de software",
+    "subtitle": "Explorando os pilares fundamentais para garantir excelência em software",
+    "exercise": { "title": "Vamos exercitar?", "subtitle": "Teste suas habilidades de QA encontrando bugs em diferentes cenários" },
+    "challenge": { "title": "Desafio QA", "back": "Voltar ao desafio anterior" },
+    "success": "Parabéns! Você encontrou o bug em",
+    "success.attempts": "tentativa(s)",
+    "attempt": "tentativa",
+    "attempts": "tentativas",
+    "explanation": "Explicação:",
+    "next": "Próximo Desafio",
+    "hint": "Dica:",
+    "difficulty": "Está com dificuldade? Que tal estudar um pouco mais sobre o tema?",
+    "study": "Fique à vontade para me contatar para discutirmos sobre!",
+    "try": "Tentar outro desafio",
+    "reset": "Refazer desafio",
+    "congratulations": "Parabéns!",
+    "complete": "Você completou todos os desafios",
+    "statistics": "Suas Estatísticas",
+    "average": "Média de tentativas por desafio:",
+    "journey": "A qualidade não é um ato, é um hábito. Continue aprimorando suas habilidades e fazendo a diferença no mundo do desenvolvimento de software!",
+    "continue": "Que tal continuarmos essa jornada juntos? Estou sempre disponível para trocar experiências e conhecimentos sobre QA.",
+    "connect": "Conecte-se comigo"
+  },
+  "projects": {
+    "title": "Projetos",
+    "soon": "Em breve, compartilharei aqui:",
+    "development": "Conteúdo em desenvolvimento"
+  }
+} 

@@ -1,9 +1,12 @@
-import { AppBar, Toolbar, styled, Button } from "@mui/material"
+import { AppBar, Toolbar, styled, Button, Box } from "@mui/material"
 import { scrollToSection } from '../../utils/scrollHandlers';
 import { useState, useEffect } from 'react';
+import { useTranslation } from '../../i18n/useTranslation';
+import LanguageSelector from '../LanguageSelector/LanguageSelector';
 
 const NavBar = () => {
     const [activeSection, setActiveSection] = useState('');
+    const { t } = useTranslation();
 
     const handleNavClick = (sectionId: string) => {
         setActiveSection(sectionId); // Atualiza imediatamente ao clicar
@@ -60,6 +63,7 @@ const NavBar = () => {
         display: "flex",
         justifyContent: "center",
         gap: theme.spacing(8),
+        position: 'relative',
         [theme.breakpoints.down('md')]: {
             justifyContent: "space-evenly",
             gap: 0
@@ -97,24 +101,29 @@ const NavBar = () => {
     return (
         <StyledAppBar position="fixed">
             <StyledToolbar>
-                <StyledButton 
-                    onClick={() => handleNavClick('about')}
-                    className={activeSection === 'about' ? 'active' : ''}
-                >
-                    Sobre
-                </StyledButton>
-                <StyledButton 
-                    onClick={() => handleNavClick('quality')}
-                    className={activeSection === 'quality' ? 'active' : ''}
-                >
-                    Qualidade
-                </StyledButton>
-                <StyledButton 
-                    onClick={() => handleNavClick('projects')}
-                    className={activeSection === 'projects' ? 'active' : ''}
-                >
-                    Projetos
-                </StyledButton>
+                <Box position="absolute" left="50%" top={0} bottom={0} sx={{ transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                    <StyledButton 
+                        onClick={() => handleNavClick('about')}
+                        className={activeSection === 'about' ? 'active' : ''}
+                    >
+                        {t('navbar.about')}
+                    </StyledButton>
+                    <StyledButton 
+                        onClick={() => handleNavClick('quality')}
+                        className={activeSection === 'quality' ? 'active' : ''}
+                    >
+                        {t('navbar.quality')}
+                    </StyledButton>
+                    <StyledButton 
+                        onClick={() => handleNavClick('projects')}
+                        className={activeSection === 'projects' ? 'active' : ''}
+                    >
+                        {t('navbar.projects')}
+                    </StyledButton>
+                </Box>
+                <Box display="flex" flex={1} justifyContent="flex-end">
+                    <LanguageSelector />
+                </Box>
             </StyledToolbar>
         </StyledAppBar>
     )

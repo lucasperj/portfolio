@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from '@emotion/styled';
+import { LanguageProvider } from './i18n/LanguageContext';
 
 const StyledToastContainer = styled(ToastContainer)`
   &.Toastify__toast-container {
@@ -45,21 +46,23 @@ const StyledToastContainer = styled(ToastContainer)`
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <StyledToastContainer 
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
-      <Home />
-    </ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider theme={theme}>
+        <StyledToastContainer 
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+        <Home />
+      </ThemeProvider>
+    </LanguageProvider>
   )
 }
 

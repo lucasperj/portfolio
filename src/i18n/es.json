@@ -1,0 +1,51 @@
+{
+  "navbar": {
+    "about": "Sobre mí",
+    "quality": "Calidad",
+    "projects": "Proyectos"
+  },
+  "hero": {
+    "name": "Lucas Falcão",
+    "subtitle": "Analista de Calidad y Automatización",
+    "downloadCV": "Descargar CV",
+    "contact": "Contactar",
+    "linkedin": "LinkedIn",
+    "email": "Correo electrónico",
+    "whatsapp": "WhatsApp"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "skills": { "title": "Habilidades técnicas" },
+    "metrics": { "title": "Trayectoria" },
+    "experience": { "title": "Experiencia profesional" }
+  },
+  "quality": {
+    "title": "Calidad de software",
+    "subtitle": "Explorando los pilares fundamentales para garantizar la excelencia en software",
+    "exercise": { "title": "¿Vamos a practicar?", "subtitle": "Pon a prueba tus habilidades de QA encontrando errores en diferentes escenarios" },
+    "challenge": { "title": "Desafío QA", "back": "Volver al desafío anterior" },
+    "success": "¡Felicidades! Encontraste el error en",
+    "success.attempts": "intento(s)",
+    "attempt": "intento",
+    "attempts": "intentos",
+    "explanation": "Explicación:",
+    "next": "Siguiente desafío",
+    "hint": "Pista:",
+    "difficulty": "¿Tienes dificultades? ¿Qué tal estudiar un poco más sobre el tema?",
+    "study": "¡No dudes en contactarme para que podamos discutirlo!",
+    "try": "Intentar otro desafío",
+    "reset": "Reintentar desafío",
+    "congratulations": "¡Felicidades!",
+    "complete": "¡Completaste todos los desafíos",
+    "statistics": "Tus estadísticas",
+    "average": "Promedio de intentos por desafío:",
+    "journey": "La calidad no es un acto, es un hábito. ¡Sigue mejorando tus habilidades y marcando la diferencia en el mundo del desarrollo de software!",
+    "continue": "¿Qué tal continuar este viaje juntos? Siempre estoy disponible para compartir experiencias y conocimientos sobre QA.",
+    "connect": "Conéctate conmigo"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "soon": "Pronto compartiré aquí:",
+    "development": "Contenido en desarrollo"
+  }
+} 

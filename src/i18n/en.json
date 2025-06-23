@@ -1,0 +1,51 @@
+{
+  "navbar": {
+    "about": "About",
+    "quality": "Quality",
+    "projects": "Projects"
+  },
+  "hero": {
+    "name": "Lucas Falcão",
+    "subtitle": "Quality and Automation Analyst",
+    "downloadCV": "Download CV",
+    "contact": "Contact me",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "whatsapp": "WhatsApp"
+  },
+  "about": {
+    "title": "About me",
+    "skills": { "title": "Technical skills" },
+    "metrics": { "title": "Journey" },
+    "experience": { "title": "Professional experience" }
+  },
+  "quality": {
+    "title": "Software quality",
+    "subtitle": "Exploring the fundamental pillars to ensure software excellence",
+    "exercise": { "title": "Let's practice?", "subtitle": "Test your QA skills by finding bugs in different scenarios" },
+    "challenge": { "title": "QA Challenge", "back": "Back to previous challenge" },
+    "success": "Congratulations! You found the bug in",
+    "success.attempts": "attempt(s)",
+    "attempt": "attempt",
+    "attempts": "attempts",
+    "explanation": "Explanation:",
+    "next": "Next Challenge",
+    "hint": "Hint:",
+    "difficulty": "Having trouble? Maybe study a bit more about the topic?",
+    "study": "Feel free to contact me so we can discuss it!",
+    "try": "Try another challenge",
+    "reset": "Retry challenge",
+    "congratulations": "Congratulations!",
+    "complete": "You completed all challenges",
+    "statistics": "Your Statistics",
+    "average": "Average attempts per challenge:",
+    "journey": "Quality is not an act, it is a habit. Keep improving your skills and making a difference in the software development world!",
+    "continue": "How about continuing this journey together? I'm always available to share experiences and knowledge about QA.",
+    "connect": "Connect with me"
+  },
+  "projects": {
+    "title": "Projects",
+    "soon": "Soon, I will share here:",
+    "development": "Content under development"
+  }
+} 
