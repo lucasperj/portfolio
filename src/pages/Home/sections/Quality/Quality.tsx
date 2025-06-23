@@ -11,8 +11,11 @@ import CelebrationIcon from '@mui/icons-material/Celebration';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import ErrorIcon from '@mui/icons-material/Error';
-import { qualityTopics, challenges, OptionType, QualityTopic } from './qualityChallenges.tsx';
+import { challenges, OptionType, QualityTopic } from './qualityChallenges.tsx';
 import { useTranslation } from '../../../../i18n/useTranslation';
+import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
+import SpeedIcon from '@mui/icons-material/Speed';
+import SecurityIcon from '@mui/icons-material/Security';
 
 // Estilização da área de skills (tópicos teóricos)
 const StyledSkills = styled("div")(({theme}) => ({
@@ -143,6 +146,43 @@ const Quality = () => {
     const finalCardRef = useRef<HTMLDivElement>(null);
 
     const { t } = useTranslation();
+
+    // Monta os tópicos de qualidade dinamicamente para atualizar ao trocar idioma
+    const qualityTopics: QualityTopic[] = [
+        {
+            title: t('quality.topics.0.title'),
+            icon: IntegrationInstructionsIcon,
+            description: t('quality.topics.0.description'),
+            keyPoints: [
+                t('quality.topics.0.keyPoints.0'),
+                t('quality.topics.0.keyPoints.1'),
+                t('quality.topics.0.keyPoints.2'),
+                t('quality.topics.0.keyPoints.3'),
+            ]
+        },
+        {
+            title: t('quality.topics.1.title'),
+            icon: SpeedIcon,
+            description: t('quality.topics.1.description'),
+            keyPoints: [
+                t('quality.topics.1.keyPoints.0'),
+                t('quality.topics.1.keyPoints.1'),
+                t('quality.topics.1.keyPoints.2'),
+                t('quality.topics.1.keyPoints.3'),
+            ]
+        },
+        {
+            title: t('quality.topics.2.title'),
+            icon: SecurityIcon,
+            description: t('quality.topics.2.description'),
+            keyPoints: [
+                t('quality.topics.2.keyPoints.0'),
+                t('quality.topics.2.keyPoints.1'),
+                t('quality.topics.2.keyPoints.2'),
+                t('quality.topics.2.keyPoints.3'),
+            ]
+        }
+    ];
 
     // Função chamada ao clicar em uma opção de desafio
     const handleOptionClick = async (index: number) => {

@@ -105,7 +105,39 @@
     "average": "Promedio de intentos por desafío:",
     "journey": "La calidad no es un acto, es un hábito. ¡Sigue mejorando tus habilidades y marcando la diferencia en el mundo del desarrollo de software!",
     "continue": "¿Qué tal continuar este viaje juntos? Siempre estoy disponible para compartir experiencias y conocimientos sobre QA.",
-    "connect": "Conéctate conmigo"
+    "connect": "Conéctate conmigo",
+    "topics": {
+      "0": {
+        "title": "Pruebas funcionales y automatización",
+        "description": "La automatización de pruebas es fundamental para garantizar la calidad continua del software, permitiendo pruebas rápidas y consistentes.",
+        "keyPoints": {
+          "0": "Desarrollo de frameworks robustos de automatización",
+          "1": "Integración con CI/CD para retroalimentación rápida",
+          "2": "Cobertura estratégica de pruebas",
+          "3": "Mantenibilidad y reutilización de código"
+        }
+      },
+      "1": {
+        "title": "Rendimiento y escalabilidad",
+        "description": "Garantizar que el software no solo funcione, sino que funcione bien bajo diferentes condiciones de carga y uso.",
+        "keyPoints": {
+          "0": "Pruebas de carga y estrés",
+          "1": "Monitoreo de métricas clave",
+          "2": "Optimización de recursos",
+          "3": "Análisis de cuellos de botella"
+        }
+      },
+      "2": {
+        "title": "Seguridad y cumplimiento",
+        "description": "La seguridad es un aspecto crítico de la calidad, protegiendo datos y garantizando el cumplimiento normativo.",
+        "keyPoints": {
+          "0": "Pruebas de penetración",
+          "1": "Análisis de vulnerabilidades",
+          "2": "Protección de datos sensibles",
+          "3": "Cumplimiento con LGPD/GDPR"
+        }
+      }
+    }
   },
   "projects": {
     "title": "Proyectos",

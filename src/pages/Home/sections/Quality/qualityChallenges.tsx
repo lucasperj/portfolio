@@ -4,6 +4,7 @@ import SpeedIcon from '@mui/icons-material/Speed';
 import SecurityIcon from '@mui/icons-material/Security';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { translate } from '../../../../i18n/useTranslation';
 
 // Tipos para tópicos teóricos e desafios
 export interface QualityTopic {
@@ -31,36 +32,36 @@ export interface Challenge {
 // Array de tópicos teóricos
 export const qualityTopics: QualityTopic[] = [
   {
-    title: "Testes funcionais e automação",
+    title: translate('quality.topics.0.title'),
     icon: IntegrationInstructionsIcon,
-    description: "A automação de testes é fundamental para garantir a qualidade contínua do software, permitindo testes rápidos e consistentes.",
+    description: translate('quality.topics.0.description'),
     keyPoints: [
-      "Desenvolvimento de frameworks robustos de automação",
-      "Integração com CI/CD para feedback rápido",
-      "Cobertura estratégica de testes",
-      "Manutenibilidade e reusabilidade de código"
+      translate('quality.topics.0.keyPoints.0'),
+      translate('quality.topics.0.keyPoints.1'),
+      translate('quality.topics.0.keyPoints.2'),
+      translate('quality.topics.0.keyPoints.3'),
     ]
   },
   {
-    title: "Performance e escalabilidade",
+    title: translate('quality.topics.1.title'),
     icon: SpeedIcon,
-    description: "Garantir que o software não apenas funcione, mas funcione bem sob diferentes condições de carga e uso.",
+    description: translate('quality.topics.1.description'),
     keyPoints: [
-      "Testes de carga e stress",
-      "Monitoramento de métricas-chave",
-      "Otimização de recursos",
-      "Análise de gargalos"
+      translate('quality.topics.1.keyPoints.0'),
+      translate('quality.topics.1.keyPoints.1'),
+      translate('quality.topics.1.keyPoints.2'),
+      translate('quality.topics.1.keyPoints.3'),
     ]
   },
   {
-    title: "Segurança e conformidade",
+    title: translate('quality.topics.2.title'),
     icon: SecurityIcon,
-    description: "A segurança é um aspecto crítico da qualidade, protegendo dados e garantindo conformidade com regulamentações.",
+    description: translate('quality.topics.2.description'),
     keyPoints: [
-      "Testes de penetração",
-      "Análise de vulnerabilidades",
-      "Proteção de dados sensíveis",
-      "Conformidade com LGPD/GDPR"
+      translate('quality.topics.2.keyPoints.0'),
+      translate('quality.topics.2.keyPoints.1'),
+      translate('quality.topics.2.keyPoints.2'),
+      translate('quality.topics.2.keyPoints.3'),
     ]
   }
 ];
