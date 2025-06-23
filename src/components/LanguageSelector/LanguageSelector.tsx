@@ -2,6 +2,8 @@ import { useContext, useState, useRef } from 'react';
 import { LanguageContext } from '../../i18n/LanguageContext';
 import { Select, MenuItem, styled, Box } from '@mui/material';
 
+// Estilização customizada do Select para o botão de idioma
+// O fundo e a cor mudam conforme hover ou aberto
 const StyledSelect = styled(Select, {
   shouldForwardProp: (prop) => prop !== 'isactive',
 })<{
@@ -28,6 +30,7 @@ const StyledSelect = styled(Select, {
   },
 }));
 
+// Estilização customizada dos itens do dropdown
 const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   fontWeight: 600,
   color: theme.palette.primary.contrastText,
@@ -45,39 +48,48 @@ const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   },
 }));
 
+// Componente do seletor de idioma
 const LanguageSelector = () => {
+  // Contexto global de idioma
   const { language, setLanguage } = useContext(LanguageContext);
+  // Estado para controlar abertura do dropdown
   const [open, setOpen] = useState(false);
+  // Estado para hover (para mudar cor do botão)
   const [hover, setHover] = useState(false);
+  // Ref para o Box externo (pode ser usado para lógica de clique fora, se necessário)
   const boxRef = useRef<HTMLDivElement>(null);
 
-  // Fecha o dropdown se o mouse sair do botão OU do menu
+  // Fecha o dropdown e remove hover
   const handleMouseLeave = () => {
     setHover(false);
     setOpen(false);
   };
 
+  // Abre o dropdown e ativa hover
   const handleMouseEnter = () => {
     setHover(true);
     setOpen(true);
   };
 
+  // Define se o botão está ativo (hover ou aberto)
   const isActive = open || hover;
 
   return (
+    // Wrapper para controlar hover/leave do botão e do menu
     <Box
       ref={boxRef}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
       display="inline-block"
     >
+      {/* Select customizado para trocar idioma */}
       <StyledSelect
         value={language}
         onChange={e => setLanguage(e.target.value as string)}
         size="small"
         variant="outlined"
         disableUnderline
-        IconComponent={() => null}
+        IconComponent={() => null} // Remove o ícone de colapsável
         sx={{ ml: 2 }}
         open={open}
         onOpen={() => setOpen(true)}
@@ -95,6 +107,7 @@ const LanguageSelector = () => {
           },
         }}
       >
+        {/* Opções de idioma */}
         <StyledMenuItem value="pt">Português</StyledMenuItem>
         <StyledMenuItem value="en">English</StyledMenuItem>
         <StyledMenuItem value="es">Español</StyledMenuItem>
