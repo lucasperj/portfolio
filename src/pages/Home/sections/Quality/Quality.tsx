@@ -12,11 +12,12 @@ import CelebrationIcon from '@mui/icons-material/Celebration';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import ErrorIcon from '@mui/icons-material/Error';
-import { challenges, OptionType, QualityTopic } from './qualityChallenges.tsx';
+import { OptionType, QualityTopic } from './qualityChallenges.tsx';
 import { useTranslation } from '../../../../i18n/useTranslation';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 import SpeedIcon from '@mui/icons-material/Speed';
 import SecurityIcon from '@mui/icons-material/Security';
+import { challengesData, ChallengeData } from './qualityChallengesData';
 
 // Estilização da área de skills (tópicos teóricos)
 const StyledSkills = styled("div")(({theme}) => ({
@@ -180,6 +181,108 @@ const Quality = () => {
             ]
         }
     ];
+
+    // ========================================
+    // MONTAGEM DINÂMICA DOS DESAFIOS
+    // ========================================
+    // Esta função transforma os dados estruturais dos desafios (challengesData)
+    // em desafios completos com textos traduzidos conforme o idioma atual
+    // 
+    // challengesData: contém apenas a estrutura (tipo, solução, opções vazias)
+    // challenges: resultado final com todos os textos traduzidos
+    const challenges = challengesData.map((data, idx) => {
+        // ========================================
+        // TRATAMENTO DAS OPÇÕES POR TIPO DE DESAFIO
+        // ========================================
+        // Cada tipo de desafio tem uma estrutura diferente de opções
+        // que precisa ser tratada de forma específica para internacionalização
+        
+        let options = data.options; // Inicializa com as opções estruturais
+        
+        // ========================================
+        // TIPO: BUTTON (Desafio 0 - Data-testid)
+        // ========================================
+        // Opções simples: apenas labels traduzidos
+        // Exemplo: "Opção 1", "Opção 2", etc.
+        if (data.type === 'button') {
+            options = [
+                { label: t('quality.challenges.0.options.0') }, // "Opção 1"
+                { label: t('quality.challenges.0.options.1') }, // "Opção 2"
+                { label: t('quality.challenges.0.options.2') }, // "Opção 3"
+                { label: t('quality.challenges.0.options.3') }, // "Opção 4"
+            ];
+        } 
+        // ========================================
+        // TIPO: CONTRAST (Desafio 1 - Acessibilidade)
+        // ========================================
+        // Opções com cores + texto traduzido
+        // Estrutura: { bg: "#color", fg: "#color", text: "texto traduzido" }
+        else if (data.type === 'contrast') {
+            options = data.options.map((opt, i) => ({ 
+                ...opt, // Mantém bg e fg (cores)
+                text: t(`quality.challenges.1.options.${i}`) // Adiciona texto traduzido
+            }));
+        } 
+        // ========================================
+        // TIPO: CODE OU MULTIPLE (Desafios 2,3,4,5,7,8,9)
+        // ========================================
+        // Opções com código HTML ou múltipla escolha
+        // Estrutura: { label: "texto traduzido" }
+        else if (data.type === 'code' || data.type === 'multiple') {
+            options = data.options.map((opt, i) => ({ 
+                ...opt, // Mantém outras propriedades (type, etc)
+                label: t(`quality.challenges.${idx}.options.${i}`) // Adiciona label traduzido
+            }));
+        } 
+        // ========================================
+        // TIPO: FORM (Desafio 6 - Validação)
+        // ========================================
+        // Opções com label e value separados
+        // Estrutura: { label: "Campo", value: "Valor inválido" }
+        else if (data.type === 'form') {
+            options = data.options.map((opt, i) => ({ 
+                ...opt, // Mantém outras propriedades (type, pattern, etc)
+                label: t(`quality.challenges.${idx}.options.${i}.label`), // "Email", "Telefone", etc.
+                value: t(`quality.challenges.${idx}.options.${i}.value`)  // "user@domain.com", "123-456-789", etc.
+            }));
+        }
+
+        // ========================================
+        // MONTAGEM DA EXPLICAÇÃO
+        // ========================================
+        // A explicação pode ser string simples ou JSX complexo
+        // Por enquanto, usa apenas string traduzida
+        // Para JSX complexo, pode-se customizar por tipo/índice específico
+        let explanation: React.ReactNode = t(`quality.challenges.${idx}.explanation`);
+        
+        // Exemplo de como seria com JSX customizado:
+        // if (idx === 3) { // Desafio de Performance
+        //     explanation = (
+        //         <Box>
+        //             <Typography>{t(`quality.challenges.${idx}.explanation`)}</Typography>
+        //             <List>
+        //                 <ListItem>{t('quality.challenges.3.metrics.lcp')}</ListItem>
+        //                 <ListItem>{t('quality.challenges.3.metrics.fid')}</ListItem>
+        //             </List>
+        //         </Box>
+        //     );
+        // }
+
+        // ========================================
+        // RETORNO DO DESAFIO COMPLETO
+        // ========================================
+        // Monta o objeto final do desafio com todos os textos traduzidos
+        // Mantém a estrutura original (type, solution) + textos dinâmicos
+        return {
+            title: t(`quality.challenges.${idx}.title`),           // Título do desafio
+            description: t(`quality.challenges.${idx}.description`), // Descrição do cenário
+            hint: t(`quality.challenges.${idx}.hint`),             // Dica para o usuário
+            type: data.type,                                       // Tipo (button, contrast, code, etc)
+            solution: data.solution,                               // Índice da resposta correta
+            options,                                               // Opções traduzidas (tratadas acima)
+            explanation,                                           // Explicação traduzida
+        };
+    });
 
     // Função chamada ao clicar em uma opção de desafio
     // Atualiza tentativas, verifica solução e controla feedback

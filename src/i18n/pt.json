@@ -137,6 +137,128 @@
           "3": "Conformidade com LGPD/GDPR"
         }
       }
+    },
+    "challenges": {
+      "0": {
+        "title": "Encontre o bug na interface",
+        "description": "Um dos botões tem um data-testid inconsistente com o padrão.",
+        "hint": "Observe o padrão button-X nos data-testids e procure o que foge desse padrão.",
+        "explanation": "Em testes automatizados, a consistência dos seletores é crucial. Data-testids inconsistentes podem causar falhas nos testes e dificultar a manutenção.",
+        "options": {
+          "0": "Opção 1",
+          "1": "Opção 2",
+          "2": "Opção 3",
+          "3": "Opção 4"
+        }
+      },
+      "1": {
+        "title": "Acessibilidade - Contraste",
+        "description": "Qual dessas combinações de cores NÃO atende aos critérios mínimos de contraste WCAG?",
+        "hint": "O WCAG exige uma taxa de contraste mínima de 4.5:1 para texto normal.",
+        "explanation": "A combinação de cinza médio (#CBD5E0) sobre cinza escuro (#4A5568) tem uma taxa de contraste de 2.9:1, abaixo do mínimo 4.5:1 requerido pelo WCAG 2.1. Um bom contraste é essencial para garantir que todos os usuários, incluindo pessoas com baixa visão ou daltonismo, possam ler o conteúdo facilmente. Você pode verificar taxas de contraste usando ferramentas como o WebAIM Contrast Checker ou o plugin WAVE para navegadores.",
+        "options": {
+          "0": "Texto em azul claro sobre azul escuro",
+          "1": "Texto em cinza claro sobre cinza escuro",
+          "2": "Texto em amarelo sobre marrom",
+          "3": "Texto em cinza médio sobre cinza escuro"
+        }
+      },
+      "2": {
+        "title": "Semântica HTML",
+        "description": "Identifique o elemento que viola as boas práticas de acessibilidade:",
+        "hint": "Elementos nativos HTML são sempre preferíveis a elementos customizados com ARIA.",
+        "explanation": "O uso de <div> com role='button' é menos acessível do que um <button> nativo, pois perde funcionalidades de acessibilidade e navegação por teclado.",
+        "options": {
+          "0": "<button onClick={handleClick}>Enviar</button>",
+          "1": "<div onClick={handleClick} role='button'>Enviar</div>",
+          "2": "<input type='submit' value='Enviar' />",
+          "3": "<a href='#' onClick={handleSubmit}>Enviar</a>"
+        }
+      },
+      "3": {
+        "title": "Performance Web",
+        "description": "Qual métrica NÃO faz parte do Core Web Vitals?",
+        "hint": "Core Web Vitals foca em três aspectos principais: carregamento, interatividade e estabilidade visual.",
+        "explanation": "O Time to Interactive (TTI) não faz parte do Core Web Vitals, que são as três métricas principais do Google para medir a experiência do usuário: LCP, FID e CLS.",
+        "options": {
+          "0": "First Contentful Paint (FCP)",
+          "1": "Largest Contentful Paint (LCP)",
+          "2": "Time to Interactive (TTI)",
+          "3": "Cumulative Layout Shift (CLS)"
+        }
+      },
+      "4": {
+        "title": "Teste de API - Status Code",
+        "description": "Qual status HTTP é mais apropriado para uma requisição de criação bem-sucedida?",
+        "hint": "Pense na diferença entre uma resposta de sucesso genérica (200) e uma específica para criação.",
+        "explanation": "O status 201 Created é o mais apropriado para indicar que um recurso foi criado com sucesso em uma requisição POST.",
+        "options": {
+          "0": "200 OK",
+          "1": "201 Created",
+          "2": "204 No Content",
+          "3": "202 Accepted"
+        }
+      },
+      "5": {
+        "title": "Acessibilidade - Aria Labels",
+        "description": "Identifique o uso incorreto de ARIA:",
+        "hint": "Evite redundância em atributos de acessibilidade, especialmente quando já existem alternativas nativas.",
+        "explanation": "O uso de aria-label em uma imagem que já possui alt é redundante. O atributo alt já fornece a descrição necessária para leitores de tela.",
+        "options": {
+          "0": "<button aria-label='Fechar modal'>×</button>",
+          "1": "<img src='logo.png' aria-label='Logo' alt='Logo' />",
+          "2": "<div role='button' aria-label='Enviar'>Enviar</div>",
+          "3": "<span role='alert' aria-live='polite'>Erro no formulário</span>"
+        }
+      },
+      "6": {
+        "title": "Bug de Validação",
+        "description": "Qual destes campos aceita um input inválido?",
+        "hint": "Verifique se os valores fazem sentido no mundo real, especialmente em datas.",
+        "explanation": "O campo de data aceita uma data inexistente (31 de fevereiro), demonstrando falta de validação adequada.",
+        "options": {
+          "0": { "label": "Email", "value": "user@domain.com" },
+          "1": { "label": "Telefone", "value": "123-456-789" },
+          "2": { "label": "CEP", "value": "12345-000" },
+          "3": { "label": "Data", "value": "31/02/2024" }
+        }
+      },
+      "7": {
+        "title": "Teste de Regressão",
+        "description": "Qual cenário NÃO é adequado para automação de testes de regressão?",
+        "hint": "Considere quais tipos de testes dependem da criatividade e experiência humana.",
+        "explanation": "Testes exploratórios são, por definição, manuais e baseados na experiência do testador, não sendo adequados para automação.",
+        "options": {
+          "0": "Login com diferentes perfis de usuário",
+          "1": "Validação de campos obrigatórios",
+          "2": "Testes exploratórios de nova funcionalidade",
+          "3": "Verificação de fluxo de checkout"
+        }
+      },
+      "8": {
+        "title": "SEO e Acessibilidade",
+        "description": "Qual estrutura HTML prejudica tanto SEO quanto acessibilidade?",
+        "hint": "HTML semântico é crucial tanto para SEO quanto para acessibilidade.",
+        "explanation": "O uso de <div> para títulos, ao invés de elementos semânticos como <h1>, prejudica a estrutura do documento para leitores de tela e motores de busca.",
+        "options": {
+          "0": "<h1>Título</h1><h3>Subtítulo</h3>",
+          "1": "<main><header><nav>Menu</nav></header></main>",
+          "2": "<button onclick='submit()'>Enviar</button>",
+          "3": "<div class='heading'>Título Principal</div>"
+        }
+      },
+      "9": {
+        "title": "Performance - Lighthouse",
+        "description": "Qual métrica NÃO impacta diretamente o score de performance no Lighthouse?",
+        "hint": "Foque nas métricas que afetam diretamente a experiência do usuário.",
+        "explanation": "O número de elementos DOM é uma métrica secundária que, embora importante, não impacta diretamente o score de performance do Lighthouse.",
+        "options": {
+          "0": "First Contentful Paint (FCP)",
+          "1": "Time to First Byte (TTFB)",
+          "2": "Number of DOM Elements",
+          "3": "Total Blocking Time (TBT)"
+        }
+      }
     }
   },
   "projects": {
