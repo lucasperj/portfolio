@@ -12,12 +12,31 @@ import CelebrationIcon from '@mui/icons-material/Celebration';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import ErrorIcon from '@mui/icons-material/Error';
-import { OptionType, QualityTopic } from './qualityChallenges.tsx';
 import { useTranslation } from '../../../../i18n/useTranslation';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 import SpeedIcon from '@mui/icons-material/Speed';
 import SecurityIcon from '@mui/icons-material/Security';
-import { challengesData, ChallengeData } from './qualityChallengesData';
+import { challengesData } from './qualityChallengesData';
+
+// ========================================
+// INTERFACES PARA TIPAGEM DOS COMPONENTES
+// ========================================
+// QualityTopic: representa um tópico teórico de qualidade
+// OptionType: representa as opções de resposta dos desafios (pode ser cor, label, etc)
+
+export interface QualityTopic {
+  title: string;
+  icon: React.ElementType;
+  description: string;
+  keyPoints: string[];
+}
+
+export type OptionType =
+  | { bg: string; fg: string; text: string } // Opção de cor (usado em contraste)
+  | { label: string; value: string; type: string; pattern?: string } // Opção com label e valor
+  | { label: string; value: string; pattern: string; type?: string } // Opção com pattern
+  | { label: string } // Opção simples (usado em button)
+  | { label: string; value: string }; // Opção com label e value (usado em form)
 
 // Estilização da área de skills (tópicos teóricos)
 const StyledSkills = styled("div")(({theme}) => ({
