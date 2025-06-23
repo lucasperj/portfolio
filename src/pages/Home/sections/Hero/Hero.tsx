@@ -1,8 +1,8 @@
 // Importações de componentes do Material-UI, ícones, hooks e utilitários
 import { Box, Container, Grid2, Typography, useTheme, useMediaQuery, Collapse } from "@mui/material"
 import Grid from '@mui/material/Grid';
-import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
-import ContactMailIcon from '@mui/icons-material/ContactMail';
+import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -101,7 +101,7 @@ const Hero = () => {
                             <Grid item xs={12} md={4} display="flex" justifyContent="center">
                                 <Box width="100%">
                                     <StyledButton onClick={() => handleDownloadCV(CV)}>
-                                        <CloudDownloadIcon />
+                                        <FileDownloadRoundedIcon />
                                         <Typography>{t('hero.downloadCV')}</Typography>
                                     </StyledButton>
                                 </Box>
@@ -116,7 +116,7 @@ const Hero = () => {
                                         onMouseLeave={handleMouseLeave}
                                     >
                                         <StyledButton onClick={handleContactClick}>
-                                            <ContactMailIcon /> 
+                                            <EmailRoundedIcon /> 
                                             <Typography>{t('hero.contact')}</Typography>
                                         </StyledButton>
                                     </div>
