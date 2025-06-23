@@ -59,7 +59,7 @@ const Hero = () => {
                                 <Box width="100%">
                                     <StyledButton onClick={() => handleDownloadCV(CV)}>
                                         <CloudDownloadIcon />
-                                        <Typography>Download CV</Typography>
+                                        <Typography>Baixar CV</Typography>
                                     </StyledButton>
                                 </Box>
                             </Grid>
@@ -67,7 +67,7 @@ const Hero = () => {
                                 <Box position="relative" width="100%" sx={{ zIndex: 1 }}>
                                     <StyledButton onClick={handleContactClick}>
                                         <ContactMailIcon /> 
-                                        <Typography>Contact me</Typography>
+                                        <Typography>Entrar em contato</Typography>
                                     </StyledButton>
                                     {!isMobile && (
                                         <Box position="absolute" width="100%" sx={{ marginTop: '8px' }}>

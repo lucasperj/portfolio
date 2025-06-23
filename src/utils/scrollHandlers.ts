@@ -5,11 +5,11 @@ export const scrollToSection = (sectionId: string) => {
         const navbarHeight = 64; // altura da navbar
         
         if (sectionId === 'projects') {
-            // Ajusta o scroll para mostrar apenas a seção de projetos
+            // Ajusta o scroll para mostrar um pouco mais abaixo do topo da seção de projetos
             const sectionTop = section.offsetTop;
-            
+            const extraOffset = isMobile ? 40 : 80; // Offset extra para descer mais
             window.scrollTo({
-                top: sectionTop - navbarHeight,  // Subtrai apenas a altura da navbar
+                top: sectionTop - navbarHeight + extraOffset,  // Subtrai a navbar e adiciona o offset extra
                 behavior: 'smooth'
             });
             return;
@@ -19,7 +19,7 @@ export const scrollToSection = (sectionId: string) => {
         if (sectionId === 'quality' || sectionId === 'about') {
             const sectionTitle = section.querySelector('h2'); // Pegando o título da seção
             if (sectionTitle) {
-                const titlePosition = sectionTitle.getBoundingClientRect().top + window.pageYOffset;
+                const titlePosition = sectionTitle.getBoundingClientRect().top + window.scrollY;
                 window.scrollTo({
                     top: titlePosition - navbarHeight - (isMobile ? 20 : 40),
                     behavior: 'smooth'
@@ -30,7 +30,7 @@ export const scrollToSection = (sectionId: string) => {
 
         // Para outras seções, mantém o comportamento padrão
         const elementPosition = section.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight - (isMobile ? 20 : 40);
+        const offsetPosition = elementPosition + window.scrollY - navbarHeight - (isMobile ? 20 : 40);
 
         window.scrollTo({
             top: offsetPosition,

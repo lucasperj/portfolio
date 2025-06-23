@@ -1,18 +1,19 @@
-import { Box, Container, Grid, Typography, Paper, Collapse, IconButton, Button } from "@mui/material"
+// Importações de componentes do Material-UI, ícones, hooks e animações
+import { Box, Container, Grid, Typography, Paper, Collapse, IconButton, Button, Tooltip } from "@mui/material"
 import { styled } from "@mui/material/styles"
 import BugReportIcon from '@mui/icons-material/BugReport';
-import SecurityIcon from '@mui/icons-material/Security';
-import SpeedIcon from '@mui/icons-material/Speed';
-import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from 'framer-motion';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import ErrorIcon from '@mui/icons-material/Error';
+import { qualityTopics, challenges, OptionType, QualityTopic } from './qualityChallenges.tsx';
 
+// Estilização da área de skills (tópicos teóricos)
 const StyledSkills = styled("div")(({theme}) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(10, 0),
@@ -21,6 +22,7 @@ const StyledSkills = styled("div")(({theme}) => ({
     }
 }));
 
+// Estilização dos cards de tópicos e desafios
 const StyledPaper = styled(Paper)(({theme}) => ({
     padding: theme.spacing(4),
     backgroundColor: theme.palette.background.default,
@@ -37,6 +39,7 @@ const StyledPaper = styled(Paper)(({theme}) => ({
     }
 }));
 
+// Botão de expandir/colapsar dos cards
 const ExpandMore = styled(IconButton)(({ theme }) => ({
     transform: 'rotate(0deg)',
     transition: theme.transitions.create('transform', {
@@ -44,9 +47,13 @@ const ExpandMore = styled(IconButton)(({ theme }) => ({
     }),
     '&.expanded': {
         transform: 'rotate(180deg)',
+    },
+    '&:hover': {
+        backgroundColor: theme.palette.grey[400] + ' !important',
     }
 }));
 
+// Botão customizado para desafios
 const ChallengeButton = styled('button')(({theme}) => ({
     padding: theme.spacing(1, 2),
     backgroundColor: theme.palette.background.paper,
@@ -60,6 +67,7 @@ const ChallengeButton = styled('button')(({theme}) => ({
     }
 }));
 
+// Opção de cor para desafios de contraste
 const ColorOption = styled('div')<{ bg: string; fg: string }>(({ bg, fg }) => ({
     padding: '12px',
     borderRadius: '4px',
@@ -74,6 +82,7 @@ const ColorOption = styled('div')<{ bg: string; fg: string }>(({ bg, fg }) => ({
     }
 }));
 
+// Componente para exibir cada tópico teórico de qualidade
 const QualityCard = ({ topic }: { topic: QualityTopic }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -118,29 +127,9 @@ const QualityCard = ({ topic }: { topic: QualityTopic }) => {
     );
 };
 
-interface QualityTopic {
-    title: string;
-    icon: React.ElementType;
-    description: string;
-    keyPoints: string[];
-}
-
-type OptionType = 
-    | { bg: string; fg: string; text: string } 
-    | { label: string; value: string; type: string; pattern?: string }
-    | { label: string; value: string; pattern: string; type?: string };
-
-interface Challenge {
-    title: string;
-    description: string;
-    options: OptionType[];
-    hint: string;
-    solution: number;
-    type: string;
-    explanation: React.ReactNode;
-}
-
+// Componente principal da seção de Qualidade
 const Quality = () => {
+     // Estados para controle dos desafios e feedbacks
     const [bugFound, setBugFound] = useState(false);
     const [attempts, setAttempts] = useState(0);
     const [currentChallenge, setCurrentChallenge] = useState(0);
@@ -148,388 +137,13 @@ const Quality = () => {
     const [totalAttempts, setTotalAttempts] = useState<number[]>([]);
     const [error, setError] = useState<string | null>(null);
 
-    const qualityTopics: QualityTopic[] = [
-        {
-            title: "Testes Funcionais e Automação",
-            icon: IntegrationInstructionsIcon,
-            description: "A automação de testes é fundamental para garantir a qualidade contínua do software, permitindo testes rápidos e consistentes.",
-            keyPoints: [
-                "Desenvolvimento de frameworks robustos de automação",
-                "Integração com CI/CD para feedback rápido",
-                "Cobertura estratégica de testes",
-                "Manutenibilidade e reusabilidade de código"
-            ]
-        },
-        {
-            title: "Performance e Escalabilidade",
-            icon: SpeedIcon,
-            description: "Garantir que o software não apenas funcione, mas funcione bem sob diferentes condições de carga e uso.",
-            keyPoints: [
-                "Testes de carga e stress",
-                "Monitoramento de métricas-chave",
-                "Otimização de recursos",
-                "Análise de gargalos"
-            ]
-        },
-        {
-            title: "Segurança e Conformidade",
-            icon: SecurityIcon,
-            description: "A segurança é um aspecto crítico da qualidade, protegendo dados e garantindo conformidade com regulamentações.",
-            keyPoints: [
-                "Testes de penetração",
-                "Análise de vulnerabilidades",
-                "Proteção de dados sensíveis",
-                "Conformidade com LGPD/GDPR"
-            ]
-        }
-    ];
+    // Dentro do componente Quality
+    const exercitarRef = useRef<HTMLDivElement>(null);
+    const finalCardRef = useRef<HTMLDivElement>(null);
 
-    const challenges: Challenge[] = [
-        {
-            title: "Encontre o bug na interface",
-            description: "Um dos botões tem um data-testid inconsistente com o padrão.",
-            hint: "Observe o padrão button-X nos data-testids e procure o que foge desse padrão",
-            solution: 1,
-            type: "button",
-            explanation: "Em testes automatizados, a consistência dos seletores é crucial. Data-testids inconsistentes podem causar falhas nos testes e dificultar a manutenção."
-        },
-        {
-            title: "Acessibilidade - Contraste",
-            description: "Qual dessas combinações de cores NÃO atende aos critérios mínimos de contraste WCAG?",
-            hint: "O WCAG exige uma taxa de contraste mínima de 4.5:1 para texto normal",
-            type: "contrast",
-            options: [
-                { bg: "#1A365D", fg: "#63B3ED", text: "Texto em azul claro sobre azul escuro" },
-                { bg: "#2D3748", fg: "#EDF2F7", text: "Texto em cinza claro sobre cinza escuro" },
-                { bg: "#744210", fg: "#F6E05E", text: "Texto em amarelo sobre marrom" },
-                { bg: "#4A5568", fg: "#CBD5E0", text: "Texto em cinza médio sobre cinza escuro" }
-            ],
-            solution: 3,
-            explanation: `A combinação de cinza médio (#CBD5E0) sobre cinza escuro (#4A5568) tem uma taxa de contraste de 2.9:1, 
-                abaixo do mínimo 4.5:1 requerido pelo WCAG 2.1. Um bom contraste é essencial para garantir que todos os usuários, 
-                incluindo pessoas com baixa visão ou daltonismo, possam ler o conteúdo facilmente. 
-                Você pode verificar taxas de contraste usando ferramentas como o WebAIM Contrast Checker ou o plugin WAVE para navegadores.`
-        },
-        {
-            title: "Semântica HTML",
-            description: "Identifique o elemento que viola as boas práticas de acessibilidade:",
-            hint: "Elementos nativos HTML são sempre preferíveis a elementos customizados com ARIA",
-            type: "code",
-            options: [
-                "<button onClick={handleClick}>Enviar</button>",
-                "<div onClick={handleClick} role='button'>Enviar</div>",
-                "<input type='submit' value='Enviar' />",
-                "<a href='#' onClick={handleSubmit}>Enviar</a>"
-            ],
-            solution: 1,
-            explanation: (
-                <Box>
-                    <Typography color="text.secondary" paragraph>
-                        Usar <code>&lt;div&gt;</code> como botão, mesmo com role='button', é uma prática ruim por várias razões:
-                    </Typography>
-
-                    <Box mb={2}>
-                        <Typography color="text.secondary" fontWeight="bold">
-                            1. Elementos nativos como &lt;button&gt; já vêm com comportamentos de acessibilidade integrados:
-                        </Typography>
-                        <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                            <Typography component="li" color="text.secondary">Foco via teclado (tabindex)</Typography>
-                            <Typography component="li" color="text.secondary">Interação via teclado (Enter/Space)</Typography>
-                            <Typography component="li" color="text.secondary">Anúncio correto por leitores de tela</Typography>
-                            <Typography component="li" color="text.secondary">Estados (hover, focus, active, disabled)</Typography>
-                        </Box>
-                    </Box>
-
-                    <Box mb={2}>
-                        <Typography color="text.secondary" fontWeight="bold">
-                            2. Ao usar &lt;div&gt;, você precisa recriar manualmente todos esses comportamentos:
-                        </Typography>
-                        <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                            <Typography component="li" color="text.secondary">Adicionar tabindex="0"</Typography>
-                            <Typography component="li" color="text.secondary">Implementar eventos de teclado</Typography>
-                            <Typography component="li" color="text.secondary">Gerenciar estados</Typography>
-                            <Typography component="li" color="text.secondary">Garantir ARIA labels corretos</Typography>
-                        </Box>
-                    </Box>
-
-                    <Typography color="text.secondary" sx={{ mt: 2, fontStyle: 'italic' }}>
-                        Sempre prefira elementos HTML nativos para garantir melhor acessibilidade e manutenibilidade.
-                    </Typography>
-                </Box>
-            )
-        },
-        {
-            title: "Performance Web",
-            description: "Qual métrica NÃO faz parte do Core Web Vitals?",
-            hint: "Core Web Vitals foca em três aspectos principais: carregamento, interatividade e estabilidade visual",
-            type: "multiple",
-            options: [
-                "First Contentful Paint (FCP)",
-                "Largest Contentful Paint (LCP)",
-                "Time to Interactive (TTI)",
-                "Cumulative Layout Shift (CLS)"
-            ],
-            solution: 2,
-            explanation: (
-                <Box>
-                    <Typography color="text.secondary" paragraph>
-                        O Time to Interactive (TTI) não faz parte do Core Web Vitals, que são as três métricas principais do Google para medir a experiência do usuário:
-                    </Typography>
-
-                    <Box mb={2}>
-                        <Typography color="text.secondary" fontWeight="bold">
-                            Core Web Vitals:
-                        </Typography>
-                        <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                            <Typography component="li" color="text.secondary">LCP (Largest Contentful Paint): Mede o tempo de carregamento - deve ser menor que 2.5s</Typography>
-                            <Typography component="li" color="text.secondary">FID (First Input Delay): Mede a interatividade - deve ser menor que 100ms</Typography>
-                            <Typography component="li" color="text.secondary">CLS (Cumulative Layout Shift): Mede a estabilidade visual - deve ser menor que 0.1</Typography>
-                        </Box>
-                    </Box>
-
-                    <Typography color="text.secondary" paragraph>
-                        Você pode medir essas métricas usando ferramentas como:
-                    </Typography>
-                    <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                        <Typography component="li" color="text.secondary">PageSpeed Insights</Typography>
-                        <Typography component="li" color="text.secondary">Chrome DevTools Performance</Typography>
-                        <Typography component="li" color="text.secondary">web-vitals JavaScript library</Typography>
-                    </Box>
-                </Box>
-            )
-        },
-        {
-            title: "Teste de API - Status Code",
-            description: "Qual status HTTP é mais apropriado para uma requisição de criação bem-sucedida?",
-            hint: "Pense na diferença entre uma resposta de sucesso genérica (200) e uma específica para criação",
-            type: "multiple",
-            options: [
-                "200 OK",
-                "201 Created",
-                "204 No Content",
-                "202 Accepted"
-            ],
-            solution: 1,
-            explanation: (
-                <Box>
-                    <Typography color="text.secondary" paragraph>
-                        O status 201 Created é o código mais apropriado para criação de recursos por várias razões:
-                    </Typography>
-
-                    <Box mb={2}>
-                        <Typography color="text.secondary" fontWeight="bold">
-                            Por que 201 é a melhor escolha:
-                        </Typography>
-                        <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                            <Typography component="li" color="text.secondary">Indica explicitamente que um novo recurso foi criado</Typography>
-                            <Typography component="li" color="text.secondary">Deve incluir o header Location com a URI do novo recurso</Typography>
-                            <Typography component="li" color="text.secondary">Ajuda na implementação correta do HATEOAS</Typography>
-                            <Typography component="li" color="text.secondary">Facilita o debug e monitoramento de APIs</Typography>
-                        </Box>
-                    </Box>
-
-                    <Typography color="text.secondary" paragraph>
-                        Para testar e validar status codes, você pode usar:
-                    </Typography>
-                    <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                        <Typography component="li" color="text.secondary">Postman</Typography>
-                        <Typography component="li" color="text.secondary">Insomnia</Typography>
-                        <Typography component="li" color="text.secondary">curl na linha de comando</Typography>
-                    </Box>
-                </Box>
-            )
-        },
-        {
-            title: "Acessibilidade - Aria Labels",
-            description: "Identifique o uso incorreto de ARIA:",
-            hint: "Evite redundância em atributos de acessibilidade, especialmente quando já existem alternativas nativas",
-            type: "code",
-            options: [
-                "<button aria-label='Fechar modal'>×</button>",
-                "<img src='logo.png' aria-label='Logo' alt='Logo' />",
-                "<div role='button' aria-label='Enviar'>Enviar</div>",
-                "<span role='alert' aria-live='polite'>Erro no formulário</span>"
-            ],
-            solution: 1,
-            explanation: (
-                <Box>
-                    <Typography color="text.secondary" paragraph>
-                        Usar aria-label em uma imagem que já possui alt é redundante e pode causar problemas:
-                    </Typography>
-
-                    <Box mb={2}>
-                        <Typography color="text.secondary" fontWeight="bold">
-                            Impactos na experiência do usuário:
-                        </Typography>
-                        <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                            <Typography component="li" color="text.secondary">Leitores de tela podem anunciar a mesma informação duas vezes</Typography>
-                            <Typography component="li" color="text.secondary">Pode confundir usuários quando os textos são diferentes</Typography>
-                            <Typography component="li" color="text.secondary">Aumenta desnecessariamente o tamanho do DOM</Typography>
-                        </Box>
-                    </Box>
-
-                    <Typography color="text.secondary" paragraph>
-                        Ferramentas para validar acessibilidade:
-                    </Typography>
-                    <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                        <Typography component="li" color="text.secondary">NVDA ou VoiceOver para testar leitores de tela</Typography>
-                        <Typography component="li" color="text.secondary">axe DevTools para análise automatizada</Typography>
-                        <Typography component="li" color="text.secondary">WAVE Web Accessibility Tool</Typography>
-                    </Box>
-                </Box>
-            )
-        },
-        {
-            title: "Bug de Validação",
-            description: "Qual destes campos aceita um input inválido?",
-            hint: "Verifique se os valores fazem sentido no mundo real, especialmente em datas",
-            type: "form",
-            options: [
-                { label: "Email", value: "user@domain.com", type: "email" },
-                { label: "Telefone", value: "123-456-789", type: "tel" },
-                { label: "CEP", value: "12345-000", pattern: "\\d{5}-\\d{3}" },
-                { label: "Data", value: "31/02/2024", type: "text" }
-            ],
-            solution: 3,
-            explanation: "O campo de data aceita uma data inexistente (31 de fevereiro), demonstrando falta de validação adequada."
-        },
-        {
-            title: "Teste de Regressão",
-            description: "Qual cenário NÃO é adequado para automação de testes de regressão?",
-            hint: "Considere quais tipos de testes dependem da criatividade e experiência humana",
-            type: "multiple",
-            options: [
-                "Login com diferentes perfis de usuário",
-                "Validação de campos obrigatórios",
-                "Testes exploratórios de nova funcionalidade",
-                "Verificação de fluxo de checkout"
-            ],
-            solution: 2,
-            explanation: "Testes exploratórios são, por definição, manuais e baseados na experiência do testador, não sendo adequados para automação."
-        },
-        {
-            title: "SEO e Acessibilidade",
-            description: "Qual estrutura HTML prejudica tanto SEO quanto acessibilidade?",
-            hint: "HTML semântico é crucial tanto para SEO quanto para acessibilidade",
-            type: "code",
-            options: [
-                "<h1>Título</h1><h3>Subtítulo</h3>",
-                "<main><header><nav>Menu</nav></header></main>",
-                "<button onclick='submit()'>Enviar</button>",
-                "<div class='heading'>Título Principal</div>"
-            ],
-            solution: 3,
-            explanation: (
-                <Box>
-                    <Typography color="text.secondary" paragraph>
-                        Usar <code>&lt;div class="heading"&gt;</code> em vez de tags semânticas de cabeçalho é prejudicial por várias razões:
-                    </Typography>
-
-                    <Box mb={2}>
-                        <Typography color="text.secondary" fontWeight="bold">
-                            Impacto na Acessibilidade:
-                        </Typography>
-                        <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                            <Typography component="li" color="text.secondary">Leitores de tela não reconhecem a div como cabeçalho</Typography>
-                            <Typography component="li" color="text.secondary">Usuários não conseguem navegar pela estrutura do documento usando atalhos de teclado</Typography>
-                            <Typography component="li" color="text.secondary">Perde-se a hierarquia natural de conteúdo (h1 → h6)</Typography>
-                            <Typography component="li" color="text.secondary">Dificulta a compreensão da importância relativa do conteúdo</Typography>
-                        </Box>
-                    </Box>
-
-                    <Box mb={2}>
-                        <Typography color="text.secondary" fontWeight="bold">
-                            Impacto no SEO:
-                        </Typography>
-                        <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                            <Typography component="li" color="text.secondary">Crawlers não identificam a hierarquia do conteúdo</Typography>
-                            <Typography component="li" color="text.secondary">Perde-se peso semântico para rankings de busca</Typography>
-                            <Typography component="li" color="text.secondary">Dificulta a geração de featured snippets</Typography>
-                            <Typography component="li" color="text.secondary">Reduz a relevância do conteúdo para buscadores</Typography>
-                        </Box>
-                    </Box>
-
-                    <Box mb={2}>
-                        <Typography color="text.secondary" fontWeight="bold">
-                            Importância da Hierarquia de Headers:
-                        </Typography>
-                        <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                            <Typography component="li" color="text.secondary">H1: Título principal da página (deve ser único)</Typography>
-                            <Typography component="li" color="text.secondary">H2: Seções principais do conteúdo</Typography>
-                            <Typography component="li" color="text.secondary">H3-H6: Subseções em ordem de importância</Typography>
-                        </Box>
-                    </Box>
-
-                    <Typography color="text.secondary" paragraph>
-                        Para validar a estrutura de headers, você pode usar:
-                    </Typography>
-                    <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                        <Typography component="li" color="text.secondary">HeadingsMap (extensão do navegador)</Typography>
-                        <Typography component="li" color="text.secondary">WAVE Web Accessibility Tool</Typography>
-                        <Typography component="li" color="text.secondary">Lighthouse Accessibility Audit</Typography>
-                    </Box>
-                </Box>
-            )
-        },
-        {
-            title: "Performance - Lighthouse",
-            description: "Qual métrica NÃO impacta diretamente o score de performance no Lighthouse?",
-            hint: "Foque nas métricas que afetam diretamente a experiência do usuário",
-            type: "multiple",
-            options: [
-                "First Contentful Paint (FCP)",
-                "Time to First Byte (TTFB)",
-                "Number of DOM Elements",
-                "Total Blocking Time (TBT)"
-            ],
-            solution: 2,
-            explanation: (
-                <Box>
-                    <Typography color="text.secondary" paragraph>
-                        O número de elementos DOM é uma métrica secundária que, embora importante, não impacta diretamente o score de performance do Lighthouse.
-                    </Typography>
-
-                    <Box mb={2}>
-                        <Typography color="text.secondary" fontWeight="bold">
-                            Impactos indiretos do número de elementos DOM:
-                        </Typography>
-                        <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                            <Typography component="li" color="text.secondary">Tempo de processamento do JavaScript (parse e compile)</Typography>
-                            <Typography component="li" color="text.secondary">Consumo de memória do navegador</Typography>
-                            <Typography component="li" color="text.secondary">Tempo de renderização (paint time)</Typography>
-                            <Typography component="li" color="text.secondary">Complexidade do layout e reflows</Typography>
-                        </Box>
-                    </Box>
-
-                    <Box mb={2}>
-                        <Typography color="text.secondary" fontWeight="bold">
-                            Métricas que impactam diretamente o score:
-                        </Typography>
-                        <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                            <Typography component="li" color="text.secondary">First Contentful Paint (FCP): Primeira renderização de qualquer conteúdo</Typography>
-                            <Typography component="li" color="text.secondary">Total Blocking Time (TBT): Tempo total que a thread principal fica bloqueada</Typography>
-                            <Typography component="li" color="text.secondary">Speed Index: Velocidade com que o conteúdo é visualmente preenchido</Typography>
-                            <Typography component="li" color="text.secondary">Largest Contentful Paint (LCP): Renderização do maior elemento visível</Typography>
-                            <Typography component="li" color="text.secondary">Cumulative Layout Shift (CLS): Estabilidade visual durante o carregamento</Typography>
-                        </Box>
-                    </Box>
-
-                    <Typography color="text.secondary" paragraph>
-                        Ferramentas recomendadas para análise:
-                    </Typography>
-                    <Box component="ul" sx={{ pl: 4, mt: 1 }}>
-                        <Typography component="li" color="text.secondary">Chrome DevTools Performance Panel</Typography>
-                        <Typography component="li" color="text.secondary">Lighthouse CI para monitoramento contínuo</Typography>
-                        <Typography component="li" color="text.secondary">WebPageTest para análise detalhada</Typography>
-                    </Box>
-                </Box>
-            )
-        }
-    ];
-
+    // Função chamada ao clicar em uma opção de desafio
     const handleOptionClick = async (index: number) => {
         try {
-            // Verifica conexão com internet
             if (!navigator.onLine) {
                 setError('Você está offline. Verifique sua conexão com a internet e tente novamente.');
                 return;
@@ -541,35 +155,54 @@ const Quality = () => {
             if (index === challenges[currentChallenge].solution) {
                 setBugFound(true);
             }
-            setError(null); // Limpa erro se tudo ok
+            setError(null);
         } catch (err) {
             setError('Ocorreu um erro ao processar sua resposta. Por favor, tente novamente.');
         }
     };
 
+     // Função para avançar para o próximo desafio ou mostrar mensagem final
     const resetChallenge = () => {
         if (currentChallenge === challenges.length - 1) {
             setShowFinalMessage(true);
             setTotalAttempts(prev => [...prev, attempts]);
+            setTimeout(() => {
+                finalCardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
         } else {
             setBugFound(false);
             setAttempts(0);
             setCurrentChallenge(prev => prev + 1);
             setTotalAttempts(prev => [...prev, attempts]);
+            setTimeout(() => {
+                exercitarRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
         }
     };
 
+    // Função para tentar outro desafio após 3 tentativas (usada no botão 'Tentar outro desafio')
+    const tryAnotherChallenge = () => {
+        resetChallenge();
+        // Garante o scroll para a pergunta também nesse contexto
+        setTimeout(() => {
+            exercitarRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+    };
+
+    // Volta para o desafio anterior
     const goToPreviousChallenge = () => {
         setBugFound(false);
         setAttempts(0);
         setCurrentChallenge((prev) => (prev - 1 + challenges.length) % challenges.length);
     };
 
+    // Calcula a média de tentativas por desafio
     const calculateAverageAttempts = () => {
         const total = totalAttempts.reduce((acc, curr) => acc + curr, 0);
         return (total / totalAttempts.length).toFixed(1);
     };
 
+    // Renderiza o desafio atual conforme o tipo
     const renderChallenge = () => {
         const challenge = challenges[currentChallenge];
 
@@ -638,7 +271,7 @@ const Quality = () => {
                                     }
                                 }}
                             >
-                                {option}
+                                {'label' in option ? option.label : ''}
                             </ChallengeButton>
                         ))}
                     </Box>
@@ -651,7 +284,7 @@ const Quality = () => {
                                 key={index}
                                 onClick={() => handleOptionClick(index)}
                             >
-                                {option}
+                                {'label' in option ? option.label : ''}
                             </ChallengeButton>
                         ))}
                     </Box>
@@ -676,6 +309,19 @@ const Quality = () => {
         }
     };
 
+    // Dentro do componente Quality, função para reiniciar os desafios
+    const restartChallenges = () => {
+        setShowFinalMessage(false);
+        setBugFound(false);
+        setAttempts(0);
+        setCurrentChallenge(0);
+        setTotalAttempts([]);
+        setTimeout(() => {
+            exercitarRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+    };
+
+    // Renderização principal da seção
     return (
         <StyledSkills id="quality">
             <Container maxWidth="lg">
@@ -698,6 +344,7 @@ const Quality = () => {
 
                         <Grid item xs={12}>
                             <Box 
+                                ref={exercitarRef}
                                 textAlign="center" 
                                 mb={6}
                                 sx={{
@@ -736,7 +383,7 @@ const Quality = () => {
                                 <Box display="flex" alignItems="center" justifyContent="space-between" mb={3}>
                                     <Box display="flex" alignItems="center">
                                         <BugReportIcon className="sectionIcon" />
-                                        <Typography variant="h6" color="primary.contrastText">
+                                        <Typography variant="h6" color="primary.contrastText" textAlign="left">
                                             Desafio QA #{currentChallenge + 1}
                                         </Typography>
                                     </Box>
@@ -763,7 +410,7 @@ const Quality = () => {
                                 <Box>
                                     <Grid container spacing={2}>
                                         <Grid item xs={12}>
-                            <Typography variant="h6" color="primary.contrastText" gutterBottom>
+                            <Typography variant="h6" color="primary.contrastText" gutterBottom textAlign="left">
                                                 {challenges[currentChallenge].title}
                             </Typography>
                             <Typography color="text.secondary" paragraph>
@@ -802,7 +449,7 @@ const Quality = () => {
                                         </Box>
                                     ) : (
                                         <>
-                                            <Typography color="text.secondary" sx={{ mt: 2, fontStyle: 'italic' }}>
+                                            <Typography color="text.secondary" sx={{ mt: 2, fontStyle: 'normal' }}>
                                                 Dica: {challenges[currentChallenge].hint}
                             </Typography>
                                             {attempts >= 3 && (
@@ -812,16 +459,16 @@ const Quality = () => {
                                                         sx={{ 
                                                             mt: 2, 
                                                             mb: 1,
-                                                            fontStyle: 'italic'
+                                                            fontStyle: 'normal'
                                                         }}
                                                     >
                                                         Está com dificuldade? Que tal estudar um pouco mais sobre o tema? 
-                                                        Fique à vontade para me contatar para discutirmos sobre! 😊
+                                                        Fique à vontade para me contatar para discutirmos sobre! ✈️
                                                     </Typography>
                                                     <Button
                                                         variant="contained"
                                                         color="warning"
-                                                        onClick={resetChallenge}
+                                                        onClick={tryAnotherChallenge}
                                                         startIcon={<RefreshIcon />}
                                 sx={{ 
                                                             mt: 1,
@@ -871,7 +518,29 @@ const Quality = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <StyledPaper elevation={3}>
+                        <StyledPaper ref={finalCardRef} elevation={3} sx={{ position: 'relative', overflow: 'visible' }}>
+                            {/* Botão de reset no canto superior esquerdo, apenas ícone, com tooltip */}
+                            <Tooltip title="Refazer desafio" placement="right">
+                                <IconButton
+                                    onClick={restartChallenges}
+                                    sx={{
+                                        position: 'absolute',
+                                        top: 44,
+                                        left: 44,
+                                        zIndex: 10,
+                                        color: 'primary.main',
+                                        background: '#fff',
+                                        boxShadow: 3,
+                                        '&:hover': {
+                                            background: '#f3eaff',
+                                            color: 'secondary.main',
+                                        },
+                                        p: 0.5
+                                    }}
+                                >
+                                    <RefreshIcon fontSize="large" />
+                                </IconButton>
+                            </Tooltip>
                             <Box textAlign="center" py={4}>
                                 <motion.div
                                     animate={{ 
@@ -912,11 +581,7 @@ const Quality = () => {
                                         href="https://www.linkedin.com/in/lucas-falc%C3%A3o/"
                                         target="_blank"
                                         startIcon={<LinkedInIcon />}
-                                        sx={{ 
-                                            minWidth: '250px',
-                                            py: 1.5,
-                                            fontSize: '1.1rem'
-                                        }}
+                                        sx={{ minWidth: '250px', py: 1.5, fontSize: '1.1rem' }}
                                     >
                                         Conecte-se comigo
                                     </Button>

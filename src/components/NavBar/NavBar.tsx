@@ -16,11 +16,22 @@ const NavBar = () => {
             const scrollPosition = window.scrollY;
             const navbarHeight = 64; // altura padrão da navbar do Material-UI
 
+            // Lógica: se estiver acima da seção 'about', desativa todos os botões (usuário está na Hero)
+            const aboutElement = document.getElementById('about');
+            if (aboutElement) {
+                const { offsetTop } = aboutElement;
+                if (scrollPosition + navbarHeight < offsetTop) {
+                    setActiveSection(''); // Nenhuma seção ativa
+                    return;
+                }
+            }
+
+            // Percorre as seções para verificar qual está visível na tela
             for (const section of sections) {
                 const element = document.getElementById(section);
                 if (element) {
                     const { offsetTop, offsetHeight } = element;
-                    // Ajustando o cálculo considerando a altura da navbar
+                    // Se o scroll está dentro dos limites da seção, ativa ela
                     if (scrollPosition + navbarHeight >= offsetTop && 
                         scrollPosition + navbarHeight < offsetTop + offsetHeight) {
                         setActiveSection(section);
@@ -30,10 +41,12 @@ const NavBar = () => {
             }
         };
 
-        // Executar handleScroll imediatamente após a montagem do componente
+        // Executa handleScroll ao montar o componente para já marcar a seção correta
         handleScroll();
 
+        // Adiciona o listener de scroll
         window.addEventListener('scroll', handleScroll);
+        // Remove o listener ao desmontar
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -43,7 +56,7 @@ const NavBar = () => {
         boxShadow: activeSection ? theme.shadows[4] : 'none',
     }));
 
-    const StyledToobar = styled(Toolbar)(({theme}) => ({
+    const StyledToolbar = styled(Toolbar)(({theme}) => ({
         display: "flex",
         justifyContent: "center",
         gap: theme.spacing(8),
@@ -83,7 +96,7 @@ const NavBar = () => {
 
     return (
         <StyledAppBar position="fixed">
-            <StyledToobar>
+            <StyledToolbar>
                 <StyledButton 
                     onClick={() => handleNavClick('about')}
                     className={activeSection === 'about' ? 'active' : ''}
@@ -102,7 +115,7 @@ const NavBar = () => {
                 >
                     Projetos
                 </StyledButton>
-            </StyledToobar>
+            </StyledToolbar>
         </StyledAppBar>
     )
 }

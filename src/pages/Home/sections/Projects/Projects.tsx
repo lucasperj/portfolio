@@ -1,6 +1,7 @@
+// Importações de componentes do Material-UI, ícones, animações e utilitários
 import { Box, Container, Typography, Paper, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"; // Biblioteca para animações declarativas
 import ArticleIcon from '@mui/icons-material/Article';
 import BuildIcon from '@mui/icons-material/Build';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
@@ -8,9 +9,10 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
+// Estilização do container principal da seção de projetos
 const StyledProjects = styled("div")(({theme}) => ({
-    backgroundColor: theme.palette.background.paper,
-    minHeight: '100vh',
+    backgroundColor: theme.palette.background.paper, // Cor de fundo
+    minHeight: '100vh', // Altura mínima para ocupar a tela toda
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -18,6 +20,7 @@ const StyledProjects = styled("div")(({theme}) => ({
     position: 'relative'
 }));
 
+// Estilização do card central que envolve o conteúdo
 const StyledPaper = styled(Paper)(({theme}) => ({
     padding: theme.spacing(6),
     backgroundColor: theme.palette.background.default,
@@ -28,6 +31,7 @@ const StyledPaper = styled(Paper)(({theme}) => ({
     overflow: 'hidden'
 }));
 
+// Container para os ícones de categorias de projetos
 const IconContainer = styled(Box)(({theme}) => ({
     display: 'flex',
     justifyContent: 'center',
@@ -44,6 +48,7 @@ const IconContainer = styled(Box)(({theme}) => ({
     }
 }));
 
+// Container para os botões sociais (LinkedIn, GitHub, Início)
 const SocialButtons = styled(Box)(({theme}) => ({
     display: 'flex',
     justifyContent: 'center',
@@ -51,36 +56,42 @@ const SocialButtons = styled(Box)(({theme}) => ({
     marginTop: theme.spacing(4)
 }));
 
+// Componente principal da seção de Projetos
 const Projects = () => {
+    // Variantes de animação para o container principal (usado pelo Framer Motion)
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.3
+                staggerChildren: 0.3 // Animação em cascata dos filhos
             }
         }
     };
 
+    // Variantes de animação para cada item (entrada com leve movimento e fade)
     const itemVariants = {
         hidden: { y: 20, opacity: 0 },
         visible: {
             y: 0,
             opacity: 1,
             transition: {
-                type: "spring",
+                type: "spring" as const, // Animação tipo spring (mola)
                 stiffness: 100
             }
         }
     };
 
+    // Função para rolar suavemente para o topo da página
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    // Renderização do componente
     return (
         <StyledProjects id="projects">
             <Container maxWidth="lg">
+                {/* Container animado para entrada dos elementos */}
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
@@ -88,12 +99,13 @@ const Projects = () => {
                     viewport={{ once: true }}
                 >
                     <StyledPaper elevation={3}>
+                        {/* Título animado */}
                         <motion.div variants={itemVariants}>
                             <Typography variant="h2" color="primary.contrastText" gutterBottom>
                                 Projetos
                             </Typography>
                         </motion.div>
-                        
+                        {/* Subtítulo animado */}
                         <motion.div variants={itemVariants}>
                             <Typography 
                                 variant="h5" 
@@ -104,7 +116,7 @@ const Projects = () => {
                                 Em breve, compartilharei aqui:
                             </Typography>
                         </motion.div>
-
+                        {/* Ícones de categorias de projetos, cada um com animação ao passar o mouse */}
                         <IconContainer>
                             {[
                                 { icon: ArticleIcon, text: "Artigos Técnicos" },
@@ -133,7 +145,7 @@ const Projects = () => {
                                 </motion.div>
                             ))}
                         </IconContainer>
-
+                        {/* Mensagem de conteúdo em desenvolvimento, com animação de foguete */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ 
@@ -160,7 +172,7 @@ const Projects = () => {
                                     variant="h5" 
                                     color="white"
                                     sx={{ 
-                                        fontStyle: 'italic',
+                                        fontStyle: 'normal',
                                         fontWeight: 600,
                                         letterSpacing: '0.5px',
                                         display: 'flex',
@@ -170,6 +182,7 @@ const Projects = () => {
                                     }}
                                 >
                                     Conteúdo em desenvolvimento
+                                    {/* Foguete animado */}
                                     <motion.span
                                         animate={{ 
                                             y: [-3, 3, -3],
@@ -186,7 +199,7 @@ const Projects = () => {
                                 </Typography>
                             </Box>
                         </motion.div>
-
+                        {/* Botões sociais: LinkedIn, GitHub e botão para voltar ao início */}
                         <SocialButtons>
                             <Button
                                 variant="contained"
