@@ -5,6 +5,7 @@ import BugReportIcon from '@mui/icons-material/BugReport';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import ExpandMore from '../../../../components/ExpandMore';
 import { useState, useRef } from "react";
 import { motion } from 'framer-motion';
 import CelebrationIcon from '@mui/icons-material/Celebration';
@@ -40,20 +41,6 @@ const StyledPaper = styled(Paper)(({theme}) => ({
         fontSize: '2rem',
         color: theme.palette.primary.main,
         marginRight: theme.spacing(2)
-    }
-}));
-
-// Botão de expandir/colapsar dos cards
-const ExpandMore = styled(IconButton)(({ theme }) => ({
-    transform: 'rotate(0deg)',
-    transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-    }),
-    '&.expanded': {
-        transform: 'rotate(180deg)',
-    },
-    '&:hover': {
-        backgroundColor: theme.palette.grey[400] + ' !important',
     }
 }));
 

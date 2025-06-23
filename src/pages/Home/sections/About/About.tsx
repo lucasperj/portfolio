@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles"
 import CodeIcon from '@mui/icons-material/Code';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandMore from '../../../../components/ExpandMore';
 import { useState } from "react";
 import AmigoTechLogo from "../../../../assets/images/amigotech-logo.jpg"
 import TeamSixLogo from "../../../../assets/images/teamsix-logo.jpg"
@@ -37,16 +38,6 @@ const SkillChip = styled(Box)(({theme}) => ({
     display: 'inline-block',
     margin: theme.spacing(0.5),
     fontSize: '0.875rem'
-}));
-
-const ExpandMore = styled(IconButton)(({ theme }) => ({
-    transform: 'rotate(0deg)',
-    transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-    }),
-    '&.expanded': {
-        transform: 'rotate(180deg)',
-    }
 }));
 
 const CompanyLogo = styled('img')({
