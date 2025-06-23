@@ -5,7 +5,7 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslation } from '../../../../i18n/useTranslation';
 
 import Avatar from "../../../../assets/images/avatar.jpg"
@@ -18,6 +18,9 @@ import CV from "../../../../assets/files/cv_en.pdf"
 
 const Hero = () => {
     const [open, setOpen] = useState(false);
+    const [hover, setHover] = useState(false);
+    const buttonRef = useRef<HTMLDivElement>(null);
+    const menuRef = useRef<HTMLDivElement>(null);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const { t } = useTranslation();
@@ -27,6 +30,30 @@ const Hero = () => {
             handleWhatsAppClick();
         } else {
             setOpen(!open);
+        }
+    };
+
+    // Funções para hover e abertura
+    const handleMouseEnter = () => {
+        setHover(true);
+        setOpen(true);
+    };
+    const handleMouseLeave = (e: React.MouseEvent) => {
+        // Fecha apenas se mouse sair do botão e do menu
+        if (!buttonRef.current || !menuRef.current) {
+            setHover(false);
+            setOpen(false);
+            return;
+        }
+        const buttonRect = buttonRef.current.getBoundingClientRect();
+        const menuRect = menuRef.current.getBoundingClientRect();
+        if (
+            e.clientX < buttonRect.left || e.clientX > buttonRect.right ||
+            (e.clientY < buttonRect.top && e.clientY < menuRect.top) ||
+            (e.clientY > buttonRect.bottom && e.clientY > menuRect.bottom)
+        ) {
+            setHover(false);
+            setOpen(false);
         }
     };
 
@@ -67,12 +94,25 @@ const Hero = () => {
                             </Grid>
                             <Grid item xs={12} md={4} display="flex" justifyContent="center">
                                 <Box position="relative" width="100%" sx={{ zIndex: 1 }}>
-                                    <StyledButton onClick={handleContactClick}>
-                                        <ContactMailIcon /> 
-                                        <Typography>{t('hero.contact')}</Typography>
-                                    </StyledButton>
+                                    <div
+                                        ref={buttonRef}
+                                        onMouseEnter={handleMouseEnter}
+                                        onMouseLeave={handleMouseLeave}
+                                    >
+                                        <StyledButton onClick={handleContactClick}>
+                                            <ContactMailIcon /> 
+                                            <Typography>{t('hero.contact')}</Typography>
+                                        </StyledButton>
+                                    </div>
                                     {!isMobile && (
-                                        <Box position="absolute" width="100%" sx={{ marginTop: '8px' }}>
+                                        <Box
+                                            ref={menuRef}
+                                            position="absolute"
+                                            width="100%"
+                                            sx={{ marginTop: '8px' }}
+                                            onMouseEnter={handleMouseEnter}
+                                            onMouseLeave={handleMouseLeave}
+                                        >
                                             <Collapse in={open} timeout="auto">
                                                 <ContactMenu>
                                                     <ContactOption onClick={handleLinkedInClick}>

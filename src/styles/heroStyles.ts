@@ -39,7 +39,8 @@ export const ContactOption = styled("div")(({theme}) => ({
     borderRadius: '12px',
     transition: 'all 0.3s ease',
     '&:hover': {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.secondary.contrastText,
     },
     '& .MuiSvgIcon-root.linkedin': {
         color: '#0A66C2'
