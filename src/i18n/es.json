@@ -15,9 +15,72 @@
   },
   "about": {
     "title": "Sobre mí",
-    "skills": { "title": "Habilidades técnicas" },
-    "metrics": { "title": "Trayectoria" },
-    "experience": { "title": "Experiencia profesional" }
+    "skills": {
+      "title": "Habilidades técnicas",
+      "selenium": "Selenium WebDriver",
+      "playwright": "Playwright",
+      "appium": "Appium",
+      "ant": "Apache Ant",
+      "js": "JavaScript/TypeScript",
+      "junit": "JUnit",
+      "testng": "TestNG",
+      "postman": "Postman",
+      "git": "Git",
+      "jenkins": "Jenkins",
+      "github": "GitHub/Actions",
+      "docker": "Docker",
+      "sql": "SQL",
+      "liferay": "Liferay",
+      "accessibility": "Accesibilidad",
+      "seo": "SEO",
+      "manual": "Pruebas manuales",
+      "testmgmt": "Gestión de pruebas (Testmo, Testrail)"
+    },
+    "metrics": {
+      "title": "Trayectoria",
+      "0": "A lo largo de mi carrera, he colaborado activamente con diversas áreas como desarrollo, producto, implementación y negocios, comprendiendo las necesidades de cada parte interesada y contribuyendo a la entrega de productos de alta calidad.",
+      "1": "Mis habilidades abarcan automatización de pruebas, pruebas de software en diversas modalidades, metodologías ágiles, gestión de pruebas, integración continua, control de versiones, accesibilidad, SEO, consultoría de calidad y mentoría.",
+      "2": "Busco constantemente mejorar mis conocimientos y habilidades para ofrecer soluciones innovadoras y eficientes a los desafíos de cada proyecto."
+    },
+    "experience": { "title": "Experiencia profesional" },
+    "experiences": {
+      "amigotech": {
+        "company": "Amigo Tech",
+        "period": "2024 - Actualidad",
+        "role": "Consultor de calidad",
+        "description": "Definiendo estrategias de calidad en un ecosistema fintech médico integrado, actuando en tres productos principales:",
+        "highlights": {
+          "0": "Aplicación web para Contabilidad Médica: Portal contable de clientes y panel de información PJ, con automatización E2E usando Playwright",
+          "1": "Aplicación móvil 'Amigo One': Historias clínicas inteligentes y gestión contable, implementando pruebas móviles con Appium",
+          "2": "ABU 'Amigo Pay': Sistema de pagos integrado con BaaS (Dock), garantizando calidad en integraciones críticas",
+          "3": "Consultoría estratégica en calidad para todo el ecosistema, estructurando casos de prueba, procesos y métricas"
+        }
+      },
+      "teamsix": {
+        "company": "Team Six Tech",
+        "period": "2024",
+        "role": "Especialista en calidad y accesibilidad",
+        "description": "Participación en el proyecto de migración del portal NotreDame Intermédica/Hapvida a Liferay, con enfoque en accesibilidad:",
+        "highlights": {
+          "0": "Implementación de estándares WCAG para accesibilidad digital",
+          "1": "Optimización de contraste, jerarquía y navegación para lectores de pantalla",
+          "2": "Consultoría en SEO y rendimiento web (LCP, CLS)",
+          "3": "Aplicación de la heurística CROP para una mejor experiencia de usuario"
+        }
+      },
+      "liferay": {
+        "company": "Liferay",
+        "period": "2022 - 2023",
+        "role": "Analista de calidad",
+        "description": "Desarrollo y mantenimiento de frameworks de automatización para Liferay DXP, enfocándose en calidad y eficiencia:",
+        "highlights": {
+          "0": "Liderazgo en iniciativas de automatización con Poshi (Selenium)",
+          "1": "Gestión y configuración de entornos con Apache Ant y Docker",
+          "2": "Monitoreo de CI/CD con Jenkins y TestRail",
+          "3": "Mentoría técnica y documentación de procesos de QA"
+        }
+      }
+    }
   },
   "quality": {
     "title": "Calidad de software",
@@ -28,6 +91,7 @@
     "success.attempts": "intento(s)",
     "attempt": "intento",
     "attempts": "intentos",
+    "attempts_count": "Intentos :",
     "explanation": "Explicación:",
     "next": "Siguiente desafío",
     "hint": "Pista:",
@@ -46,7 +110,13 @@
   "projects": {
     "title": "Proyectos",
     "soon": "Pronto compartiré aquí:",
-    "development": "Contenido en desarrollo"
+    "development": "Contenido en desarrollo",
+    "articles": "Artículos Técnicos",
+    "frameworks": "Frameworks de Automatización",
+    "publications": "Publicaciones",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "top": "Inicio"
   },
   "toast": {
     "noConnection": "Sin conexión a internet. Verifica tu conexión e inténtalo de nuevo.",

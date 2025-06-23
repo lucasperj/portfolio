@@ -15,9 +15,72 @@
   },
   "about": {
     "title": "About me",
-    "skills": { "title": "Technical skills" },
-    "metrics": { "title": "Journey" },
-    "experience": { "title": "Professional experience" }
+    "skills": {
+      "title": "Technical skills",
+      "selenium": "Selenium WebDriver",
+      "playwright": "Playwright",
+      "appium": "Appium",
+      "ant": "Apache Ant",
+      "js": "JavaScript/TypeScript",
+      "junit": "JUnit",
+      "testng": "TestNG",
+      "postman": "Postman",
+      "git": "Git",
+      "jenkins": "Jenkins",
+      "github": "GitHub/Actions",
+      "docker": "Docker",
+      "sql": "SQL",
+      "liferay": "Liferay",
+      "accessibility": "Accessibility",
+      "seo": "SEO",
+      "manual": "Manual testing",
+      "testmgmt": "Test management (Testmo, Testrail)"
+    },
+    "metrics": {
+      "title": "Journey",
+      "0": "Throughout my career, I have actively collaborated with various areas such as development, product, deployment, and business, understanding the needs of each stakeholder and contributing to the delivery of high-quality products.",
+      "1": "My skills include test automation, software testing in various modalities, agile methodologies, test management, continuous integration, version control, accessibility, SEO, quality consulting, and mentoring.",
+      "2": "I am constantly seeking to improve my knowledge and skills to offer innovative and efficient solutions to each project's challenges."
+    },
+    "experience": { "title": "Professional experience" },
+    "experiences": {
+      "amigotech": {
+        "company": "Amigo Tech",
+        "period": "2024 - Present",
+        "role": "Quality consultant",
+        "description": "Defining quality strategies in an integrated medical fintech ecosystem, working across three main products:",
+        "highlights": {
+          "0": "Web application for Medical Accounting: Client accounting portal and PJ information dashboard, with E2E automation using Playwright",
+          "1": "Mobile App 'Amigo One': Smart medical records and accounting management, implementing mobile tests with Appium",
+          "2": "ABU 'Amigo Pay': Payment system integrated with BaaS (Dock), ensuring quality in critical integrations",
+          "3": "Strategic quality consulting for the entire ecosystem, structuring test cases, processes, and metrics"
+        }
+      },
+      "teamsix": {
+        "company": "Team Six Tech",
+        "period": "2024",
+        "role": "Quality and accessibility specialist",
+        "description": "Worked on the migration project of the NotreDame Intermédica/Hapvida portal to Liferay, focusing on accessibility:",
+        "highlights": {
+          "0": "Implementation of WCAG standards for digital accessibility",
+          "1": "Optimization of contrast, hierarchy, and navigation for screen readers",
+          "2": "Consulting on SEO and web performance (LCP, CLS)",
+          "3": "Application of the CROP heuristic for better user experience"
+        }
+      },
+      "liferay": {
+        "company": "Liferay",
+        "period": "2022 - 2023",
+        "role": "Quality analyst",
+        "description": "Development and maintenance of automation frameworks for Liferay DXP, focusing on quality and efficiency:",
+        "highlights": {
+          "0": "Leadership in automation initiatives with Poshi (Selenium)",
+          "1": "Management and configuration of environments with Apache Ant and Docker",
+          "2": "Monitoring CI/CD with Jenkins and TestRail",
+          "3": "Technical mentoring and documentation of QA processes"
+        }
+      }
+    }
   },
   "quality": {
     "title": "Software quality",
@@ -28,6 +91,7 @@
     "success.attempts": "attempt(s)",
     "attempt": "attempt",
     "attempts": "attempts",
+    "attempts_count": "Attempts :",
     "explanation": "Explanation:",
     "next": "Next Challenge",
     "hint": "Hint:",
@@ -46,7 +110,13 @@
   "projects": {
     "title": "Projects",
     "soon": "Soon, I will share here:",
-    "development": "Content under development"
+    "development": "Content under development",
+    "articles": "Technical Articles",
+    "frameworks": "Automation Frameworks",
+    "publications": "Publications",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "top": "Top"
   },
   "toast": {
     "noConnection": "No internet connection. Please check your connection and try again.",

@@ -429,7 +429,7 @@ const Quality = () => {
                                         <Box mt={2}>
                                             <Box p={2} bgcolor="success.main" borderRadius={1}>
                                                 <Typography color="white">
-                                                    {t('quality.success')} 🎉 {t('quality.success.attempts')} {attempts === 1 ? t('quality.attempt') : t('quality.attempts')}!
+                                                    {t('quality.success')} 🎉 {attempts} {attempts === 1 ? t('quality.attempt') : t('quality.attempts')}!
                                                 </Typography>
                                             </Box>
                                             <Box mt={2} p={2} bgcolor={theme => theme.palette.background.paper} borderRadius={1}>
@@ -507,7 +507,7 @@ const Quality = () => {
 
                                     <Box display="flex" justifyContent="space-between" alignItems="center" mt={2}>
                                         <Typography color="text.secondary">
-                                            {t('quality.attempts')} {attempts}
+                                            {t('quality.attempts_count')} {attempts}
                             </Typography>
                                     </Box>
                                 </Box>

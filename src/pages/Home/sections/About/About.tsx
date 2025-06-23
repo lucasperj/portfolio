@@ -130,70 +130,70 @@ const About = () => {
     const { t } = useTranslation();
 
     const skills = [
-        'Selenium WebDriver',
-        'Playwright',
-        'Appium',
-        'Apache Ant',
-        'JavaScript/TypeScript',
-        'JUnit',
-        'TestNG',
-        'Postman',
-        'Git',
-        'Jenkins',
-        'GitHub/Actions',
-        'Docker',
-        'SQL',
-        'Liferay',
-        'Acessibilidade',
-        'SEO',
-        'Testes manuais',
-        'Gerenciamento de testes(Testmo, Testrail)',
+        t('about.skills.selenium'),
+        t('about.skills.playwright'),
+        t('about.skills.appium'),
+        t('about.skills.ant'),
+        t('about.skills.js'),
+        t('about.skills.junit'),
+        t('about.skills.testng'),
+        t('about.skills.postman'),
+        t('about.skills.git'),
+        t('about.skills.jenkins'),
+        t('about.skills.github'),
+        t('about.skills.docker'),
+        t('about.skills.sql'),
+        t('about.skills.liferay'),
+        t('about.skills.accessibility'),
+        t('about.skills.seo'),
+        t('about.skills.manual'),
+        t('about.skills.testmgmt'),
     ];
 
     const metrics = [
-        'Ao longo de minha carreira, colaborei ativamente com diversas áreas, como desenvolvimento, produto, implantação e negócios, compreendendo as necessidades de cada stakeholder e contribuindo para a entrega de produtos de alta qualidade.',
-        'Minhas habilidades abrangem automação de testes, testes de software em diversas modalidades, metodologias ágeis, gerenciamento de testes, integração contínua, versionamento, acessibilidade, SEO, consultoria de qualidade e mentoria.',
-        'Busco constantemente aprimorar meus conhecimentos e habilidades para oferecer soluções inovadoras e eficientes para os desafios de cada projeto.'
+        t('about.metrics.0'),
+        t('about.metrics.1'),
+        t('about.metrics.2'),
     ];
 
     const experiences = [
         {
-            company: 'Amigo Tech',
+            company: t('about.experiences.amigotech.company'),
             logo: AmigoTechLogo,
-            period: '2024 - Hoje',
-            role: 'Consultor de qualidade',
-            description: 'Definindo estratégias de qualidade em um ecossistema fintech médico integrado, atuando por três produtos principais:',
+            period: t('about.experiences.amigotech.period'),
+            role: t('about.experiences.amigotech.role'),
+            description: t('about.experiences.amigotech.description'),
             highlights: [
-                "Aplicação web para Contabilidade Médica: Portal do contábil de clientes e quadro de informações PJ, com automação E2E usando Playwright",
-                "Aplicativo Mobile 'Amigo One': Prontuários inteligentes e gestão contábil, implementando testes mobile com Appium",
-                "ABU 'Amigo Pay': Sistema de pagamentos integrado com BaaS (Dock), garantindo qualidade em integrações críticas",
-                "Consultoria estratégica em qualidade para todo o ecossistema, estruturando casos de teste, processos e métricas"
+                t('about.experiences.amigotech.highlights.0'),
+                t('about.experiences.amigotech.highlights.1'),
+                t('about.experiences.amigotech.highlights.2'),
+                t('about.experiences.amigotech.highlights.3'),
             ]
         },
         {
-            company: 'Team Six Tech',
+            company: t('about.experiences.teamsix.company'),
             logo: TeamSixLogo,
-            period: '2024',
-            role: 'Especialista em qualidade e acessibilidade',
-            description: 'Atuação no projeto de migração do portal NotreDame Intermédica/Hapvida para Liferay, com foco em acessibilidade:',
+            period: t('about.experiences.teamsix.period'),
+            role: t('about.experiences.teamsix.role'),
+            description: t('about.experiences.teamsix.description'),
             highlights: [
-                "Implementação de padrões WCAG para acessibilidade digital",
-                "Otimização de contraste, hierarquia e navegação para leitores de tela",
-                "Consultoria em SEO e performance web (LCP, CLS)",
-                "Aplicação da heurística CROP para melhor experiência do usuário"
+                t('about.experiences.teamsix.highlights.0'),
+                t('about.experiences.teamsix.highlights.1'),
+                t('about.experiences.teamsix.highlights.2'),
+                t('about.experiences.teamsix.highlights.3'),
             ]
         },
         {
-            company: 'Liferay',
+            company: t('about.experiences.liferay.company'),
             logo: LiferayLogo,
-            period: '2022 - 2023',
-            role: 'Analista de qualidade',
-            description: 'Desenvolvimento e manutenção de frameworks de automação para o Liferay DXP, focando em qualidade e eficiência:',
+            period: t('about.experiences.liferay.period'),
+            role: t('about.experiences.liferay.role'),
+            description: t('about.experiences.liferay.description'),
             highlights: [
-                "Liderança em iniciativas de automação com Poshi(Selenium)",
-                "Gerenciamento e configuração de ambientes com Apache Ant e Docker",
-                "Monitoramento de CI/CD com Jenkins e TestRail",
-                "Mentoria técnica e documentação de processos de QA"
+                t('about.experiences.liferay.highlights.0'),
+                t('about.experiences.liferay.highlights.1'),
+                t('about.experiences.liferay.highlights.2'),
+                t('about.experiences.liferay.highlights.3'),
             ]
         }
     ];

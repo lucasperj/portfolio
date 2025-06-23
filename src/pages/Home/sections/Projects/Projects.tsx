@@ -122,9 +122,9 @@ const Projects = () => {
                         {/* Ícones de categorias de projetos, cada um com animação ao passar o mouse */}
                         <IconContainer>
                             {[
-                                { icon: ArticleIcon, text: "Artigos Técnicos" },
-                                { icon: BuildIcon, text: "Frameworks de Automação" },
-                                { icon: AutoStoriesIcon, text: "Publicações" }
+                                { icon: ArticleIcon, text: t('projects.articles') },
+                                { icon: BuildIcon, text: t('projects.frameworks') },
+                                { icon: AutoStoriesIcon, text: t('projects.publications') }
                             ].map((item, index) => (
                                 <motion.div
                                     key={index}
@@ -215,7 +215,7 @@ const Projects = () => {
                                     py: 1
                                 }}
                             >
-                                LinkedIn
+                                {t('projects.linkedin')}
                             </Button>
                             <Button
                                 variant="contained"
@@ -228,7 +228,7 @@ const Projects = () => {
                                     py: 1
                                 }}
                             >
-                                GitHub
+                                {t('projects.github')}
                             </Button>
                             <Button
                                 variant="contained"
@@ -244,7 +244,7 @@ const Projects = () => {
                                     }
                                 }}
                             >
-                                Início
+                                {t('projects.top')}
                             </Button>
                         </SocialButtons>
                     </StyledPaper>
