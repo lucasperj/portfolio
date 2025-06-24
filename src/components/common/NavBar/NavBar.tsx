@@ -5,21 +5,27 @@ import { useTranslation } from '../../../i18n/useTranslation';
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 
+// Componente de Navbar global, usado tanto na HomePage quanto no QA Lab
 const NavBar = () => {
     console.log('NavBar renderizou!');
+    // Estado para controlar qual seção está ativa na Home
     const [activeSection, setActiveSection] = useState('');
+    // Hook de tradução
     const { t } = useTranslation();
+    // Hook do React Router para saber a rota atual
     const location = useLocation();
+    // Flag para saber se está no QA Lab (rota começa com /qalab)
     const isQALab = location.pathname.startsWith('/qalab');
 
-    // Scroll para seções na Home
+    // Função para scroll suave para seções na Home (exclusivo da Home)
     const handleNavClick = (sectionId: string) => {
         setActiveSection(sectionId);
         scrollToSection(sectionId);
     };
 
+    // Efeito para atualizar a seção ativa conforme o scroll na Home
     useEffect(() => {
-        if (isQALab) return;
+        if (isQALab) return; // Só roda na Home
         const handleScroll = () => {
             const sections = ['about', 'quality', 'projects'];
             const scrollPosition = window.scrollY;
@@ -49,12 +55,14 @@ const NavBar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isQALab]);
 
+    // Estilização do AppBar fixo
     const StyledAppBar = styled(AppBar)(({theme}) => ({
         transition: 'all 0.3s ease-in-out',
         backgroundColor: theme.palette.primary.main,
         boxShadow: theme.shadows[4],
     }));
 
+    // Estilização do Toolbar para layout flexível
     const StyledToolbar = styled(Toolbar)(({theme}) => ({
         display: "flex",
         alignItems: "center",
@@ -67,7 +75,8 @@ const NavBar = () => {
         }
     }));
 
-    // Estilo dos botões centrais
+    // Estilo dos botões centrais (navegação principal)
+    // Usado tanto na Home quanto no QA Lab, mas muda o texto e ação dinamicamente
     const navButtonSx = (active: boolean, theme: any) => ({
         color: theme.palette.primary.contrastText,
         fontSize: '1rem',
@@ -92,28 +101,40 @@ const NavBar = () => {
         }
     });
 
-    // Estilo do botão lateral (verde ou roxo)
+    // Estilo do botão lateral (verde na Home, roxo no QA Lab)
+    // Visual igual ao botão de tradução, mas cor dinâmica
     const sideButtonSx = (color: 'success' | 'secondary', theme: any) => ({
         color: theme.palette.getContrastText(theme.palette[color].main),
         background: theme.palette[color].main,
         fontWeight: 700,
-        borderRadius: 8,
+        borderRadius: '16px',
         px: 2.5,
         py: 1,
-        boxShadow: theme.shadows[2],
+        minWidth: 90,
+        height: 40,
+        boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+        transition: 'all 0.2s',
+        fontSize: '0.92rem',
+        textTransform: 'none',
         '&:hover': {
             background: theme.palette[color].dark,
         },
-        fontSize: '1rem',
-        textTransform: 'none',
     });
 
     return (
         <StyledAppBar position="fixed">
             <StyledToolbar>
-                {/* Esquerda: botão dinâmico */}
+                {/*
+                  =====================
+                  CANTO ESQUERDO
+                  =====================
+                  - Home: botão verde "FalQAo Lab" (leva para o QA Lab)
+                  - QA Lab: botão roxo "Descubra mais sobre mim" (leva para a Home)
+                  - O estilo é dinâmico via sideButtonSx
+                */}
                 <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
                     {!isQALab ? (
+                        // Exclusivo da HomePage
                         <Button
                             component={RouterLink}
                             to="/qalab"
@@ -122,6 +143,7 @@ const NavBar = () => {
                             FalQAo Lab
                         </Button>
                     ) : (
+                        // Exclusivo do QA Lab
                         <Button
                             component={RouterLink}
                             to="/"
@@ -132,9 +154,17 @@ const NavBar = () => {
                     )}
                 </Box>
 
-                {/* Centro: 3 botões principais, sempre centralizados */}
+                {/*
+                  =====================
+                  CENTRO (sempre 3 botões)
+                  =====================
+                  - Home: Sobre / Qualidade / Projetos (scroll para seções)
+                  - QA Lab: Artigos / Desafios / Projetos (anchors na página do QA Lab)
+                  - O conteúdo é dinâmico conforme a página
+                */}
                 <Box sx={{ flex: 2, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 4 }}>
                     {!isQALab ? (
+                        // Exclusivo da HomePage
                         <>
                             <Button onClick={() => handleNavClick('about')} sx={theme => navButtonSx(activeSection === 'about', theme)}>
                                 {t('navbar.about')}
@@ -147,6 +177,7 @@ const NavBar = () => {
                             </Button>
                         </>
                     ) : (
+                        // Exclusivo do QA Lab
                         <>
                             <Button
                                 component={RouterLink}
@@ -173,7 +204,13 @@ const NavBar = () => {
                     )}
                 </Box>
 
-                {/* Direita: botão de idioma */}
+                {/*
+                  =====================
+                  CANTO DIREITO
+                  =====================
+                  - Sempre exibe o botão de tradução (LanguageSelector)
+                  - Visual fixo, alinhado à direita
+                */}
                 <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                     <LanguageSelector />
                 </Box>
