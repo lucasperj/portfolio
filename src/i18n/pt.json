@@ -259,7 +259,10 @@
           "3": "Total Blocking Time (TBT)"
         }
       }
-    }
+    },
+    "ctaTitle": "Toda jornada começa rodeado de pessoas incríveis",
+    "ctaDescription": "A qualidade nasce do coletivo. Venha exercitar seus conhecimentos em qualidade, acessibilidade, automação e boas práticas junto com uma comunidade apaixonada!",
+    "ctaButton": "Ir para o FalQAo Lab"
   },
   "projects": {
     "title": "Projetos",

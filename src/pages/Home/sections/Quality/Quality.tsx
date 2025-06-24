@@ -9,6 +9,7 @@ import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstruct
 import SpeedIcon from '@mui/icons-material/Speed';
 import SecurityIcon from '@mui/icons-material/Security';
 import { useNavigate } from 'react-router-dom';
+import qaMembers from '../../../../assets/images/qaMembers.jpg';
 
 // ========================================
 // INTERFACES PARA TIPAGEM DOS COMPONENTES
@@ -53,35 +54,6 @@ const StyledPaper = styled(Paper)(({theme}) => ({
         fontSize: '2rem',
         color: theme.palette.primary.main,
         marginRight: theme.spacing(2)
-    }
-}));
-
-// Botão customizado para desafios
-const ChallengeButton = styled('button')(({theme}) => ({
-    padding: theme.spacing(1, 2),
-    backgroundColor: theme.palette.background.paper,
-    color: theme.palette.text.primary,
-    border: `1px solid ${theme.palette.divider}`,
-    borderRadius: theme.shape.borderRadius,
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    '&:hover': {
-        backgroundColor: theme.palette.action.hover,
-    }
-}));
-
-// Opção de cor para desafios de contraste
-const ColorOption = styled('div')<{ bg: string; fg: string }>(({ bg, fg }) => ({
-    padding: '12px',
-    borderRadius: '4px',
-    backgroundColor: bg,
-    color: fg,
-    cursor: 'pointer',
-    textAlign: 'center',
-    border: '1px solid rgba(255, 255, 255, 0.1)',
-    transition: 'transform 0.2s',
-    '&:hover': {
-        transform: 'scale(1.02)'
     }
 }));
 
@@ -190,23 +162,70 @@ const Quality = () => {
                         ))}
                     </Grid>
                 </Grid>
-                {/* CTA para o FalQAo Lab */}
-                <Paper sx={{ p: 6, mt: 6, mb: 6, textAlign: 'center', background: theme => theme.palette.background.default }} elevation={3}>
-                    <Typography variant="h4" color="primary.contrastText" gutterBottom>
-                        {t('quality.ctaTitle') || 'Desafios Interativos de Qualidade'}
-                    </Typography>
-                    <Typography color="text.secondary" sx={{ mb: 4 }}>
-                        {t('quality.ctaDescription') || 'Quer exercitar seus conhecimentos em qualidade, acessibilidade, automação e boas práticas?'}
-                    </Typography>
-                    <Button
-                        variant="contained"
-                        color="success"
-                        size="large"
-                        sx={{ borderRadius: 3, px: 4, py: 1.5, fontWeight: 700, fontSize: '1.2rem', boxShadow: 3 }}
-                        onClick={() => navigate('/qalab#challenges')}
+                {/* CTA para o FalQAo Lab, agora com imagem e layout moderno */}
+                <Paper
+                    sx={{
+                        p: { xs: 3, md: 6 },
+                        mt: 6,
+                        mb: 6,
+                        position: 'relative',
+                        overflow: 'hidden',
+                        minHeight: { xs: 280, md: 240 },
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        background: theme => theme.palette.background.default
+                    }}
+                    elevation={3}
+                >
+                    {/* Texto e botão à esquerda */}
+                    <Box sx={{ zIndex: 2, maxWidth: { xs: '100%', md: '55%' }, textAlign: 'left' }}>
+                        <Typography variant="h4" color="primary.contrastText" gutterBottom>
+                            {t('quality.ctaTitle') || 'Toda jornada começa rodeado de pessoas incríveis'}
+                        </Typography>
+                        <Typography color="text.secondary" sx={{ mb: 4, fontSize: '1.15rem' }}>
+                            {t('quality.ctaDescription') || 'A qualidade nasce do coletivo. Venha exercitar seus conhecimentos em qualidade, acessibilidade, automação e boas práticas junto com uma comunidade apaixonada!'}
+                        </Typography>
+                        <Button
+                            variant="contained"
+                            color="success"
+                            size="large"
+                            sx={{ borderRadius: 3, px: 4, py: 1.5, fontWeight: 700, fontSize: '1.2rem', boxShadow: 3 }}
+                            onClick={() => navigate('/qalab#challenges')}
+                        >
+                            {t('quality.ctaButton') || 'Ir para o FalQAo Lab'}
+                        </Button>
+                    </Box>
+                    {/* Imagem decorativa à direita */}
+                    <Box
+                        sx={{
+                            display: { xs: 'none', md: 'block' },
+                            position: 'absolute',
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            width: '45%',
+                            height: '100%',
+                            zIndex: 1,
+                            background: `linear-gradient(90deg, transparent 60%, #232730 100%)`,
+                        }}
                     >
-                        {t('quality.ctaButton') || 'Ir para o FalQAo Lab'}
-                    </Button>
+                        <Box
+                            component="img"
+                            src={qaMembers}
+                            alt="QA Members"
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                opacity: 0.24,
+                                borderRadius: 0,
+                                filter: 'grayscale(30%)',
+                                pointerEvents: 'none',
+                                userSelect: 'none',
+                            }}
+                        />
+                    </Box>
                 </Paper>
             </Container>
         </StyledSkills>
