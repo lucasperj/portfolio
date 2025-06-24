@@ -1,9 +1,14 @@
-// Importações de componentes do Material-UI, ícones, hooks e animações
-import { Box, Container, Grid, Typography, Paper, Collapse, IconButton, Button, Tooltip } from "@mui/material"
-import { styled } from "@mui/material/styles"
+// ========================================
+// Seção de Qualidade na Home
+// Exibe tópicos teóricos de qualidade e um CTA moderno para o FalQAo Lab
+// ========================================
+
+// Importações principais do Material-UI e React
+import { Box, Container, Grid, Typography, Paper, Button } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandMore from '../../../../components/common/ExpandMore';
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useTranslation } from '../../../../i18n/useTranslation';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 import SpeedIcon from '@mui/icons-material/Speed';
@@ -12,24 +17,15 @@ import { useNavigate } from 'react-router-dom';
 import qaMembers from '../../../../assets/images/qaMembers.jpg';
 
 // ========================================
-// INTERFACES PARA TIPAGEM DOS COMPONENTES
+// Tipagem dos tópicos teóricos
 // ========================================
-// QualityTopic: representa um tópico teórico de qualidade
-// OptionType: representa as opções de resposta dos desafios (pode ser cor, label, etc)
-
+// Define a estrutura de um tópico teórico de qualidade
 export interface QualityTopic {
   title: string;
   icon: React.ElementType;
   description: string;
   keyPoints: string[];
 }
-
-export type OptionType =
-  | { bg: string; fg: string; text: string } // Opção de cor (usado em contraste)
-  | { label: string; value: string; type: string; pattern?: string } // Opção com label e valor
-  | { label: string; value: string; pattern: string; type?: string } // Opção com pattern
-  | { label: string } // Opção simples (usado em button)
-  | { label: string; value: string }; // Opção com label e value (usado em form)
 
 // Estilização da área de skills (tópicos teóricos)
 const StyledSkills = styled("div")(({theme}) => ({
@@ -40,7 +36,7 @@ const StyledSkills = styled("div")(({theme}) => ({
     }
 }));
 
-// Estilização dos cards de tópicos e desafios
+// Estilização dos cards dos tópicos teóricos
 const StyledPaper = styled(Paper)(({theme}) => ({
     padding: theme.spacing(4),
     backgroundColor: theme.palette.background.default,
@@ -57,14 +53,15 @@ const StyledPaper = styled(Paper)(({theme}) => ({
     }
 }));
 
-// Componente para exibir cada tópico teórico de qualidade
-// Recebe um tópico e exibe título, descrição e pontos-chave, com opção de expandir/colapsar
+// Card de tópico teórico de qualidade
+// Exibe título, ícone, descrição e pontos-chave, com opção de expandir/colapsar
 const QualityCard = ({ topic }: { topic: QualityTopic }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
         <StyledPaper elevation={3}>
             <Box display="flex" alignItems="center" mb={isExpanded ? 2 : 0}>
+                {/* Ícone do tópico */}
                 <topic.icon className="sectionIcon" />
                 <Box flex={1}>
                     <Typography variant="h6" color="primary.contrastText">
@@ -81,7 +78,8 @@ const QualityCard = ({ topic }: { topic: QualityTopic }) => {
                     <ExpandMoreIcon />
                 </ExpandMore>
             </Box>
-            <Collapse in={isExpanded} timeout="auto" unmountOnExit>
+            {/* Descrição e lista de pontos-chave, exibidos ao expandir */}
+            {isExpanded && (
                 <Box mt={2}>
                     <Typography color="text.secondary" sx={{ mb: 2 }}>
                         {topic.description}
@@ -99,12 +97,14 @@ const QualityCard = ({ topic }: { topic: QualityTopic }) => {
                         ))}
                     </Box>
                 </Box>
-            </Collapse>
+            )}
         </StyledPaper>
     );
 };
 
-// Componente principal da seção de Qualidade
+// ========================================
+// Componente principal da seção de Qualidade na Home
+// ========================================
 const Quality = () => {
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -149,12 +149,14 @@ const Quality = () => {
     return (
         <StyledSkills id="quality">
             <Container maxWidth="lg">
+                {/* Título e subtítulo da seção, internacionalizados */}
                 <Typography variant="h2" color="primary.contrastText" textAlign="center" gutterBottom>
                     {t('quality.title')}
                 </Typography>
                 <Typography variant="h5" color="text.secondary" textAlign="center" mb={6}>
                     {t('quality.subtitle')}
                 </Typography>
+                {/* Cards dos tópicos teóricos */}
                 <Grid container spacing={4} justifyContent="center">
                     <Grid item xs={12} md={8}>
                         {qualityTopics.map((topic, index) => (
@@ -162,7 +164,7 @@ const Quality = () => {
                         ))}
                     </Grid>
                 </Grid>
-                {/* CTA para o FalQAo Lab, agora com imagem e layout moderno */}
+                {/* CTA visual para o FalQAo Lab */}
                 <Paper
                     sx={{
                         p: { xs: 3, md: 6 },
@@ -181,10 +183,10 @@ const Quality = () => {
                     {/* Texto e botão à esquerda */}
                     <Box sx={{ zIndex: 2, maxWidth: { xs: '100%', md: '55%' }, textAlign: 'left' }}>
                         <Typography variant="h4" color="primary.contrastText" gutterBottom>
-                            {t('quality.ctaTitle') || 'Toda jornada começa rodeado de pessoas incríveis'}
+                            {t('quality.ctaTitle')}
                         </Typography>
                         <Typography color="text.secondary" sx={{ mb: 4, fontSize: '1.15rem' }}>
-                            {t('quality.ctaDescription') || 'A qualidade nasce do coletivo. Venha exercitar seus conhecimentos em qualidade, acessibilidade, automação e boas práticas junto com uma comunidade apaixonada!'}
+                            {t('quality.ctaDescription')}
                         </Typography>
                         <Button
                             variant="contained"
@@ -193,7 +195,7 @@ const Quality = () => {
                             sx={{ borderRadius: 3, px: 4, py: 1.5, fontWeight: 700, fontSize: '1.2rem', boxShadow: 3 }}
                             onClick={() => navigate('/qalab#challenges')}
                         >
-                            {t('quality.ctaButton') || 'Ir para o FalQAo Lab'}
+                            {t('quality.ctaButton')}
                         </Button>
                     </Box>
                     {/* Imagem decorativa à direita */}
@@ -218,7 +220,7 @@ const Quality = () => {
                                 width: '100%',
                                 height: '100%',
                                 objectFit: 'cover',
-                                opacity: 0.24,
+                                opacity: 0.24, // Menos opaca
                                 borderRadius: 0,
                                 filter: 'grayscale(30%)',
                                 pointerEvents: 'none',
