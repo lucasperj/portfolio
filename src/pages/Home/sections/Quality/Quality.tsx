@@ -150,12 +150,12 @@ const Quality = () => {
         <StyledSkills id="quality">
             <Container maxWidth="lg">
                 {/* Título e subtítulo da seção, internacionalizados */}
-                <Typography variant="h2" color="primary.contrastText" textAlign="center" gutterBottom>
+                        <Typography variant="h2" color="primary.contrastText" textAlign="center" gutterBottom>
                     {t('quality.title')}
-                </Typography>
-                <Typography variant="h5" color="text.secondary" textAlign="center" mb={6}>
+                        </Typography>
+                        <Typography variant="h5" color="text.secondary" textAlign="center" mb={6}>
                     {t('quality.subtitle')}
-                </Typography>
+                        </Typography>
                 {/* Cards dos tópicos teóricos */}
                 <Grid container spacing={4} justifyContent="center">
                     <Grid item xs={12} md={8}>
@@ -166,41 +166,41 @@ const Quality = () => {
                 </Grid>
                 {/* CTA visual para o FalQAo Lab */}
                 <Paper
-                    sx={{
+                                sx={{
                         p: { xs: 3, md: 6 },
                         mt: 6,
                         mb: 6,
                         position: 'relative',
                         overflow: 'hidden',
                         minHeight: { xs: 280, md: 240 },
-                        display: 'flex',
-                        alignItems: 'center',
+                                        display: 'flex',
+                                        alignItems: 'center',
                         justifyContent: 'space-between',
                         background: theme => theme.palette.background.default
-                    }}
+                                    }}
                     elevation={3}
-                >
+                                >
                     {/* Texto e botão à esquerda */}
                     <Box sx={{ zIndex: 2, maxWidth: { xs: '100%', md: '55%' }, textAlign: 'left' }}>
                         <Typography variant="h4" color="primary.contrastText" gutterBottom>
                             {t('quality.ctaTitle')}
-                        </Typography>
+                                </Typography>
                         <Typography color="text.secondary" sx={{ mb: 4, fontSize: '1.15rem' }}>
                             {t('quality.ctaDescription')}
-                        </Typography>
-                        <Button
-                            variant="contained"
+                                                </Typography>
+                                                <Button
+                                                    variant="contained"
                             color="success"
                             size="large"
                             sx={{ borderRadius: 3, px: 4, py: 1.5, fontWeight: 700, fontSize: '1.2rem', boxShadow: 3 }}
                             onClick={() => navigate('/qalab#challenges')}
                         >
                             {t('quality.ctaButton')}
-                        </Button>
-                    </Box>
+                                                </Button>
+                                            </Box>
                     {/* Imagem decorativa à direita */}
                     <Box
-                        sx={{
+                                                        sx={{ 
                             display: { xs: 'none', md: 'block' },
                             position: 'absolute',
                             right: 0,
@@ -216,7 +216,7 @@ const Quality = () => {
                             component="img"
                             src={qaMembers}
                             alt="QA Members"
-                            sx={{
+                                        sx={{ 
                                 width: '100%',
                                 height: '100%',
                                 objectFit: 'cover',
@@ -227,7 +227,7 @@ const Quality = () => {
                                 userSelect: 'none',
                             }}
                         />
-                    </Box>
+                                </Box>
                 </Paper>
             </Container>
         </StyledSkills>

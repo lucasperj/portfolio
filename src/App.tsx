@@ -1,11 +1,11 @@
 import React from 'react';
 // Importa os componentes de roteamento do React Router v6
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 // Importa as páginas principais
 import HomePage from './pages/HomePage';
 import QALabPage from './pages/QALabPage';
 import { ThemeProvider } from "@mui/material"
-import theme from "./theme"
+import theme, { themeQALab } from "./theme"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from '@emotion/styled';
@@ -49,12 +49,24 @@ const StyledToastContainer = styled(ToastContainer)`
   }
 `;
 
+// Componente que escolhe o tema dinamicamente conforme a rota
+const ThemeRouterProvider = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation();
+  // Se a rota começa com /qalab, usa o tema do QA Lab
+  const isQALab = location.pathname.startsWith('/qalab');
+  return (
+    <ThemeProvider theme={isQALab ? themeQALab : theme}>
+      {children}
+    </ThemeProvider>
+  );
+};
+
 // Componente principal da aplicação
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <LanguageProvider>
-        <BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <ThemeRouterProvider>
           <Routes>
             {/* Rota da Home/Portfólio */}
             <Route path="/" element={<HomePage />} />
@@ -62,10 +74,10 @@ const App = () => {
             <Route path="/qalab" element={<QALabPage />} />
             {/* Futuras rotas podem ser adicionadas aqui, ex: artigos, projetos, etc */}
           </Routes>
-        </BrowserRouter>
-        <StyledToastContainer />
-      </LanguageProvider>
-    </ThemeProvider>
+          <StyledToastContainer />
+        </ThemeRouterProvider>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 };
 
