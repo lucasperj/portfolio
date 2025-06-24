@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles"
 import CodeIcon from '@mui/icons-material/Code';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandMore from '../../../../components/ExpandMore';
+import ExpandMore from '../../../../components/common/ExpandMore';
 import { useState } from "react";
 import AmigoTechLogo from "../../../../assets/images/amigotech-logo.jpg"
 import TeamSixLogo from "../../../../assets/images/teamsix-logo.jpg"

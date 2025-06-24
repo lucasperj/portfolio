@@ -1,5 +1,5 @@
 import { useContext, useState, useRef } from 'react';
-import { LanguageContext } from '../../i18n/LanguageContext';
+import { LanguageContext } from '../../../i18n/LanguageContext';
 import { Select, MenuItem, styled, Box } from '@mui/material';
 
 // Estilização customizada do Select para o botão de idioma

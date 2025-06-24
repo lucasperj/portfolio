@@ -5,7 +5,7 @@ import BugReportIcon from '@mui/icons-material/BugReport';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import ExpandMore from '../../../../components/ExpandMore';
+import ExpandMore from '../../../../components/common/ExpandMore';
 import { useState, useRef } from "react";
 import { motion } from 'framer-motion';
 import CelebrationIcon from '@mui/icons-material/Celebration';

@@ -1,6 +1,11 @@
+import React from 'react';
+// Importa os componentes de roteamento do React Router v6
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// Importa as páginas principais
+import HomePage from './pages/HomePage';
+import QALabPage from './pages/QALabPage';
 import { ThemeProvider } from "@mui/material"
 import theme from "./theme"
-import Home from "./pages/Home/Home"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from '@emotion/styled';
@@ -44,26 +49,24 @@ const StyledToastContainer = styled(ToastContainer)`
   }
 `;
 
-function App() {
+// Componente principal da aplicação
+const App = () => {
   return (
-    <LanguageProvider>
-      <ThemeProvider theme={theme}>
-        <StyledToastContainer 
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
-        <Home />
-      </ThemeProvider>
-    </LanguageProvider>
-  )
-}
+    <ThemeProvider theme={theme}>
+      <LanguageProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Rota da Home/Portfólio */}
+            <Route path="/" element={<HomePage />} />
+            {/* Rota do QA Lab */}
+            <Route path="/qalab" element={<QALabPage />} />
+            {/* Futuras rotas podem ser adicionadas aqui, ex: artigos, projetos, etc */}
+          </Routes>
+        </BrowserRouter>
+        <StyledToastContainer />
+      </LanguageProvider>
+    </ThemeProvider>
+  );
+};
 
-export default App
+export default App;
