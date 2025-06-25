@@ -16,6 +16,31 @@ import SecurityIcon from '@mui/icons-material/Security';
 import { useNavigate } from 'react-router-dom';
 import qaMembers from '../../../../assets/images/qaMembers.jpg';
 
+// Estilos CSS para animações
+const animationStyles = `
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes scaleIn {
+        from {
+            transform: scale(0.9);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+`;
+
 // ========================================
 // Tipagem dos tópicos teóricos
 // ========================================
@@ -44,12 +69,36 @@ const StyledPaper = styled(Paper)(({theme}) => ({
     flexDirection: 'column',
     marginBottom: theme.spacing(4),
     width: '100%',
-    maxWidth: '800px',
+    maxWidth: '100%',
     margin: '0 auto',
+    transition: 'all 0.3s ease-in-out',
+    '&:hover': {
+        transform: 'translateY(-2px)',
+        boxShadow: theme.shadows[8],
+    },
     '& .sectionIcon': {
-        fontSize: '2rem',
-        color: theme.palette.primary.main,
-        marginRight: theme.spacing(2)
+        fontSize: '2.5rem',
+        color: '#8B5CF6',
+        marginRight: theme.spacing(2),
+        transition: 'transform 0.3s ease-in-out',
+    },
+    '& .expandIcon': {
+        transition: 'transform 0.3s ease-in-out',
+    },
+    '& .expandIcon.expanded': {
+        transform: 'rotate(180deg)',
+    },
+    '& .contentExpand': {
+        overflow: 'hidden',
+        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+        opacity: 0,
+        maxHeight: 0,
+        transform: 'translateY(-10px)',
+    },
+    '& .contentExpand.expanded': {
+        opacity: 1,
+        maxHeight: '500px',
+        transform: 'translateY(0)',
     }
 }));
 
@@ -61,8 +110,33 @@ const QualityCard = ({ topic }: { topic: QualityTopic }) => {
     return (
         <StyledPaper elevation={3}>
             <Box display="flex" alignItems="center" mb={isExpanded ? 2 : 0}>
-                {/* Ícone do tópico */}
-                <topic.icon className="sectionIcon" />
+                {/* Ícone do tópico - agora maior e mais destacado */}
+                <Box 
+                    sx={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center',
+                        width: '60px',
+                        height: '60px',
+                        borderRadius: '50%',
+                        backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                        marginRight: 2,
+                        flexShrink: 0,
+                        transition: 'all 0.3s ease-in-out',
+                        transform: isExpanded ? 'scale(1.1)' : 'scale(1)',
+                    }}
+                >
+                    <topic.icon 
+                        className="sectionIcon" 
+                        style={{ 
+                            color: '#8B5CF6',
+                            display: 'block',
+                            margin: 0,
+                            padding: 0,
+                            transform: isExpanded ? 'rotate(5deg)' : 'rotate(0deg)',
+                        }} 
+                    />
+                </Box>
                 <Box flex={1}>
                     <Typography variant="h6" color="primary.contrastText">
                         {topic.title}
@@ -71,33 +145,54 @@ const QualityCard = ({ topic }: { topic: QualityTopic }) => {
                 {/* Botão para expandir/colapsar o card */}
                 <ExpandMore
                     onClick={() => setIsExpanded(!isExpanded)}
-                    className={isExpanded ? 'expanded' : ''}
+                    className={`expandIcon ${isExpanded ? 'expanded' : ''}`}
                     aria-expanded={isExpanded}
                     aria-label="show more"
+                    sx={{
+                        transition: 'all 0.3s ease-in-out',
+                        '&:hover': {
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            transform: 'scale(1.1)',
+                        }
+                    }}
                 >
                     <ExpandMoreIcon />
                 </ExpandMore>
             </Box>
             {/* Descrição e lista de pontos-chave, exibidos ao expandir */}
-            {isExpanded && (
-                <Box mt={2}>
-                    <Typography color="text.secondary" sx={{ mb: 2 }}>
-                        {topic.description}
-                    </Typography>
-                    <Box component="ul" sx={{ pl: 2, mt: 1 }}>
-                        {topic.keyPoints.map((point, index) => (
-                            <Typography 
-                                key={index} 
-                                component="li" 
-                                color="text.secondary"
-                                sx={{ mb: 1 }}
-                            >
-                                {point}
-                            </Typography>
-                        ))}
-                    </Box>
+            <Box className={`contentExpand ${isExpanded ? 'expanded' : ''}`}>
+                <Typography 
+                    color="text.secondary" 
+                    sx={{ 
+                        mb: 2,
+                        animation: isExpanded ? 'fadeInUp 0.5s ease-out' : 'none',
+                    }}
+                >
+                    {topic.description}
+                </Typography>
+                <Box 
+                    component="ul" 
+                    sx={{ 
+                        pl: 2, 
+                        mt: 1,
+                        animation: isExpanded ? 'fadeInUp 0.5s ease-out 0.1s both' : 'none',
+                    }}
+                >
+                    {topic.keyPoints.map((point, index) => (
+                        <Typography 
+                            key={index} 
+                            component="li" 
+                            color="text.secondary"
+                            sx={{ 
+                                mb: 1,
+                                animation: isExpanded ? `fadeInUp 0.5s ease-out ${0.2 + index * 0.1}s both` : 'none',
+                            }}
+                        >
+                            {point}
+                        </Typography>
+                    ))}
                 </Box>
-            )}
+            </Box>
         </StyledPaper>
     );
 };
@@ -148,6 +243,9 @@ const Quality = () => {
 
     return (
         <StyledSkills id="quality">
+            {/* Injeção dos estilos CSS de animação */}
+            <style>{animationStyles}</style>
+            
             <Container maxWidth="lg">
                 {/* Título e subtítulo da seção, internacionalizados */}
                         <Typography variant="h2" color="primary.contrastText" textAlign="center" gutterBottom>
@@ -156,79 +254,83 @@ const Quality = () => {
                         <Typography variant="h5" color="text.secondary" textAlign="center" mb={6}>
                     {t('quality.subtitle')}
                         </Typography>
-                {/* Cards dos tópicos teóricos */}
-                <Grid container spacing={4} justifyContent="center">
-                    <Grid item xs={12} md={8}>
-                        {qualityTopics.map((topic, index) => (
-                            <QualityCard key={index} topic={topic} />
-                        ))}
-                    </Grid>
-                </Grid>
-                {/* CTA visual para o FalQAo Lab */}
-                <Paper
-                                sx={{
-                        p: { xs: 3, md: 6 },
-                        mt: 6,
-                        mb: 6,
-                        position: 'relative',
-                        overflow: 'hidden',
-                        minHeight: { xs: 280, md: 240 },
-                                        display: 'flex',
-                                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        background: theme => theme.palette.background.default
-                                    }}
-                    elevation={3}
-                                >
-                    {/* Texto e botão à esquerda */}
-                    <Box sx={{ zIndex: 2, maxWidth: { xs: '100%', md: '55%' }, textAlign: 'left' }}>
-                        <Typography variant="h4" color="primary.contrastText" gutterBottom>
-                            {t('quality.ctaTitle')}
-                                </Typography>
-                        <Typography color="text.secondary" sx={{ mb: 4, fontSize: '1.15rem' }}>
-                            {t('quality.ctaDescription')}
-                                                </Typography>
-                                                <Button
-                                                    variant="contained"
-                            color="success"
-                            size="large"
-                            sx={{ borderRadius: 3, px: 4, py: 1.5, fontWeight: 700, fontSize: '1.2rem', boxShadow: 3 }}
-                            onClick={() => navigate('/qalab#challenges')}
-                        >
-                            {t('quality.ctaButton')}
-                                                </Button>
-                                            </Box>
-                    {/* Imagem decorativa à direita */}
-                    <Box
-                                                        sx={{ 
-                            display: { xs: 'none', md: 'block' },
-                            position: 'absolute',
-                            right: 0,
-                            top: 0,
-                            bottom: 0,
-                            width: '45%',
-                            height: '100%',
-                            zIndex: 1,
-                            background: `linear-gradient(90deg, transparent 60%, #232730 100%)`,
+                
+                {/* CTA visual para o FalQAo Lab - LARGURA AJUSTADA */}
+                <Box sx={{ maxWidth: '800px', mx: 'auto', mb: 6 }}>
+                    <Paper
+                        sx={{
+                            p: { xs: 3, md: 6 },
+                            position: 'relative',
+                            overflow: 'hidden',
+                            minHeight: { xs: 280, md: 240 },
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            background: theme => theme.palette.background.default
                         }}
+                        elevation={3}
                     >
+                        {/* Texto e botão à esquerda */}
+                        <Box sx={{ zIndex: 2, maxWidth: { xs: '100%', md: '55%' }, textAlign: 'left' }}>
+                            <Typography variant="h4" color="primary.contrastText" gutterBottom>
+                                {t('quality.ctaTitle')}
+                            </Typography>
+                            <Typography color="text.secondary" sx={{ mb: 4, fontSize: '1.15rem' }}>
+                                {t('quality.ctaDescription')}
+                            </Typography>
+                            <Button
+                                variant="contained"
+                                color="success"
+                                size="large"
+                                sx={{ borderRadius: 3, px: 4, py: 1.5, fontWeight: 700, fontSize: '1.2rem', boxShadow: 3 }}
+                                onClick={() => navigate('/qalab#challenges')}
+                            >
+                                {t('quality.ctaButton')}
+                            </Button>
+                        </Box>
+                        {/* Imagem decorativa à direita - ALINHADA MAIS À ESQUERDA */}
                         <Box
-                            component="img"
-                            src={qaMembers}
-                            alt="QA Members"
-                                        sx={{ 
-                                width: '100%',
+                            sx={{ 
+                                display: { xs: 'none', md: 'block' },
+                                position: 'absolute',
+                                right: '-10%', // Movida mais para a esquerda
+                                top: 0,
+                                bottom: 0,
+                                width: '55%', // Largura aumentada
                                 height: '100%',
-                                objectFit: 'cover',
-                                opacity: 0.24, // Menos opaca
-                                borderRadius: 0,
-                                filter: 'grayscale(30%)',
-                                pointerEvents: 'none',
-                                userSelect: 'none',
+                                zIndex: 1,
+                                background: `linear-gradient(90deg, transparent 40%, #232730 100%)`, // Gradiente ajustado
                             }}
-                        />
-                                </Box>
-                </Paper>
+                        >
+                            <Box
+                                component="img"
+                                src={qaMembers}
+                                alt="QA Members"
+                                sx={{ 
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover',
+                                    opacity: 0.24, // Menos opaca
+                                    borderRadius: 0,
+                                    filter: 'grayscale(30%)',
+                                    pointerEvents: 'none',
+                                    userSelect: 'none',
+                                }}
+                            />
+                        </Box>
+                    </Paper>
+                </Box>
+
+                {/* Cards dos tópicos teóricos - LARGURA AJUSTADA */}
+                <Box sx={{ maxWidth: '800px', mx: 'auto' }}>
+                    <Grid container spacing={4} justifyContent="center">
+                        <Grid item xs={12}>
+                            {qualityTopics.map((topic, index) => (
+                                <QualityCard key={index} topic={topic} />
+                            ))}
+                        </Grid>
+                    </Grid>
+                </Box>
             </Container>
         </StyledSkills>
     );

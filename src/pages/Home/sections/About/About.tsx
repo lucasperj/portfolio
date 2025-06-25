@@ -1,15 +1,26 @@
-import { Box, Container, Grid, Typography, Paper, Collapse, IconButton } from "@mui/material"
+// ========================================
+// Seção About - Informações sobre mim, skills, métricas e experiências
+// ========================================
+
+// Importações do Material-UI para componentes de interface
+import { Box, Container, Grid, Typography, Paper } from "@mui/material"
 import { styled } from "@mui/material/styles"
+
+// Ícones do Material-UI para as seções
 import CodeIcon from '@mui/icons-material/Code';
 import TimelineIcon from '@mui/icons-material/Timeline';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandMore from '../../../../components/common/ExpandMore';
-import { useState } from "react";
-import AmigoTechLogo from "../../../../assets/images/amigotech-logo.jpg"
-import TeamSixLogo from "../../../../assets/images/teamsix-logo.jpg"
-import LiferayLogo from "../../../../assets/images/liferay-logo.png"
+
+// Sistema de tradução para internacionalização
 import { useTranslation } from '../../../../i18n/useTranslation';
 
+// Componente de linha do tempo para experiências profissionais
+import ExperienceTimeline from '../../../../components/common/ExperienceTimeline';
+
+// ========================================
+// Estilizações dos componentes
+// ========================================
+
+// Container principal da seção About com padding responsivo
 const StyledAbout = styled("div")(({theme}) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(10, 0),
@@ -18,6 +29,7 @@ const StyledAbout = styled("div")(({theme}) => ({
     }
 }));
 
+// Estilização dos cards de Skills e Metrics
 const StyledPaper = styled(Paper)(({theme}) => ({
     padding: theme.spacing(3),
     backgroundColor: theme.palette.background.default,
@@ -30,6 +42,7 @@ const StyledPaper = styled(Paper)(({theme}) => ({
     }
 }));
 
+// Chips estilizados para exibir as skills/tecnologias
 const SkillChip = styled(Box)(({theme}) => ({
     padding: theme.spacing(0.5, 1.5),
     backgroundColor: theme.palette.primary.light,
@@ -40,180 +53,79 @@ const SkillChip = styled(Box)(({theme}) => ({
     fontSize: '0.875rem'
 }));
 
-const CompanyLogo = styled('img')({
-    width: '40px',
-    height: '40px',
-    objectFit: 'contain',
-    marginRight: '12px',
-    borderRadius: '50%',
-    padding: '4px',
-    backgroundColor: '#fff',
-    border: '1px solid rgba(0, 0, 0, 0.1)'
-});
-
-const ExperienceCard = ({ experience }: {
-    experience: {
-        company: string;
-        logo: string;
-        period: string;
-        role: string;
-        description: string;
-        highlights?: string[];
-    };
-}) => {
-    const [isExpanded, setIsExpanded] = useState(false);
-
-    const handleExpandClick = (e: React.MouseEvent) => {
-        e.stopPropagation(); // Previne propagação do clique
-        setIsExpanded(!isExpanded);
-    };
-
-    return (
-        <StyledPaper elevation={3}>
-            <Box display="flex" alignItems="center" mb={isExpanded ? 2 : 0}>
-                <CompanyLogo src={experience.logo} alt={`${experience.company} logo`} />
-                <Box flex={1}>
-                    <Typography variant="h6" color="primary.contrastText">
-                        {experience.company}
-                    </Typography>
-                    <Typography variant="subtitle2" color="text.secondary">
-                        {experience.period}
-                    </Typography>
-                </Box>
-                <ExpandMore
-                    onClick={handleExpandClick}
-                    className={isExpanded ? 'expanded' : ''}
-                    aria-expanded={isExpanded}
-                    aria-label="show more"
-                >
-                    <ExpandMoreIcon />
-                </ExpandMore>
-            </Box>
-            <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-                <Box px={1} pb={2}>
-                    <Typography variant="subtitle1" color="primary.contrastText" gutterBottom>
-                        {experience.role}
-                    </Typography>
-                    <Typography color="text.secondary" paragraph>
-                        {experience.description}
-                    </Typography>
-                    {experience.highlights && (
-                        <Box component="ul" sx={{ pl: 2, mt: 1 }}>
-                            {experience.highlights.map((highlight, index) => (
-                                <Typography 
-                                    key={index} 
-                                    component="li" 
-                                    color="text.secondary"
-                                    sx={{ mb: 1 }}
-                                >
-                                    {highlight}
-                                </Typography>
-                            ))}
-                        </Box>
-                    )}
-                </Box>
-            </Collapse>
-        </StyledPaper>
-    );
-};
-
+// ========================================
+// Componente principal da seção About
+// ========================================
 const About = () => {
+    // Hook para acessar as traduções do sistema i18n
     const { t } = useTranslation();
 
+    // Array com todas as skills/tecnologias que domino
+    // Cada skill é traduzida dinamicamente baseada no idioma selecionado
     const skills = [
-        t('about.skills.selenium'),
-        t('about.skills.playwright'),
-        t('about.skills.appium'),
-        t('about.skills.ant'),
-        t('about.skills.js'),
-        t('about.skills.junit'),
-        t('about.skills.testng'),
-        t('about.skills.postman'),
-        t('about.skills.git'),
-        t('about.skills.jenkins'),
-        t('about.skills.github'),
-        t('about.skills.docker'),
-        t('about.skills.sql'),
-        t('about.skills.liferay'),
-        t('about.skills.accessibility'),
-        t('about.skills.seo'),
-        t('about.skills.manual'),
-        t('about.skills.testmgmt'),
+        t('about.skills.selenium'),      // Automação web com Selenium
+        t('about.skills.playwright'),    // Automação moderna com Playwright
+        t('about.skills.appium'),        // Automação mobile com Appium
+        t('about.skills.ant'),           // Build automation com Apache Ant
+        t('about.skills.js'),            // JavaScript para automação
+        t('about.skills.junit'),         // Framework de testes JUnit
+        t('about.skills.testng'),        // Framework de testes TestNG
+        t('about.skills.postman'),       // Testes de API com Postman
+        t('about.skills.git'),           // Controle de versão com Git
+        t('about.skills.jenkins'),       // CI/CD com Jenkins
+        t('about.skills.github'),        // Plataforma GitHub
+        t('about.skills.docker'),        // Containerização com Docker
+        t('about.skills.sql'),           // Banco de dados SQL
+        t('about.skills.liferay'),       // Plataforma Liferay
+        t('about.skills.accessibility'), // Testes de acessibilidade
+        t('about.skills.seo'),           // Testes de SEO
+        t('about.skills.manual'),        // Testes manuais
+        t('about.skills.testmgmt'),      // Gestão de testes
     ];
 
+    // Array com métricas e conquistas profissionais
+    // Cada métrica é traduzida dinamicamente
     const metrics = [
-        t('about.metrics.0'),
-        t('about.metrics.1'),
-        t('about.metrics.2'),
-    ];
-
-    const experiences = [
-        {
-            company: t('about.experiences.amigotech.company'),
-            logo: AmigoTechLogo,
-            period: t('about.experiences.amigotech.period'),
-            role: t('about.experiences.amigotech.role'),
-            description: t('about.experiences.amigotech.description'),
-            highlights: [
-                t('about.experiences.amigotech.highlights.0'),
-                t('about.experiences.amigotech.highlights.1'),
-                t('about.experiences.amigotech.highlights.2'),
-                t('about.experiences.amigotech.highlights.3'),
-            ]
-        },
-        {
-            company: t('about.experiences.teamsix.company'),
-            logo: TeamSixLogo,
-            period: t('about.experiences.teamsix.period'),
-            role: t('about.experiences.teamsix.role'),
-            description: t('about.experiences.teamsix.description'),
-            highlights: [
-                t('about.experiences.teamsix.highlights.0'),
-                t('about.experiences.teamsix.highlights.1'),
-                t('about.experiences.teamsix.highlights.2'),
-                t('about.experiences.teamsix.highlights.3'),
-            ]
-        },
-        {
-            company: t('about.experiences.liferay.company'),
-            logo: LiferayLogo,
-            period: t('about.experiences.liferay.period'),
-            role: t('about.experiences.liferay.role'),
-            description: t('about.experiences.liferay.description'),
-            highlights: [
-                t('about.experiences.liferay.highlights.0'),
-                t('about.experiences.liferay.highlights.1'),
-                t('about.experiences.liferay.highlights.2'),
-                t('about.experiences.liferay.highlights.3'),
-            ]
-        }
+        t('about.metrics.0'), // Primeira métrica (ex: anos de experiência)
+        t('about.metrics.1'), // Segunda métrica (ex: projetos entregues)
+        t('about.metrics.2'), // Terceira métrica (ex: certificações)
     ];
 
     return (
         <StyledAbout id="about">
             <Container maxWidth="lg">
+                {/* Grid responsivo para organizar o layout */}
                 <Grid 
                     container 
                     spacing={{
-                        xs: 0,
-                        md: 6
+                        xs: 0,  // Sem espaçamento em telas pequenas
+                        md: 6   // Espaçamento de 6 unidades em telas médias e grandes
                     }}
                 >
+                    {/* Título principal da seção */}
                     <Grid item xs={12} id="about">
-                        <Typography variant="h2" color="primary.contrastText" textAlign="center" gutterBottom mb={4}>
+                        <Typography 
+                            variant="h2" 
+                            color="primary.contrastText" 
+                            textAlign="center" 
+                            gutterBottom 
+                            mb={4}
+                        >
                             {t('about.title')}
                         </Typography>
                     </Grid>
 
-                    {/* Skills Section */}
+                    {/* Seção de Skills/Tecnologias */}
                     <Grid item xs={12} md={6}>
                         <StyledPaper elevation={3}>
+                            {/* Cabeçalho da seção com ícone */}
                             <Box display="flex" alignItems="center" mb={2}>
                                 <CodeIcon className="sectionIcon" />
                                 <Typography variant="h5" color="primary.contrastText">
                                     {t('about.skills.title')}
                                 </Typography>
                             </Box>
+                            {/* Lista de skills exibidas como chips */}
                             <Box>
                                 {skills.map((skill) => (
                                     <SkillChip key={skill}>{skill}</SkillChip>
@@ -222,15 +134,17 @@ const About = () => {
                         </StyledPaper>
                     </Grid>
 
-                    {/* Metrics Section */}
+                    {/* Seção de Métricas/Conquistas */}
                     <Grid item xs={12} md={6}>
                         <StyledPaper elevation={3}>
+                            {/* Cabeçalho da seção com ícone */}
                             <Box display="flex" alignItems="center" mb={2}>
                                 <TimelineIcon className="sectionIcon" />
                                 <Typography variant="h5" color="primary.contrastText">
                                     {t('about.metrics.title')}
                                 </Typography>
                             </Box>
+                            {/* Lista de métricas em formato de lista */}
                             <Box component="ul" sx={{ pl: 2, m: 0 }}>
                                 {metrics.map((metric) => (
                                     <Typography 
@@ -245,42 +159,11 @@ const About = () => {
                             </Box>
                         </StyledPaper>
                     </Grid>
-
-                    {/* Experience Section */}
-                    <Grid item xs={12}>
-                        <Typography 
-                            variant="h4" 
-                            color="primary.contrastText" 
-                            sx={{
-                                mb: 2,
-                                mt: {
-                                    xs: 6,
-                                    md: 0
-                                },
-                                textAlign: 'center'
-                            }}
-                        >
-                            {t('about.experience.title')}
-                        </Typography>
-                    </Grid>
-
-                    {experiences.map((exp) => (
-                        <Grid 
-                            item 
-                            xs={12} 
-                            md={4} 
-                            key={exp.company}
-                            sx={{
-                                mb: {
-                                    xs: 2, // 16px de margem bottom em telas pequenas
-                                    md: -7  // sem margem em telas médias e maiores
-                                }
-                            }}
-                        >
-                            <ExperienceCard experience={exp} />
-                        </Grid>
-                    ))}
                 </Grid>
+
+                {/* Linha do Tempo de Experiências Profissionais */}
+                {/* Componente separado que exibe a jornada profissional de forma interativa */}
+                <ExperienceTimeline />
             </Container>
         </StyledAbout>
     )
