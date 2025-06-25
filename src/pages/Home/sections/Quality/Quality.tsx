@@ -55,9 +55,9 @@ export interface QualityTopic {
 // Estilização da área de skills (tópicos teóricos)
 const StyledSkills = styled("div")(({theme}) => ({
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(10, 0),
+    padding: theme.spacing(6, 0, 4, 0),
     [theme.breakpoints.down('md')]: {
-        padding: theme.spacing(5, 0),
+        padding: theme.spacing(3, 0, 2, 0),
     }
 }));
 

@@ -38,10 +38,10 @@ import LiferayLogo from "../../../assets/images/liferay-logo.png";
 const timelineStyles = `
     /* Estilização das datas na linha do tempo */
     .vertical-timeline-element-date {
-        color: #fff !important;                    /* Cor branca para contraste */
-        font-weight: bold !important;              /* Texto em negrito */
-        font-size: 1.1rem !important;              /* Tamanho da fonte */
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.3) !important; /* Sombra para legibilidade */
+        color: #fff !important;
+        font-weight: bold !important;
+        font-size: 1.1rem !important;
+        text-shadow: none !important;
     }
     
     /* Estilização dos ícones da linha do tempo */
@@ -51,15 +51,17 @@ const timelineStyles = `
     
     /* Estilização dos cards de conteúdo */
     .vertical-timeline-element-content {
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;  /* Sombra sutil */
-        border-radius: 12px !important;                    /* Bordas arredondadas */
-        transition: all 0.3s ease !important;              /* Animação suave */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.13) !important;
+        border-radius: 12px !important;
+        transition: all 0.3s ease !important;
+        background: rgba(40,40,60,0.97) !important;
+        color: #fff !important;
     }
     
     /* Efeito hover nos cards */
     .vertical-timeline-element-content:hover {
-        transform: translateY(-2px) !important;            /* Elevação no hover */
-        box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important; /* Sombra mais intensa */
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.18) !important;
     }
     
     /* Linha central da timeline com gradiente colorido */
@@ -67,14 +69,12 @@ const timelineStyles = `
         background: linear-gradient(180deg, #2196F3 0%, #4CAF50 50%, #FF9800 100%) !important;
     }
     
-    /* Estilos responsivos para dispositivos móveis */
     @media (max-width: 768px) {
         .vertical-timeline-element-date {
-            font-size: 0.9rem !important;  /* Fonte menor em mobile */
+            font-size: 0.9rem !important;
         }
-        
         .vertical-timeline-element-content {
-            margin-left: 0 !important;     /* Remove margens laterais */
+            margin-left: 0 !important;
             margin-right: 0 !important;
         }
     }
@@ -203,10 +203,10 @@ const ExperienceTimeline: React.FC = () => {
             <TimelineContainer>
                 {/* Cabeçalho da seção */}
                 <Box sx={{ textAlign: 'center', mb: 6 }}>
-                    <Typography variant="h3" color="primary.contrastText" gutterBottom>
+                    <Typography variant="h3" color="#fff" gutterBottom>
                         {t('about.experience.title')}
                     </Typography>
-                    <Typography variant="h6" color="text.secondary">
+                    <Typography variant="h6" color="#fff">
                         Minha jornada profissional em QA
                     </Typography>
                 </Box>
@@ -218,59 +218,49 @@ const ExperienceTimeline: React.FC = () => {
                         <VerticalTimelineElement
                             key={index}
                             className="vertical-timeline-element--work"
-                            
-                            // Estilos do card de conteúdo
                             contentStyle={{ 
-                                background: 'rgba(255, 255, 255, 0.95)',  // Fundo semi-transparente
-                                color: '#000',                             // Cor do texto
-                                boxShadow: '0 4px 8px rgba(0,0,0,0.1)',    // Sombra
-                                borderRadius: '12px'                       // Bordas arredondadas
+                                background: 'rgba(40,40,60,0.97)',
+                                color: '#fff',
+                                boxShadow: '0 4px 8px rgba(0,0,0,0.13)',
+                                borderRadius: '12px'
                             }}
-                            
-                            // Estilo da seta do card
                             contentArrowStyle={{ 
                                 borderRight: `7px solid ${experience.color}` 
                             }}
-                            
-                            // Data/período da experiência
                             date={experience.period}
                             dateClassName="timeline-date"
-                            
-                            // Estilo do ícone da linha do tempo
                             iconStyle={{ 
-                                background: experience.color,              // Cor personalizada por empresa
-                                color: '#fff',                            // Cor do ícone
+                                background: experience.color,
+                                color: '#fff',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center'
                             }}
-                            
-                            // Ícone da linha do tempo
                             icon={<BusinessIcon />}
                         >
                             {/* Conteúdo do card de experiência */}
-                            <Paper elevation={0} sx={{ p: 0, backgroundColor: 'transparent' }}>
+                            <Paper elevation={0} sx={{ p: 0, backgroundColor: 'transparent', boxShadow: 'none' }}>
                                 {/* Cabeçalho com logo e informações da empresa */}
                                 <Box display="flex" alignItems="center" mb={2}>
                                     <CompanyLogo src={experience.logo} alt={`${experience.company} logo`} />
                                     <Box ml={2}>
-                                        <Typography variant="h5" color="primary.contrastText" fontWeight="bold">
+                                        <Typography variant="h5" fontWeight="bold" sx={{ color: '#8B5CF6' }}>
                                             {experience.company}
                                         </Typography>
-                                        <Typography variant="subtitle1" color="primary.main" fontWeight="600">
+                                        <Typography variant="subtitle1" sx={{ color: '#fff', fontWeight: 600 }}>
                                             {experience.role}
                                         </Typography>
                                     </Box>
                                 </Box>
 
                                 {/* Descrição da experiência */}
-                                <Typography variant="body1" color="text.secondary" paragraph>
+                                <Typography variant="body1" sx={{ color: '#fff', mb: 2 }}>
                                     {experience.description}
                                 </Typography>
 
                                 {/* Seção de conquistas principais */}
                                 <Box mb={2}>
-                                    <Typography variant="h6" color="primary.contrastText" gutterBottom>
+                                    <Typography variant="h6" sx={{ color: '#fff', fontWeight: 700 }} gutterBottom>
                                         Principais Conquistas:
                                     </Typography>
                                     <Box component="ul" sx={{ pl: 2, m: 0 }}>
@@ -278,8 +268,7 @@ const ExperienceTimeline: React.FC = () => {
                                             <Typography 
                                                 key={idx} 
                                                 component="li" 
-                                                color="text.secondary"
-                                                sx={{ mb: 1, fontSize: '0.9rem' }}
+                                                sx={{ color: '#fff', mb: 1, fontSize: '0.9rem' }}
                                             >
                                                 {highlight}
                                             </Typography>
@@ -289,7 +278,7 @@ const ExperienceTimeline: React.FC = () => {
 
                                 {/* Seção de tecnologias utilizadas */}
                                 <Box>
-                                    <Typography variant="h6" color="primary.contrastText" gutterBottom>
+                                    <Typography variant="h6" sx={{ color: '#fff', fontWeight: 700 }} gutterBottom>
                                         Tecnologias:
                                     </Typography>
                                     <Box display="flex" flexWrap="wrap" gap={1}>

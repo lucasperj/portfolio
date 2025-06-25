@@ -23,9 +23,9 @@ import ExperienceTimeline from '../../../../components/common/ExperienceTimeline
 // Container principal da seção About com padding responsivo
 const StyledAbout = styled("div")(({theme}) => ({
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(10, 0),
+    padding: theme.spacing(10, 0, 4, 0),
     [theme.breakpoints.down('md')]: {
-        padding: theme.spacing(5, 0),
+        padding: theme.spacing(5, 0, 2, 0),
     }
 }));
 
@@ -186,7 +186,9 @@ const About = () => {
 
                 {/* Linha do Tempo de Experiências Profissionais */}
                 {/* Componente separado que exibe a jornada profissional de forma interativa */}
-                <ExperienceTimeline />
+                <Box sx={{ mt: { xs: 4, md: 6 } }}>
+                    <ExperienceTimeline />
+                </Box>
             </Container>
         </StyledAbout>
     )
