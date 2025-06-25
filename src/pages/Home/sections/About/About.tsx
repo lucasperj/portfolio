@@ -53,6 +53,31 @@ const SkillChip = styled(Box)(({theme}) => ({
     fontSize: '0.875rem'
 }));
 
+// StyledPaper customizado para o card de Metrics com scrollbar opaca
+const MetricsPaper = styled(StyledPaper)(({ theme }) => ({
+    // Customização da scrollbar para navegadores baseados em Webkit (Chrome, Edge)
+    '& ul': {
+        scrollbarWidth: 'thin', // Firefox
+        scrollbarColor: `${theme.palette.grey[800]} ${theme.palette.background.default}`,
+    },
+    '& ul::-webkit-scrollbar': {
+        width: 8,
+        background: theme.palette.background.default,
+    },
+    '& ul::-webkit-scrollbar-thumb': {
+        background: 'rgba(40,40,60,0.85)', // Thumb escuro/opaco
+        borderRadius: 8,
+        border: '2px solid transparent',
+        backgroundClip: 'padding-box',
+    },
+    '& ul::-webkit-scrollbar-track': {
+        background: 'transparent',
+    },
+}));
+
+// Altura de referência para os cards (pode ajustar conforme necessário)
+const CARD_HEIGHT = 300;
+
 // ========================================
 // Componente principal da seção About
 // ========================================
@@ -117,7 +142,7 @@ const About = () => {
 
                     {/* Seção de Skills/Tecnologias */}
                     <Grid item xs={12} md={6}>
-                        <StyledPaper elevation={3}>
+                        <StyledPaper elevation={3} sx={{ height: { xs: 'auto', md: CARD_HEIGHT }, minHeight: 240, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                             {/* Cabeçalho da seção com ícone */}
                             <Box display="flex" alignItems="center" mb={2}>
                                 <CodeIcon className="sectionIcon" />
@@ -126,7 +151,7 @@ const About = () => {
                                 </Typography>
                             </Box>
                             {/* Lista de skills exibidas como chips */}
-                            <Box>
+                            <Box sx={{ flex: 1, overflowY: 'auto' }}>
                                 {skills.map((skill) => (
                                     <SkillChip key={skill}>{skill}</SkillChip>
                                 ))}
@@ -136,16 +161,14 @@ const About = () => {
 
                     {/* Seção de Métricas/Conquistas */}
                     <Grid item xs={12} md={6}>
-                        <StyledPaper elevation={3}>
-                            {/* Cabeçalho da seção com ícone */}
+                        <MetricsPaper elevation={3} sx={{ height: { xs: 'auto', md: CARD_HEIGHT }, minHeight: 240, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                             <Box display="flex" alignItems="center" mb={2}>
                                 <TimelineIcon className="sectionIcon" />
                                 <Typography variant="h5" color="primary.contrastText">
                                     {t('about.metrics.title')}
                                 </Typography>
                             </Box>
-                            {/* Lista de métricas em formato de lista */}
-                            <Box component="ul" sx={{ pl: 2, m: 0 }}>
+                            <Box component="ul" sx={{ pl: 2, m: 0, flex: 1, overflowY: 'auto', pr: 1 }}>
                                 {metrics.map((metric) => (
                                     <Typography 
                                         key={metric} 
@@ -157,7 +180,7 @@ const About = () => {
                                     </Typography>
                                 ))}
                             </Box>
-                        </StyledPaper>
+                        </MetricsPaper>
                     </Grid>
                 </Grid>
 
