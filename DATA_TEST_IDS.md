@@ -30,9 +30,6 @@
 ## StyledButton
 - dataTestId: Prop para definir data-test-id único em cada uso do botão
 
-## AnimatedSection
-- dataTestId: Prop para definir data-test-id único em cada uso da seção animada
-
 ## ExperienceTimeline
 - experience-timeline-item-0, experience-timeline-item-1, ...: Cada item da timeline
 
