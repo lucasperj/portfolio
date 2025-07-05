@@ -249,15 +249,26 @@ const Quality = () => {
             
             <Container maxWidth="lg">
                 {/* Título e subtítulo da seção, internacionalizados */}
-                        <Typography variant="h2" color="primary.contrastText" textAlign="center" gutterBottom>
+                <Typography variant="h2" color="primary.contrastText" textAlign="center" gutterBottom>
                     {t('quality.title')}
-                        </Typography>
-                        <Typography variant="h5" color="text.secondary" textAlign="center" mb={6}>
+                </Typography>
+                <Typography variant="h5" color="text.secondary" textAlign="center" mb={6}>
                     {t('quality.subtitle')}
-                        </Typography>
-                
-                {/* CTA visual para o FalQAo Lab - LARGURA AJUSTADA */}
+                </Typography>
+
+                {/* Cards dos tópicos teóricos - LARGURA AJUSTADA */}
                 <Box sx={{ maxWidth: '800px', mx: 'auto', mb: 6 }}>
+                    <Grid container spacing={4} justifyContent="center">
+                        <Grid item xs={12}>
+                            {qualityTopics.map((topic, index) => (
+                                <QualityCard key={index} topic={topic} index={index} />
+                            ))}
+                        </Grid>
+                    </Grid>
+                </Box>
+
+                {/* CTA visual para o FalQAo Lab - LARGURA AJUSTADA */}
+                <Box sx={{ maxWidth: '800px', mx: 'auto' }}>
                     <Paper
                         sx={{
                             p: { xs: 3, md: 6 },
@@ -321,17 +332,6 @@ const Quality = () => {
                             />
                         </Box>
                     </Paper>
-                </Box>
-
-                {/* Cards dos tópicos teóricos - LARGURA AJUSTADA */}
-                <Box sx={{ maxWidth: '800px', mx: 'auto' }}>
-                    <Grid container spacing={4} justifyContent="center">
-                        <Grid item xs={12}>
-                            {qualityTopics.map((topic, index) => (
-                                <QualityCard key={index} topic={topic} index={index} />
-                            ))}
-                        </Grid>
-                    </Grid>
                 </Box>
             </Container>
         </StyledSkills>
