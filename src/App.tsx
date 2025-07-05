@@ -50,23 +50,14 @@ const StyledToastContainer = styled(ToastContainer)`
 `;
 
 // Componente que escolhe o tema dinamicamente conforme a rota
-const ThemeRouterProvider = ({ children }: { children: React.ReactNode }) => {
-  const location = useLocation();
-  // Se a rota começa com /qalab, usa o tema do QA Lab
-  const isQALab = location.pathname.startsWith('/qalab');
-  return (
-    <ThemeProvider theme={isQALab ? themeQALab : theme}>
-      {children}
-    </ThemeProvider>
-  );
-};
+// Remover ThemeRouterProvider e usar apenas ThemeProvider com theme padrão
 
 // Componente principal da aplicação
 const App = () => {
   return (
     <LanguageProvider>
       <BrowserRouter>
-        <ThemeRouterProvider>
+        <ThemeProvider theme={theme}>
           <Routes>
             {/* Rota da Home/Portfólio */}
             <Route path="/" element={<HomePage />} />
@@ -75,7 +66,7 @@ const App = () => {
             {/* Futuras rotas podem ser adicionadas aqui, ex: artigos, projetos, etc */}
           </Routes>
           <StyledToastContainer />
-        </ThemeRouterProvider>
+        </ThemeProvider>
       </BrowserRouter>
     </LanguageProvider>
   );

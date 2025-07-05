@@ -6,7 +6,7 @@ import Projects from "./QALab/sections/Projects/Projects";
 
 const QALabPage = () => {
   return (
-    <>
+    <div style={{ paddingTop: 54 }}>
       <NavBar />
       <section id="articles-carousel">
         <Articles />
@@ -22,7 +22,7 @@ const QALabPage = () => {
         <h2>Quer saber quem está por trás disso tudo?</h2>
         <button>Ver mais sobre mim</button>
       </section>
-    </>
+    </div>
   );
 };
 

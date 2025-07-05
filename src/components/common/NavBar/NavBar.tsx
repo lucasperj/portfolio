@@ -55,11 +55,14 @@ const NavBar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isQALab]);
 
-    // Estilização do AppBar fixo
-    const StyledAppBar = styled(AppBar)(({theme}) => ({
-        transition: 'all 0.3s ease-in-out',
-        backgroundColor: theme.palette.primary.main,
-        boxShadow: theme.shadows[4],
+    // Padronizar o AppBar para ambas as páginas
+    const StyledAppBar = styled(AppBar)(({ theme }) => ({
+      backgroundColor: theme.palette.primary.main, // Fundo roxo padrão
+      boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+      zIndex: 1201,
+      height: 64,
+      display: 'flex',
+      justifyContent: 'center',
     }));
 
     // Estilização do Toolbar para layout flexível
@@ -101,24 +104,23 @@ const NavBar = () => {
         }
     });
 
-    // Estilo do botão lateral (verde na Home, roxo no QA Lab)
-    // Visual igual ao botão de tradução, mas cor dinâmica
+    // Botão lateral: verde para QALab, roxo para Portfolio
     const sideButtonSx = (color: 'success' | 'secondary', theme: any) => ({
-        color: theme.palette.getContrastText(theme.palette[color].main),
-        background: theme.palette[color].main,
-        fontWeight: 700,
-        borderRadius: '16px',
-        px: 2.5,
-        py: 1,
-        minWidth: 90,
-        height: 40,
-        boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-        transition: 'all 0.2s',
-        fontSize: '0.92rem',
-        textTransform: 'none',
-        '&:hover': {
-            background: theme.palette[color].dark,
-        },
+      color: theme.palette.getContrastText(theme.palette[color].main),
+      background: theme.palette[color].main,
+      fontWeight: 700,
+      borderRadius: '16px',
+      px: 2.5,
+      py: 1,
+      minWidth: 90,
+      height: 40,
+      boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+      transition: 'all 0.2s',
+      fontSize: '0.92rem',
+      textTransform: 'none',
+      '&:hover': {
+        background: theme.palette[color].dark,
+      },
     });
 
     return (
@@ -154,7 +156,7 @@ const NavBar = () => {
                             sx={theme => sideButtonSx('secondary', theme)}
                             data-test-id="navbar-aboutme-button"
                         >
-                            {t('navbar.aboutMe') || 'Descubra mais sobre mim'}
+                            Conheça o Falcão
                         </Button>
                     )}
                 </Box>
@@ -190,7 +192,7 @@ const NavBar = () => {
                                 sx={theme => navButtonSx(location.hash === '#articles-carousel', theme)}
                                 data-test-id="navbar-articles-button"
                             >
-                                {t('navbar.articles') || 'Artigos'}
+                                Artigos
                             </Button>
                             <Button
                                 component={RouterLink}
@@ -198,7 +200,7 @@ const NavBar = () => {
                                 sx={theme => navButtonSx(location.hash === '#challenges', theme)}
                                 data-test-id="navbar-challenges-button"
                             >
-                                {t('navbar.challenges') || 'Desafios'}
+                                Desafios
                             </Button>
                             <Button
                                 component={RouterLink}
@@ -206,7 +208,7 @@ const NavBar = () => {
                                 sx={theme => navButtonSx(location.hash === '#qalab-projects', theme)}
                                 data-test-id="navbar-qalab-projects-button"
                             >
-                                {t('navbar.projects') || 'Projetos'}
+                                Projetos
                             </Button>
                         </>
                     )}

@@ -11,7 +11,7 @@ const StyledSelect = styled(Select, {
   isactive?: string;
 }>(({ theme, isactive }) => ({
   backgroundColor: isactive === 'true' ? theme.palette.secondary.main : theme.palette.background.paper,
-  border: `2px solid ${theme.palette.primary.contrastText}`,
+  border: 'none',
   borderRadius: '16px',
   color: isactive === 'true' ? theme.palette.secondary.contrastText : theme.palette.primary.contrastText,
   fontWeight: 600,
@@ -27,7 +27,10 @@ const StyledSelect = styled(Select, {
     fontSize: '0.92rem',
   },
   '& fieldset': {
-    border: 'none',
+    border: 'none !important',
+  },
+  '& .MuiOutlinedInput-notchedOutline': {
+    border: 'none !important',
   },
 }));
 
