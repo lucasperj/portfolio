@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import { motion } from 'framer-motion';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import ErrorIcon from '@mui/icons-material/Error';
-import { useTranslation } from '../../../../i18n/useTranslation';
+import { useQALabTranslation } from '../../../../i18n/useQALabTranslation';
 import { challengesData, ChallengeData } from './qualityChallengesData';
 
 // Importação dos componentes modulares
@@ -27,7 +27,7 @@ const Challenges = () => {
     const finalCardRef = useRef<HTMLDivElement>(null);
 
     // Hook de tradução para internacionalização dinâmica
-    const { t } = useTranslation();
+    const { t } = useQALabTranslation();
 
     // Função chamada ao clicar em uma opção de desafio
     const handleOptionClick = async (index: number) => {
@@ -104,6 +104,15 @@ const Challenges = () => {
         const challenge = challenges[currentChallenge];
         return (
             <ChallengeCard challenge={challenge}>
+                {/* Barra de progresso integrada dentro do card */}
+                <Box mb={3}>
+                    <ChallengeProgress
+                        currentChallenge={currentChallenge}
+                        totalChallenges={challenges.length}
+                        completedChallenges={totalAttempts.length}
+                    />
+                </Box>
+                
                 <ChallengeOptions
                     challenge={challenge}
                     bugFound={bugFound}
@@ -144,13 +153,6 @@ const Challenges = () => {
             <Typography color="text.secondary" align="center" sx={{ mb: 4 }}>
                 {t('quality.description')}
             </Typography>
-            
-            {/* Barra de progresso */}
-            <ChallengeProgress
-                currentChallenge={currentChallenge}
-                totalChallenges={challenges.length}
-                completedChallenges={totalAttempts.length}
-            />
             
             {/* Card de desafio atual */}
             <div ref={exercitarRef}>

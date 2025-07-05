@@ -8,18 +8,31 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { useTranslation } from '../../../i18n/useTranslation';
 
-// Estilização do card de resultados
+// Estilização do card de resultados com design moderno
 const StyledPaper = styled(Paper)(({theme}) => ({
     padding: theme.spacing(4),
-    backgroundColor: theme.palette.background.default,
+    background: `linear-gradient(135deg, ${theme.palette.background.paper} 0%, ${theme.palette.background.default} 100%)`,
     display: 'flex',
     flexDirection: 'column',
     marginBottom: theme.spacing(4),
     width: '100%',
-    maxWidth: '800px',
+    maxWidth: '900px',
     margin: '0 auto',
+    borderRadius: theme.spacing(2),
+    boxShadow: `0 8px 32px rgba(0, 0, 0, 0.1), 0 4px 16px rgba(0, 0, 0, 0.05)`,
+    border: `1px solid ${theme.palette.divider}`,
     position: 'relative',
-    overflow: 'visible'
+    overflow: 'visible',
+    '&::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: '4px',
+        background: `linear-gradient(90deg, #4caf50, #9c27b0)`,
+        borderRadius: `${theme.spacing(2)}px ${theme.spacing(2)}px 0 0`,
+    }
 }));
 
 interface ChallengeResultsProps {
@@ -48,57 +61,153 @@ const ChallengeResults: React.FC<ChallengeResultsProps> = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
         >
-            <StyledPaper elevation={3}>
+            <StyledPaper elevation={0}>
                 <Tooltip title={t('quality.reset')} placement="right">
                     <IconButton
                         onClick={onReset}
                         sx={{
                             position: 'absolute',
-                            top: 44,
-                            left: 44,
+                            top: 16,
+                            right: 16,
                             zIndex: 10,
                             color: 'primary.main',
-                            background: '#fff',
+                            background: 'rgba(255, 255, 255, 0.9)',
+                            backdropFilter: 'blur(10px)',
                             boxShadow: 3,
                             '&:hover': {
-                                background: '#f3eaff',
+                                background: 'rgba(255, 255, 255, 1)',
                                 color: 'secondary.main',
+                                transform: 'scale(1.1)',
                             },
-                            p: 0.5
+                            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                            p: 1
                         }}
                         data-test-id="challenge-reset-button"
                     >
-                        <RefreshIcon fontSize="large" />
+                        <RefreshIcon fontSize="medium" />
                     </IconButton>
                 </Tooltip>
                 
-                <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minHeight={200}>
-                    <EmojiEventsIcon sx={{ fontSize: 60, color: 'success.main', mb: 2 }} />
-                    <Typography variant="h5" color="success.main" gutterBottom>
-                        {t('quality.congrats')}
-                    </Typography>
-                    <Typography color="text.secondary" align="center" sx={{ mb: 2 }}>
-                        {`${t('quality.stats')}: ${totalAttempts.length} (${calculateAverageAttempts()} média)`}
-                    </Typography>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={onRestart}
-                        sx={{ mt: 2, minWidth: 180 }}
+                <Box 
+                    display="flex" 
+                    flexDirection="column" 
+                    alignItems="center" 
+                    justifyContent="center" 
+                    minHeight={250}
+                    textAlign="center"
+                >
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
                     >
-                        {t('quality.restart')}
-                    </Button>
-                    <Box mt={3} display="flex" gap={2}>
-                        <Button
-                            variant="outlined"
-                            color="primary"
-                            startIcon={<LinkedInIcon />}
-                            href="https://www.linkedin.com/in/lucasfalcaoqa/"
-                            target="_blank"
+                        <EmojiEventsIcon 
+                            sx={{ 
+                                fontSize: 80, 
+                                color: 'success.main', 
+                                mb: 3,
+                                filter: 'drop-shadow(0 4px 8px rgba(76, 175, 80, 0.3))'
+                            }} 
+                        />
+                    </motion.div>
+                    
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 }}
+                    >
+                        <Typography 
+                            variant="h4" 
+                            color="success.main" 
+                            gutterBottom
+                            sx={{ 
+                                fontWeight: 700,
+                                background: `linear-gradient(45deg, #4caf50, #9c27b0)`,
+                                backgroundClip: 'text',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                mb: 2
+                            }}
                         >
-                            {t('quality.linkedin')}
+                            {t('quality.congrats')}
+                        </Typography>
+                    </motion.div>
+                    
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.6 }}
+                    >
+                        <Typography 
+                            color="text.secondary" 
+                            sx={{ 
+                                mb: 3, 
+                                fontSize: '1.1rem',
+                                lineHeight: 1.6,
+                                maxWidth: '500px'
+                            }}
+                        >
+                            {`${t('quality.stats')}: ${totalAttempts.length} desafios (${calculateAverageAttempts()} tentativas em média)`}
+                        </Typography>
+                    </motion.div>
+                    
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8 }}
+                    >
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={onRestart}
+                            sx={{ 
+                                mt: 2, 
+                                minWidth: 200,
+                                py: 1.5,
+                                px: 4,
+                                fontSize: '1.1rem',
+                                fontWeight: 600,
+                                borderRadius: 2,
+                                boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+                                '&:hover': {
+                                    transform: 'translateY(-2px)',
+                                    boxShadow: '0 6px 20px rgba(0,0,0,0.15)',
+                                }
+                            }}
+                        >
+                            {t('quality.restart')}
                         </Button>
-                    </Box>
+                    </motion.div>
+                    
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.0 }}
+                    >
+                        <Box mt={4} display="flex" gap={2}>
+                            <Button
+                                variant="outlined"
+                                color="primary"
+                                startIcon={<LinkedInIcon />}
+                                href="https://www.linkedin.com/in/lucasfalcaoqa/"
+                                target="_blank"
+                                sx={{
+                                    py: 1.5,
+                                    px: 3,
+                                    fontSize: '1rem',
+                                    fontWeight: 600,
+                                    borderRadius: 2,
+                                    borderWidth: 2,
+                                    '&:hover': {
+                                        borderWidth: 2,
+                                        transform: 'translateY(-1px)',
+                                    }
+                                }}
+                            >
+                                {t('quality.linkedin')}
+                            </Button>
+                        </Box>
+                    </motion.div>
                 </Box>
             </StyledPaper>
         </motion.div>

@@ -1,0 +1,162 @@
+{
+  "quality": {
+    "title": "Calidad de software",
+    "subtitle": "Explorando los pilares fundamentales para garantizar la excelencia en software",
+    "exercise": { 
+      "title": "¿Vamos a practicar?", 
+      "subtitle": "Prueba tus habilidades de QA encontrando bugs en diferentes escenarios" 
+    },
+    "challenge": { 
+      "title": "Desafío QA", 
+      "back": "Volver al desafío anterior" 
+    },
+    "success": "¡Felicitaciones! Encontraste el bug en",
+    "success.attempts": "intento(s)",
+    "attempt": "intento",
+    "attempts": "intentos",
+    "attempts_count": "Intentos:",
+    "explanation": "Explicación:",
+    "next": "Próximo Desafío",
+    "finish": "Finalizar",
+    "hint": "Pista:",
+    "difficulty": "¿Tienes dificultades? ¿Qué tal estudiar un poco más sobre el tema?",
+    "study": "¡No dudes en contactarme para discutirlo!",
+    "try": "Intentar otro desafío",
+    "reset": "Rehacer desafío",
+    "restart": "Reiniciar",
+    "congrats": "¡Felicitaciones!",
+    "complete": "Completaste todos los desafíos",
+    "stats": "Tus Estadísticas",
+    "average": "Promedio de intentos por desafío:",
+    "journey": "La calidad no es un acto, es un hábito. ¡Sigue mejorando tus habilidades y haciendo la diferencia en el mundo del desarrollo de software!",
+    "continue": "¿Qué tal continuar este viaje juntos? Siempre estoy disponible para intercambiar experiencias y conocimientos sobre QA.",
+    "connect": "Conéctate conmigo",
+    "linkedin": "LinkedIn",
+    "error": {
+      "offline": "Sin conexión a internet. Verifica tu conexión e intenta nuevamente.",
+      "generic": "Ocurrió un error inesperado. Intenta nuevamente."
+    },
+    "challenges": {
+      "0": {
+        "title": "Encuentra el bug en la interfaz",
+        "description": "Uno de los botones tiene un data-testid inconsistente con el patrón.",
+        "hint": "Observa el patrón button-X en los data-testids y busca lo que se desvía de este patrón.",
+        "explanation": "En pruebas automatizadas, la consistencia de selectores es crucial. Data-testids inconsistentes pueden causar fallas en las pruebas y dificultar el mantenimiento.",
+        "options": {
+          "0": "Opción 1",
+          "1": "Opción 2",
+          "2": "Opción 3",
+          "3": "Opción 4"
+        }
+      },
+      "1": {
+        "title": "Accesibilidad - Contraste",
+        "description": "¿Cuál de estas combinaciones de colores NO cumple con los criterios mínimos de contraste WCAG?",
+        "hint": "WCAG exige una tasa de contraste mínima de 4.5:1 para texto normal.",
+        "explanation": "La combinación de gris medio (#CBD5E0) sobre gris oscuro (#4A5568) tiene una tasa de contraste de 2.9:1, por debajo del mínimo 4.5:1 requerido por WCAG 2.1. Un buen contraste es esencial para garantizar que todos los usuarios, incluyendo personas con baja visión o daltonismo, puedan leer el contenido fácilmente.",
+        "options": {
+          "0": "Texto azul claro sobre azul oscuro",
+          "1": "Texto gris claro sobre gris oscuro",
+          "2": "Texto amarillo sobre marrón",
+          "3": "Texto gris medio sobre gris oscuro"
+        }
+      },
+      "2": {
+        "title": "Semántica HTML",
+        "description": "Identifica el elemento que viola las buenas prácticas de accesibilidad:",
+        "hint": "Los elementos HTML nativos son siempre preferibles a elementos personalizados con ARIA.",
+        "explanation": "El uso de <div> con role='button' es menos accesible que un <button> nativo, ya que pierde funcionalidades de accesibilidad y navegación por teclado.",
+        "options": {
+          "0": "<button onClick={handleClick}>Enviar</button>",
+          "1": "<div onClick={handleClick} role='button'>Enviar</div>",
+          "2": "<input type='submit' value='Enviar' />",
+          "3": "<a href='#' onClick={handleSubmit}>Enviar</a>"
+        }
+      },
+      "3": {
+        "title": "Rendimiento Web",
+        "description": "¿Qué métrica NO forma parte de Core Web Vitals?",
+        "hint": "Core Web Vitals se enfoca en tres aspectos principales: carga, interactividad y estabilidad visual.",
+        "explanation": "Time to Interactive (TTI) no forma parte de Core Web Vitals, que son las tres métricas principales de Google para medir la experiencia del usuario: LCP, FID y CLS.",
+        "options": {
+          "0": "First Contentful Paint (FCP)",
+          "1": "Largest Contentful Paint (LCP)",
+          "2": "Time to Interactive (TTI)",
+          "3": "Cumulative Layout Shift (CLS)"
+        }
+      },
+      "4": {
+        "title": "Prueba de API - Código de Estado",
+        "description": "¿Qué código de estado HTTP es más apropiado para una solicitud de creación exitosa?",
+        "hint": "Piensa en la diferencia entre una respuesta de éxito genérica (200) y una específica para creación.",
+        "explanation": "El código 201 Created es el más apropiado para indicar que un recurso fue creado exitosamente en una solicitud POST.",
+        "options": {
+          "0": "200 OK",
+          "1": "201 Created",
+          "2": "204 No Content",
+          "3": "202 Accepted"
+        }
+      },
+      "5": {
+        "title": "Etiquetas ARIA",
+        "description": "¿Qué elemento tiene redundancia innecesaria de accesibilidad?",
+        "hint": "Las etiquetas ARIA deben complementar, no duplicar información ya presente.",
+        "explanation": "El uso de aria-label en una imagen que ya tiene alt es redundante y puede confundir lectores de pantalla.",
+        "options": {
+          "0": "<button aria-label='Enviar formulario'>Enviar</button>",
+          "1": "<img src='logo.png' alt='Logo de la empresa' aria-label='Logo de la empresa' />",
+          "2": "<div role='button' tabindex='0'>Haz clic aquí</div>",
+          "3": "<span role='alert'>Mensaje importante</span>"
+        }
+      },
+      "6": {
+        "title": "Validación de Formulario",
+        "description": "¿Qué campo tiene validación incorrecta?",
+        "hint": "Piensa en validaciones de formato y valores posibles.",
+        "explanation": "La fecha 31/02/2024 es inválida porque febrero tiene como máximo 29 días (en año bisiesto).",
+        "options": {
+          "0": "Email: usuario@empresa.com",
+          "1": "Teléfono: (11) 99999-9999",
+          "2": "Código Postal: 12345-678",
+          "3": "Fecha: 31/02/2024"
+        }
+      },
+      "7": {
+        "title": "Pruebas de Regresión",
+        "description": "¿Qué tipo de prueba NO es adecuado para automatización?",
+        "hint": "Algunas pruebas requieren creatividad y adaptación humana.",
+        "explanation": "Las pruebas exploratorias se basan en la experiencia y creatividad del tester, siendo difíciles de automatizar de forma efectiva.",
+        "options": {
+          "0": "Login con diferentes perfiles de usuario",
+          "1": "Validación de campos obligatorios",
+          "2": "Pruebas exploratorias de usabilidad",
+          "3": "Flujo completo de checkout"
+        }
+      },
+      "8": {
+        "title": "SEO y Accesibilidad",
+        "description": "¿Qué elemento perjudica tanto SEO como accesibilidad?",
+        "hint": "Piensa en elementos que no son semánticos pero intentan simular semántica.",
+        "explanation": "Usar <div> con clase 'heading' perjudica SEO (los crawlers no reconocen como título) y accesibilidad (los lectores de pantalla no identifican como encabezado).",
+        "options": {
+          "0": "<h1>Título principal</h1><h3>Subtítulo</h3>",
+          "1": "<main><header><nav>Navegación</nav></header></main>",
+          "2": "<button onclick='handleClick()'>Haz clic</button>",
+          "3": "<div class='heading'>Título de la página</div>"
+        }
+      },
+      "9": {
+        "title": "Rendimiento Lighthouse",
+        "description": "¿Qué métrica NO impacta directamente la puntuación de Lighthouse?",
+        "hint": "Lighthouse se enfoca en métricas de experiencia del usuario.",
+        "explanation": "El número de elementos DOM no es una métrica de Lighthouse, que se enfoca en LCP, FID, CLS, FCP y TBT.",
+        "options": {
+          "0": "First Contentful Paint (FCP)",
+          "1": "Time to First Byte (TTFB)",
+          "2": "Number of DOM Elements",
+          "3": "Total Blocking Time (TBT)"
+        }
+      }
+    }
+  }
+} 

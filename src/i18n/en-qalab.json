@@ -1,0 +1,162 @@
+{
+  "quality": {
+    "title": "Software Quality",
+    "subtitle": "Exploring the fundamental pillars to ensure software excellence",
+    "exercise": { 
+      "title": "Let's practice?", 
+      "subtitle": "Test your QA skills by finding bugs in different scenarios" 
+    },
+    "challenge": { 
+      "title": "QA Challenge", 
+      "back": "Back to previous challenge" 
+    },
+    "success": "Congratulations! You found the bug in",
+    "success.attempts": "attempt(s)",
+    "attempt": "attempt",
+    "attempts": "attempts",
+    "attempts_count": "Attempts:",
+    "explanation": "Explanation:",
+    "next": "Next Challenge",
+    "finish": "Finish",
+    "hint": "Hint:",
+    "difficulty": "Having trouble? How about studying a bit more about the topic?",
+    "study": "Feel free to contact me to discuss it!",
+    "try": "Try another challenge",
+    "reset": "Redo challenge",
+    "restart": "Restart",
+    "congrats": "Congratulations!",
+    "complete": "You completed all challenges",
+    "stats": "Your Statistics",
+    "average": "Average attempts per challenge:",
+    "journey": "Quality is not an act, it is a habit. Keep improving your skills and making a difference in the software development world!",
+    "continue": "How about continuing this journey together? I'm always available to exchange experiences and knowledge about QA.",
+    "connect": "Connect with me",
+    "linkedin": "LinkedIn",
+    "error": {
+      "offline": "No internet connection. Check your connection and try again.",
+      "generic": "An unexpected error occurred. Try again."
+    },
+    "challenges": {
+      "0": {
+        "title": "Find the bug in the interface",
+        "description": "One of the buttons has an inconsistent data-testid with the pattern.",
+        "hint": "Observe the button-X pattern in data-testids and look for what deviates from this pattern.",
+        "explanation": "In automated testing, selector consistency is crucial. Inconsistent data-testids can cause test failures and make maintenance difficult.",
+        "options": {
+          "0": "Option 1",
+          "1": "Option 2",
+          "2": "Option 3",
+          "3": "Option 4"
+        }
+      },
+      "1": {
+        "title": "Accessibility - Contrast",
+        "description": "Which of these color combinations does NOT meet the minimum WCAG contrast criteria?",
+        "hint": "WCAG requires a minimum contrast ratio of 4.5:1 for normal text.",
+        "explanation": "The combination of medium gray (#CBD5E0) on dark gray (#4A5568) has a contrast ratio of 2.9:1, below the minimum 4.5:1 required by WCAG 2.1. Good contrast is essential to ensure that all users, including those with low vision or color blindness, can read content easily. You can check contrast ratios using tools like WebAIM Contrast Checker or the WAVE browser plugin.",
+        "options": {
+          "0": "Light blue text on dark blue background",
+          "1": "Light gray text on dark gray background",
+          "2": "Yellow text on brown background",
+          "3": "Medium gray text on dark gray background"
+        }
+      },
+      "2": {
+        "title": "HTML Semantics",
+        "description": "Identify the element that violates accessibility best practices:",
+        "hint": "Native HTML elements are always preferable to custom elements with ARIA.",
+        "explanation": "Using <div> with role='button' is less accessible than a native <button>, as it loses accessibility features and keyboard navigation.",
+        "options": {
+          "0": "<button onClick={handleClick}>Submit</button>",
+          "1": "<div onClick={handleClick} role='button'>Submit</div>",
+          "2": "<input type='submit' value='Submit' />",
+          "3": "<a href='#' onClick={handleSubmit}>Submit</a>"
+        }
+      },
+      "3": {
+        "title": "Web Performance",
+        "description": "Which metric is NOT part of Core Web Vitals?",
+        "hint": "Core Web Vitals focuses on three main aspects: loading, interactivity, and visual stability.",
+        "explanation": "Time to Interactive (TTI) is not part of Core Web Vitals, which are the three main Google metrics for measuring user experience: LCP, FID, and CLS.",
+        "options": {
+          "0": "First Contentful Paint (FCP)",
+          "1": "Largest Contentful Paint (LCP)",
+          "2": "Time to Interactive (TTI)",
+          "3": "Cumulative Layout Shift (CLS)"
+        }
+      },
+      "4": {
+        "title": "API Testing - Status Code",
+        "description": "Which HTTP status is most appropriate for a successful creation request?",
+        "hint": "Think about the difference between a generic success response (200) and a specific one for creation.",
+        "explanation": "Status 201 Created is most appropriate to indicate that a resource was successfully created in a POST request.",
+        "options": {
+          "0": "200 OK",
+          "1": "201 Created",
+          "2": "204 No Content",
+          "3": "202 Accepted"
+        }
+      },
+      "5": {
+        "title": "ARIA Labels",
+        "description": "Which element has unnecessary accessibility redundancy?",
+        "hint": "ARIA labels should complement, not duplicate information already present.",
+        "explanation": "Using aria-label on an image that already has alt is redundant and can confuse screen readers.",
+        "options": {
+          "0": "<button aria-label='Submit form'>Submit</button>",
+          "1": "<img src='logo.png' alt='Company logo' aria-label='Company logo' />",
+          "2": "<div role='button' tabindex='0'>Click here</div>",
+          "3": "<span role='alert'>Important message</span>"
+        }
+      },
+      "6": {
+        "title": "Form Validation",
+        "description": "Which field has incorrect validation?",
+        "hint": "Think about format validations and possible values.",
+        "explanation": "Date 31/02/2024 is invalid because February has at most 29 days (in leap year).",
+        "options": {
+          "0": "Email: user@company.com",
+          "1": "Phone: (11) 99999-9999",
+          "2": "ZIP: 12345-678",
+          "3": "Date: 31/02/2024"
+        }
+      },
+      "7": {
+        "title": "Regression Testing",
+        "description": "Which type of test is NOT suitable for automation?",
+        "hint": "Some tests require human creativity and adaptation.",
+        "explanation": "Exploratory tests are based on tester experience and creativity, making them difficult to automate effectively.",
+        "options": {
+          "0": "Login with different user profiles",
+          "1": "Required field validation",
+          "2": "Exploratory usability testing",
+          "3": "Complete checkout flow"
+        }
+      },
+      "8": {
+        "title": "SEO and Accessibility",
+        "description": "Which element harms both SEO and accessibility?",
+        "hint": "Think about elements that are not semantic but try to simulate semantics.",
+        "explanation": "Using <div> with 'heading' class harms SEO (crawlers don't recognize as title) and accessibility (screen readers don't identify as heading).",
+        "options": {
+          "0": "<h1>Main title</h1><h3>Subtitle</h3>",
+          "1": "<main><header><nav>Navigation</nav></header></main>",
+          "2": "<button onclick='handleClick()'>Click</button>",
+          "3": "<div class='heading'>Page title</div>"
+        }
+      },
+      "9": {
+        "title": "Lighthouse Performance",
+        "description": "Which metric does NOT directly impact Lighthouse score?",
+        "hint": "Lighthouse focuses on user experience metrics.",
+        "explanation": "Number of DOM elements is not a Lighthouse metric, which focuses on LCP, FID, CLS, FCP, and TBT.",
+        "options": {
+          "0": "First Contentful Paint (FCP)",
+          "1": "Time to First Byte (TTFB)",
+          "2": "Number of DOM Elements",
+          "3": "Total Blocking Time (TBT)"
+        }
+      }
+    }
+  }
+} 
