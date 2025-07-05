@@ -17,6 +17,7 @@ import { handleDownloadCV } from "../../../../utils/downloadHandlers";
 import { handleLinkedInClick, handleEmailClick, handleWhatsAppClick } from "../../../../utils/contactHandlers";
 import { StyledHero, StyledImg, ContactMenu, ContactOption } from "../../../../styles/heroStyles";
 import CV from "../../../../assets/files/cv_en.pdf"
+import RecommendationsCarousel from '../../../../components/home/RecommendationsCarousel';
 
 // Componente principal da seção Hero
 const Hero = () => {
@@ -95,6 +96,10 @@ const Hero = () => {
                         {/* Nome e subtítulo traduzidos */}
                         <Typography variant="h1" color="primary.contrastText" textAlign="center" pb={2}>{t('hero.name')}</Typography>
                         <Typography variant="h2" color="secondary.light" textAlign="center">{t('hero.subtitle')}</Typography>
+                        {/* Carrossel de recomendações */}
+                        <Box mt={0}>
+                            <RecommendationsCarousel />
+                        </Box>
                         {/* Botões de ação: Download CV e Contato */}
                         <Grid2 container display="flex" justifyContent="center" spacing={3} pt={4}> 
                             {/* Botão de download do CV */}
@@ -126,12 +131,17 @@ const Hero = () => {
                                             ref={menuRef}
                                             position="absolute"
                                             width="100%"
-                                            sx={{ marginTop: '8px' }}
+                                            sx={{ marginTop: '8px', zIndex: 1300 }}
                                             onMouseEnter={handleMouseEnter}
                                             onMouseLeave={handleMouseLeave}
                                         >
                                             <Collapse in={open} timeout="auto">
                                                 <ContactMenu>
+                                                    {/* Opção WhatsApp */}
+                                                    <ContactOption onClick={handleWhatsAppClick} data-test-id="contact-whatsapp-option">
+                                                        <WhatsAppIcon className="whatsapp" />
+                                                        <Typography>{t('hero.whatsapp')}</Typography>
+                                                    </ContactOption>
                                                     {/* Opção LinkedIn */}
                                                     <ContactOption onClick={handleLinkedInClick} data-test-id="contact-linkedin-option">
                                                         <LinkedInIcon className="linkedin" />
@@ -142,11 +152,7 @@ const Hero = () => {
                                                         <EmailIcon className="email" />
                                                         <Typography>{t('hero.email')}</Typography>
                                                     </ContactOption>
-                                                    {/* Opção WhatsApp */}
-                                                    <ContactOption onClick={handleWhatsAppClick} data-test-id="contact-whatsapp-option">
-                                                        <WhatsAppIcon className="whatsapp" />
-                                                        <Typography>{t('hero.whatsapp')}</Typography>
-                                                    </ContactOption>
+                                                    
                                                 </ContactMenu>
                                             </Collapse>
                                         </Box>
