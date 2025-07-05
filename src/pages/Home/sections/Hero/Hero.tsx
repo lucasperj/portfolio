@@ -1,5 +1,5 @@
 // Importações de componentes do Material-UI, ícones, hooks e utilitários
-import { Box, Container, Grid2, Typography, useTheme, useMediaQuery, Collapse, Fab, Tooltip, Zoom } from "@mui/material"
+import { Box, Container, Typography, useTheme, useMediaQuery, Collapse, Fab, Tooltip } from "@mui/material"
 import Grid from '@mui/material/Grid';
 import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
@@ -11,7 +11,6 @@ import { useTranslation } from '../../../../i18n/useTranslation';
 
 // Importação de imagem de avatar, botão customizado, fundo animado e utilitários
 import Avatar from "../../../../assets/images/avatar.jpg"
-import StyledButton from "../../../../components/common/StyledButton/StyledButton";
 import { AnimatedBackground } from "../../../../components/common/AnimatedBackground/AnimatedBackground";
 import { handleDownloadCV } from "../../../../utils/downloadHandlers";
 import { handleLinkedInClick, handleEmailClick, handleWhatsAppClick } from "../../../../utils/contactHandlers";
@@ -83,7 +82,8 @@ const Hero = () => {
                                     textAlign: {
                                         xs: "center",
                                         md: "left"
-                                    }
+                                    },
+                                    marginTop: '100px'
                                 }}
                             > 
                                 {/* Imagem de avatar */}
