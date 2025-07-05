@@ -272,8 +272,7 @@
     "frameworks": "Frameworks de Automatización",
     "publications": "Publicaciones",
     "linkedin": "LinkedIn",
-    "github": "GitHub",
-    "top": "Inicio"
+    "github": "GitHub"
   },
   "toast": {
     "noConnection": "Sin conexión a internet. Verifica tu conexión e inténtalo de nuevo.",

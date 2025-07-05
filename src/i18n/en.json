@@ -272,8 +272,7 @@
     "frameworks": "Automation Frameworks",
     "publications": "Publications",
     "linkedin": "LinkedIn",
-    "github": "GitHub",
-    "top": "Top"
+    "github": "GitHub"
   },
   "toast": {
     "noConnection": "No internet connection. Please check your connection and try again.",

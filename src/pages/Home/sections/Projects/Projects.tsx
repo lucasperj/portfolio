@@ -230,22 +230,7 @@ const Projects = () => {
                             >
                                 {t('projects.github')}
                             </Button>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                startIcon={<KeyboardArrowUpIcon />}
-                                onClick={scrollToTop}
-                                sx={{ 
-                                    minWidth: '140px',
-                                    py: 1,
-                                    backgroundColor: theme => theme.palette.primary.dark,
-                                    '&:hover': {
-                                        backgroundColor: theme => theme.palette.primary.main,
-                                    }
-                                }}
-                            >
-                                {t('projects.top')}
-                            </Button>
+                           
                         </SocialButtons>
                     </StyledPaper>
                 </motion.div>
