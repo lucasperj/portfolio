@@ -56,10 +56,18 @@ const RecommendationsCarousel: React.FC = () => {
       {/* Carrossel de imagens */}
       <Box position="relative" display="flex" justifyContent="center" alignItems="center" minHeight={{ xs: 250, md: 300 }}>
         {recommendations.map((img, i) => (
-          // Transição de fade entre as imagens
-          <Fade in={i === index} key={i} timeout={800} unmountOnExit>
+          <Box
+            key={i}
+            sx={{
+              opacity: i === index ? 1 : 0,
+              transition: 'opacity 0.8s ease-in-out',
+              display: i === index ? 'block' : 'none',
+              width: '100%',
+              height: '100%'
+            }}
+          >
             {/* Wrapper para overlay e clique */}
-            <Box position="relative" display={i === index ? 'block' : 'none'}>
+            <Box position="relative">
               {/* Imagem da recomendação */}
               <Box
                 component="img"
@@ -93,7 +101,7 @@ const RecommendationsCarousel: React.FC = () => {
                 }}
               />
             </Box>
-          </Fade>
+          </Box>
         ))}
       </Box>
       
