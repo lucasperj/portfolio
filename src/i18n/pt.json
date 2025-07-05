@@ -260,6 +260,12 @@
         }
       }
     },
+    "finish": "Finalizar",
+    "next": "Próximo Desafio",
+    "congrats": "Parabéns!",
+    "stats": "Estatísticas",
+    "restart": "Reiniciar",
+    "linkedin": "Conectar no LinkedIn",
     "ctaTitle": "Toda jornada começa rodeado de pessoas incríveis",
     "ctaDescription": "A qualidade nasce do coletivo. Venha exercitar seus conhecimentos em qualidade, acessibilidade, automação e boas práticas junto com uma comunidade apaixonada!",
     "ctaButton": "Ir para o FalQAo Lab"

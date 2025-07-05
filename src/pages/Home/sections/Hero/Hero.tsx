@@ -11,7 +11,7 @@ import { useTranslation } from '../../../../i18n/useTranslation';
 
 // Importação de imagem de avatar, botão customizado, fundo animado e utilitários
 import Avatar from "../../../../assets/images/avatar.jpg"
-import { AnimatedBackground } from "../../../../components/home/AnimatedBackground/AnimatedBackground";
+import AnimatedBackground from "../../../../components/home/AnimatedBackground";
 import { handleDownloadCV } from "../../../../utils/downloadHandlers";
 import { handleLinkedInClick, handleEmailClick, handleWhatsAppClick } from "../../../../utils/contactHandlers";
 import { StyledHero, StyledImg, ContactMenu, ContactOption } from "../../../../styles/heroStyles";

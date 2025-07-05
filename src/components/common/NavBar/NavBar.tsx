@@ -2,7 +2,7 @@ import { AppBar, Toolbar, styled, Box, Button } from "@mui/material"
 import { scrollToSection } from '../../../utils/scrollHandlers';
 import { useState, useEffect } from 'react';
 import { useTranslation } from '../../../i18n/useTranslation';
-import LanguageSelector from '../LanguageSelector/LanguageSelector';
+import LanguageSelector from '../LanguageSelector';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 // Componente de Navbar global, usado tanto na HomePage quanto no QA Lab

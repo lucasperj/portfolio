@@ -260,6 +260,12 @@
         }
       }
     },
+    "finish": "Finish",
+    "next": "Next Challenge",
+    "congrats": "Congratulations!",
+    "stats": "Statistics",
+    "restart": "Restart",
+    "linkedin": "Connect on LinkedIn",
     "ctaTitle": "Every journey begins surrounded by amazing people",
     "ctaDescription": "Quality is born from the collective. Come practice your skills in quality, accessibility, automation, and best practices with a passionate community!",
     "ctaButton": "Go to FalQAo Lab"
