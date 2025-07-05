@@ -214,6 +214,7 @@ const Projects = () => {
                                     minWidth: '140px',
                                     py: 1
                                 }}
+                                data-test-id="project-linkedin-button"
                             >
                                 {t('projects.linkedin')}
                             </Button>
@@ -227,6 +228,7 @@ const Projects = () => {
                                     minWidth: '140px',
                                     py: 1
                                 }}
+                                data-test-id="project-github-button"
                             >
                                 {t('projects.github')}
                             </Button>

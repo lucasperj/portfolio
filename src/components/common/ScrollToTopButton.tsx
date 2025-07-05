@@ -19,8 +19,9 @@ const ScrollToTopButton: React.FC = () => {
 
   return (
     <Zoom in={visible}>
-      <Tooltip title="Voltar para o início" placement="left">
+      <Tooltip title="Voltar para o início" placement="left" data-test-id="scroll-to-top-tooltip">
         <Fab
+          data-test-id="scroll-to-top-button"
           color="primary"
           aria-label="voltar para o início"
           onClick={handleClick}

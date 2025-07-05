@@ -3,10 +3,11 @@ import { styled } from "@mui/material"
 interface StyledButtonProps {
     onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
     children: React.ReactNode
+    dataTestId?: string;
 }
 
 // Botão estilizado com visual moderno, bordas arredondadas, borda grossa e sombra
-const StyledButton: React.FC<StyledButtonProps> = ({children, onClick}) => {
+const StyledButton: React.FC<StyledButtonProps> = ({children, onClick, dataTestId}) => {
     const ModernButton = styled("button")(({theme})=> ({
         backgroundColor: "transparent",
         border: `2px solid ${theme.palette.primary.contrastText}`,
@@ -36,7 +37,7 @@ const StyledButton: React.FC<StyledButtonProps> = ({children, onClick}) => {
     
     return (
       <>
-        <ModernButton onClick={onClick}>{children}</ModernButton>
+        <ModernButton onClick={onClick} data-test-id={dataTestId}>{children}</ModernButton>
       </>
     )
   }

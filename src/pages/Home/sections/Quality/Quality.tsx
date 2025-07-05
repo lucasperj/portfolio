@@ -104,7 +104,7 @@ const StyledPaper = styled(Paper)(({theme}) => ({
 
 // Card de tópico teórico de qualidade
 // Exibe título, ícone, descrição e pontos-chave, com opção de expandir/colapsar
-const QualityCard = ({ topic }: { topic: QualityTopic }) => {
+const QualityCard = ({ topic, index }: { topic: QualityTopic, index: number }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
@@ -148,6 +148,7 @@ const QualityCard = ({ topic }: { topic: QualityTopic }) => {
                     className={`expandIcon ${isExpanded ? 'expanded' : ''}`}
                     aria-expanded={isExpanded}
                     aria-label="show more"
+                    dataTestId={`expand-more-quality-${index}`}
                     sx={{
                         transition: 'all 0.3s ease-in-out',
                         '&:hover': {
@@ -284,6 +285,7 @@ const Quality = () => {
                                 size="large"
                                 sx={{ borderRadius: 3, px: 4, py: 1.5, fontWeight: 700, fontSize: '1.2rem', boxShadow: 3 }}
                                 onClick={() => navigate('/qalab#challenges')}
+                                data-test-id="quality-cta-button"
                             >
                                 {t('quality.ctaButton')}
                             </Button>
@@ -326,7 +328,7 @@ const Quality = () => {
                     <Grid container spacing={4} justifyContent="center">
                         <Grid item xs={12}>
                             {qualityTopics.map((topic, index) => (
-                                <QualityCard key={index} topic={topic} />
+                                <QualityCard key={index} topic={topic} index={index} />
                             ))}
                         </Grid>
                     </Grid>

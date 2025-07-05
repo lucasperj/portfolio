@@ -85,6 +85,7 @@ const LanguageSelector = () => {
     >
       {/* Select customizado para trocar idioma */}
       <StyledSelect
+        data-test-id="language-selector"
         value={language}
         onChange={e => {
           setLanguage(e.target.value as string);
@@ -112,15 +113,15 @@ const LanguageSelector = () => {
         }}
       >
         {/* Opções de idioma com bandeira */}
-        <StyledMenuItem value="pt">
+        <StyledMenuItem value="pt" data-test-id="language-option-pt">
           <ReactCountryFlag countryCode="BR" svg style={{ width: "1.5em", height: "1.5em", marginRight: 8 }} />
           Português
         </StyledMenuItem>
-        <StyledMenuItem value="en">
+        <StyledMenuItem value="en" data-test-id="language-option-en">
           <ReactCountryFlag countryCode="US" svg style={{ width: "1.5em", height: "1.5em", marginRight: 8 }} />
           English
         </StyledMenuItem>
-        <StyledMenuItem value="es">
+        <StyledMenuItem value="es" data-test-id="language-option-es">
           <ReactCountryFlag countryCode="ES" svg style={{ width: "1.5em", height: "1.5em", marginRight: 8 }} />
           Español
         </StyledMenuItem>

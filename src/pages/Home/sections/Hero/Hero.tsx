@@ -100,7 +100,7 @@ const Hero = () => {
                             {/* Botão de download do CV */}
                             <Grid item xs={12} md={4} display="flex" justifyContent="center">
                                 <Box width="100%">
-                                    <StyledButton onClick={() => handleDownloadCV(CV)}>
+                                    <StyledButton onClick={() => handleDownloadCV(CV)} data-test-id="download-cv-button">
                                         <FileDownloadRoundedIcon />
                                         <Typography>{t('hero.downloadCV')}</Typography>
                                     </StyledButton>
@@ -115,7 +115,7 @@ const Hero = () => {
                                         onMouseEnter={handleMouseEnter}
                                         onMouseLeave={handleMouseLeave}
                                     >
-                                        <StyledButton onClick={handleContactClick}>
+                                        <StyledButton onClick={handleContactClick} data-test-id="contact-main-button">
                                             <EmailRoundedIcon /> 
                                             <Typography>{t('hero.contact')}</Typography>
                                         </StyledButton>
@@ -133,17 +133,17 @@ const Hero = () => {
                                             <Collapse in={open} timeout="auto">
                                                 <ContactMenu>
                                                     {/* Opção LinkedIn */}
-                                                    <ContactOption onClick={handleLinkedInClick}>
+                                                    <ContactOption onClick={handleLinkedInClick} data-test-id="contact-linkedin-option">
                                                         <LinkedInIcon className="linkedin" />
                                                         <Typography>{t('hero.linkedin')}</Typography>
                                                     </ContactOption>
                                                     {/* Opção Email */}
-                                                    <ContactOption onClick={handleEmailClick}>
+                                                    <ContactOption onClick={handleEmailClick} data-test-id="contact-email-option">
                                                         <EmailIcon className="email" />
                                                         <Typography>{t('hero.email')}</Typography>
                                                     </ContactOption>
                                                     {/* Opção WhatsApp */}
-                                                    <ContactOption onClick={handleWhatsAppClick}>
+                                                    <ContactOption onClick={handleWhatsAppClick} data-test-id="contact-whatsapp-option">
                                                         <WhatsAppIcon className="whatsapp" />
                                                         <Typography>{t('hero.whatsapp')}</Typography>
                                                     </ContactOption>

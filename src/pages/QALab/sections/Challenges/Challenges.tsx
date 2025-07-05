@@ -225,6 +225,7 @@ const Challenges = () => {
                                         border: bugFound && i === challenge.solution ? '2px solid #4caf50' : undefined,
                                         opacity: bugFound && i !== challenge.solution ? 0.5 : 1
                                     }}
+                                    data-test-id={`challenge-option-${i}`}
                                 >
                                     {opt.label}
                                 </ColorOption>
@@ -240,6 +241,7 @@ const Challenges = () => {
                                         opacity: bugFound && i !== challenge.solution ? 0.5 : 1
                                     }}
                                     disabled={bugFound}
+                                    data-test-id={`challenge-option-${i}`}
                                 >
                                     {opt.label}
                                 </ChallengeButton>
@@ -319,6 +321,7 @@ const Challenges = () => {
                                     },
                                     p: 0.5
                                 }}
+                                data-test-id="challenge-reset-button"
                             >
                                 <RefreshIcon fontSize="large" />
                             </IconButton>

@@ -122,7 +122,10 @@ const NavBar = () => {
     });
 
     return (
-        <StyledAppBar position="fixed">
+        <StyledAppBar
+            position="fixed"
+            data-test-id="navbar"
+        >
             <StyledToolbar>
                 {/*
                   =====================
@@ -139,6 +142,7 @@ const NavBar = () => {
                             component={RouterLink}
                             to="/qalab"
                             sx={theme => sideButtonSx('success', theme)}
+                            data-test-id="navbar-qalab-button"
                         >
                             FalQAo Lab
                         </Button>
@@ -148,6 +152,7 @@ const NavBar = () => {
                             component={RouterLink}
                             to="/"
                             sx={theme => sideButtonSx('secondary', theme)}
+                            data-test-id="navbar-aboutme-button"
                         >
                             {t('navbar.aboutMe') || 'Descubra mais sobre mim'}
                         </Button>
@@ -166,13 +171,13 @@ const NavBar = () => {
                     {!isQALab ? (
                         // Exclusivo da HomePage
                         <>
-                            <Button onClick={() => handleNavClick('about')} sx={theme => navButtonSx(activeSection === 'about', theme)}>
+                            <Button onClick={() => handleNavClick('about')} sx={theme => navButtonSx(activeSection === 'about', theme)} data-test-id="navbar-about-button">
                                 {t('navbar.about')}
                             </Button>
-                            <Button onClick={() => handleNavClick('quality')} sx={theme => navButtonSx(activeSection === 'quality', theme)}>
+                            <Button onClick={() => handleNavClick('quality')} sx={theme => navButtonSx(activeSection === 'quality', theme)} data-test-id="navbar-quality-button">
                                 {t('navbar.quality')}
                             </Button>
-                            <Button onClick={() => handleNavClick('projects')} sx={theme => navButtonSx(activeSection === 'projects', theme)}>
+                            <Button onClick={() => handleNavClick('projects')} sx={theme => navButtonSx(activeSection === 'projects', theme)} data-test-id="navbar-projects-button">
                                 {t('navbar.projects')}
                             </Button>
                         </>
@@ -183,6 +188,7 @@ const NavBar = () => {
                                 component={RouterLink}
                                 to="/qalab#articles-carousel"
                                 sx={theme => navButtonSx(location.hash === '#articles-carousel', theme)}
+                                data-test-id="navbar-articles-button"
                             >
                                 {t('navbar.articles') || 'Artigos'}
                             </Button>
@@ -190,6 +196,7 @@ const NavBar = () => {
                                 component={RouterLink}
                                 to="/qalab#challenges"
                                 sx={theme => navButtonSx(location.hash === '#challenges', theme)}
+                                data-test-id="navbar-challenges-button"
                             >
                                 {t('navbar.challenges') || 'Desafios'}
                             </Button>
@@ -197,6 +204,7 @@ const NavBar = () => {
                                 component={RouterLink}
                                 to="/qalab#qalab-projects"
                                 sx={theme => navButtonSx(location.hash === '#qalab-projects', theme)}
+                                data-test-id="navbar-qalab-projects-button"
                             >
                                 {t('navbar.projects') || 'Projetos'}
                             </Button>

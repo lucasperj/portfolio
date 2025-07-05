@@ -200,7 +200,7 @@ const ExperienceTimeline: React.FC = () => {
             <style>{timelineStyles}</style>
             
             {/* Container principal da linha do tempo */}
-            <TimelineContainer>
+            <TimelineContainer data-test-id="experience-timeline">
                 {/* Cabeçalho da seção */}
                 <Box sx={{ textAlign: 'center', mb: 6 }}>
                     <Typography variant="h3" color="#fff" gutterBottom>
@@ -237,6 +237,7 @@ const ExperienceTimeline: React.FC = () => {
                                 justifyContent: 'center'
                             }}
                             icon={<BusinessIcon />}
+                            data-test-id={`experience-timeline-item-${index}`}
                         >
                             {/* Conteúdo do card de experiência */}
                             <Paper elevation={0} sx={{ p: 0, backgroundColor: 'transparent', boxShadow: 'none' }}>
