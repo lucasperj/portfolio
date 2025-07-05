@@ -1,6 +1,7 @@
 import { useContext, useState, useRef } from 'react';
 import { LanguageContext } from '../../../i18n/LanguageContext';
 import { Select, MenuItem, styled, Box } from '@mui/material';
+import ReactCountryFlag from 'react-country-flag';
 
 // Estilização customizada do Select para o botão de idioma
 // O fundo e a cor mudam conforme hover ou aberto
@@ -112,13 +113,16 @@ const LanguageSelector = () => {
       >
         {/* Opções de idioma com bandeira */}
         <StyledMenuItem value="pt">
-          <span style={{ marginRight: 8 }}>🇧🇷</span>Português
+          <ReactCountryFlag countryCode="BR" svg style={{ width: "1.5em", height: "1.5em", marginRight: 8 }} />
+          Português
         </StyledMenuItem>
         <StyledMenuItem value="en">
-          <span style={{ marginRight: 8 }}>🇺🇸</span>English
+          <ReactCountryFlag countryCode="US" svg style={{ width: "1.5em", height: "1.5em", marginRight: 8 }} />
+          English
         </StyledMenuItem>
         <StyledMenuItem value="es">
-          <span style={{ marginRight: 8 }}>🇪🇸</span>Español
+          <ReactCountryFlag countryCode="ES" svg style={{ width: "1.5em", height: "1.5em", marginRight: 8 }} />
+          Español
         </StyledMenuItem>
       </StyledSelect>
     </Box>
