@@ -1,6 +1,6 @@
 import { Box } from "@mui/material"
 
-export const AnimatedBackground = () => {
+const AnimatedBackground = () => {
     return (
         <Box
             data-test-id="animated-background"
@@ -363,5 +363,7 @@ export const AnimatedBackground = () => {
                 </defs>
             </svg>
         </Box>
-    )
-}
+    );
+};
+
+export default AnimatedBackground;

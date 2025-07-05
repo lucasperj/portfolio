@@ -5,9 +5,9 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import CloseIcon from '@mui/icons-material/Close';
 
 // Importação dos prints das recomendações
-import rec1 from '../../assets/images/rec1.png';
-import rec2 from '../../assets/images/rec2.png';
-import rec3 from '../../assets/images/rec3.png';
+import rec1 from '../../../assets/images/rec1.png';
+import rec2 from '../../../assets/images/rec2.png';
+import rec3 from '../../../assets/images/rec3.png';
 
 // Array com as imagens das recomendações
 const recommendations = [
