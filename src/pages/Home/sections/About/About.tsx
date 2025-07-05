@@ -14,7 +14,7 @@ import TimelineIcon from '@mui/icons-material/Timeline';
 import { useTranslation } from '../../../../i18n/useTranslation';
 
 // Componente de linha do tempo para experiências profissionais
-import ExperienceTimeline from '../../../../components/common/ExperienceTimeline';
+import ExperienceTimeline from '../../../../components/home/ExperienceTimeline';
 
 // ========================================
 // Estilizações dos componentes

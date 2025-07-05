@@ -1,6 +1,6 @@
 // Componente de carrossel de recomendações do LinkedIn, com maximização de imagem ao clicar
 import React, { useEffect, useState } from 'react';
-import { Box, Fade, IconButton, Modal } from '@mui/material';
+import { Box, IconButton, Modal } from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import CloseIcon from '@mui/icons-material/Close';
 
