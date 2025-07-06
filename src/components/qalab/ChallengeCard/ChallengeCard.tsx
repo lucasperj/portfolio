@@ -58,19 +58,20 @@ interface ChallengeCardProps {
     };
     children: React.ReactNode;
     progressComponent?: React.ReactNode;
-    attemptsCounter?: React.ReactNode;
     backButton?: React.ReactNode;
 }
 
-const ChallengeCard: React.FC<ChallengeCardProps> = ({ challenge, children, progressComponent, attemptsCounter, backButton }) => {
+const ChallengeCard: React.FC<ChallengeCardProps> = ({ challenge, children, progressComponent, backButton }) => {
     return (
         <StyledPaper elevation={0}>
             {/* Barra de progresso acima do título */}
             {progressComponent && (
-                <Box mb={3}>
+                <Box mb={2}>
                     {progressComponent}
                 </Box>
             )}
+            
+
             
             <Box display="flex" alignItems="center" justifyContent="space-between" mb={3}>
                 <Box display="flex" alignItems="center">
@@ -81,7 +82,6 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({ challenge, children, prog
                 </Box>
                 <Box display="flex" alignItems="center" gap={2}>
                     {backButton && backButton}
-                    {attemptsCounter && attemptsCounter}
                 </Box>
             </Box>
             <Typography className="challenge-description" sx={{ mb: 3 }}>

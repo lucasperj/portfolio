@@ -21,18 +21,22 @@ interface ChallengeProgressProps {
     currentChallenge: number;
     totalChallenges: number;
     completedChallenges: number;
+    attempts?: number;
+    showAttempts?: boolean;
 }
 
 const ChallengeProgress: React.FC<ChallengeProgressProps> = ({
     currentChallenge,
     totalChallenges,
-    completedChallenges
+    completedChallenges,
+    attempts,
+    showAttempts
 }) => {
     const progress = (completedChallenges / totalChallenges) * 100;
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+            <Box display="flex" justifyContent="space-between" alignItems="center" mb={3} sx={{ position: 'relative' }}>
                 <Typography 
                     variant="body1" 
                     color="#FFFFFF" 
@@ -40,6 +44,30 @@ const ChallengeProgress: React.FC<ChallengeProgressProps> = ({
                 >
                     Desafio {currentChallenge + 1} de {totalChallenges}
                 </Typography>
+                
+                {/* Contador de tentativas centralizado na mesma linha */}
+                {showAttempts && attempts && attempts > 0 && (
+                    <Typography 
+                        variant="body1" 
+                        color="#FFC107" 
+                        sx={{ 
+                            fontWeight: 600,
+                            fontSize: '1rem',
+                            textAlign: 'center',
+                            padding: '8px 16px',
+                            backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                            borderRadius: '20px',
+                            border: '1px solid rgba(255, 193, 7, 0.3)',
+                            position: 'absolute',
+                            left: '50%',
+                            transform: 'translateX(-50%)',
+                            zIndex: 1
+                        }}
+                    >
+                        {attempts} {attempts === 1 ? 'tentativa' : 'tentativas'}
+                    </Typography>
+                )}
+                
                 <Typography 
                     variant="body2" 
                     color="#E0E0E0"
@@ -48,6 +76,7 @@ const ChallengeProgress: React.FC<ChallengeProgressProps> = ({
                     {completedChallenges} de {totalChallenges} completados
                 </Typography>
             </Box>
+            
             <StyledProgress 
                 variant="determinate" 
                 value={progress} 

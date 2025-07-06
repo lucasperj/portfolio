@@ -21,6 +21,7 @@ const Challenges = () => {
     const [currentChallenge, setCurrentChallenge] = useState(0);
     const [showFinalMessage, setShowFinalMessage] = useState(false);
     const [totalAttempts, setTotalAttempts] = useState<number[]>([]);
+    const [completedChallenges, setCompletedChallenges] = useState<Set<number>>(new Set());
     const [error, setError] = useState<string | null>(null);
     const [wrongOption, setWrongOption] = useState<number | null>(null);
 
@@ -62,6 +63,11 @@ const Challenges = () => {
 
     // Avança para o próximo desafio ou mostra mensagem final
     const resetChallenge = () => {
+        // Marca o desafio atual como completado apenas se não foi completado antes
+        if (!completedChallenges.has(currentChallenge)) {
+            setCompletedChallenges(prev => new Set([...prev, currentChallenge]));
+        }
+        
         if (currentChallenge === challenges.length - 1) {
             setShowFinalMessage(true);
             setTotalAttempts(prev => [...prev, attempts]);
@@ -73,7 +79,10 @@ const Challenges = () => {
             setAttempts(0);
             setWrongOption(null);
             setCurrentChallenge(prev => prev + 1);
-            setTotalAttempts(prev => [...prev, attempts]);
+            // Adiciona tentativas apenas se o próximo desafio não foi completado
+            if (!completedChallenges.has(currentChallenge + 1)) {
+                setTotalAttempts(prev => [...prev, attempts]);
+            }
             setTimeout(() => {
                 console.log('Scrolling to title:', titleRef.current);
                 titleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -89,6 +98,7 @@ const Challenges = () => {
         setCurrentChallenge(0);
         setShowFinalMessage(false);
         setTotalAttempts([]);
+        setCompletedChallenges(new Set());
         setError(null);
         setTimeout(() => {
             exercitarRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -126,23 +136,10 @@ const Challenges = () => {
                     <ChallengeProgress
                         currentChallenge={currentChallenge}
                         totalChallenges={challenges.length}
-                        completedChallenges={totalAttempts.length}
+                        completedChallenges={completedChallenges.size}
+                        attempts={attempts}
+                        showAttempts={attempts > 0 && !bugFound}
                     />
-                }
-                attemptsCounter={
-                    attempts > 0 && !bugFound ? (
-                        <Typography 
-                            variant="body2" 
-                            color="#E0E0E0" 
-                            sx={{ 
-                                fontWeight: 500,
-                                fontSize: '0.9rem',
-                                opacity: 0.8
-                            }}
-                        >
-                            {attempts} {attempts === 1 ? 'tentativa' : 'tentativas'}
-                        </Typography>
-                    ) : undefined
                 }
                 backButton={
                     currentChallenge > 0 ? (
@@ -154,6 +151,7 @@ const Challenges = () => {
                                 setAttempts(0);
                                 setWrongOption(null);
                                 setCurrentChallenge(prev => prev - 1);
+                                // Não adiciona tentativas quando volta para um desafio já completado
                                 setTimeout(() => {
                                     console.log('Scrolling to title:', titleRef.current);
                                     titleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
