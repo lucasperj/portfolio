@@ -205,7 +205,7 @@ const ChallengeOptions: React.FC<ChallengeOptionsProps> = ({
                                 transform: bugFound && i === challenge.solution ? 'scale(1.05)' : undefined,
                                 boxShadow: bugFound && i === challenge.solution ? '0 8px 24px rgba(76, 175, 80, 0.3)' : undefined
                             }}
-                            data-test-id={challenge.type === 'button' && i === 1 ? 'incorrect-button' : `challenge-option-${i}`}
+                            data-test-id={challenge.type === 'button' && i === 1 ? undefined : `challenge-option-${i}`}
                         >
                             {opt.label}
                         </ColorOption>
@@ -220,7 +220,7 @@ const ChallengeOptions: React.FC<ChallengeOptionsProps> = ({
                             attempts={attempts}
                             onClick={() => onOptionClick(i)}
                             disabled={bugFound}
-                            data-test-id={challenge.type === 'button' && i === 1 ? 'incorrect-button' : `challenge-option-${i}`}
+                            data-test-id={challenge.type === 'button' && i === 1 ? undefined : `challenge-option-${i}`}
                         >
                             {opt.label}
                         </ChallengeButton>

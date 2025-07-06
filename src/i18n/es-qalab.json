@@ -40,8 +40,8 @@
       "0": {
         "title": "Encuentra el bug: Data-testid inconsistente",
         "description": "Uno de los botones tiene un data-testid que no sigue el patrón establecido. Identifica qué botón tiene el selector inconsistente.",
-        "hint": "Observa el patrón challenge-option-X en los data-testids y busca lo que se desvía de este patrón.",
-        "explanation": "En pruebas automatizadas, la consistencia de selectores es fundamental para la mantenibilidad y confiabilidad de las pruebas. Data-testids inconsistentes pueden causar fallas intermitentes, dificultar el mantenimiento del código y aumentar el tiempo de debug. Un patrón bien definido asegura que las pruebas sean robustas y fáciles de actualizar cuando la interfaz cambia. Además, data-testids son preferibles a selectores CSS o XPath ya que son más estables y expresivos sobre la intención de la prueba.",
+        "hint": "Observa el patrón challenge-option-X en los data-testids y busca el elemento que no tiene data-testid.",
+        "explanation": "En pruebas automatizadas, la ausencia de identificadores de prueba es un problema crítico que puede causar fallas intermitentes e inestabilidad en las pruebas. Elementos sin identificadores fuerzan el uso de selectores frágiles como CSS o XPath, que se rompen fácilmente cuando la interfaz cambia. Esto resulta en pruebas no confiables, dificultades de mantenimiento y aumento significativo del tiempo de debug. Identificadores de prueba (como data-testid, data-cy, test-id, etc.) son esenciales porque son estables, expresivos sobre la intención de la prueba y resistentes a cambios de layout o estilo. Un patrón consistente de identificadores asegura que las pruebas sean robustas y fáciles de mantener.",
         "options": {
           "0": "Guardar",
           "1": "Eliminar",

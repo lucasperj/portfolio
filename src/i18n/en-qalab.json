@@ -40,8 +40,8 @@
       "0": {
         "title": "Find the bug: Inconsistent data-testid",
         "description": "One of the buttons has a data-testid that doesn't follow the established pattern. Identify which button has the inconsistent selector.",
-        "hint": "Observe the challenge-option-X pattern in data-testids and look for what deviates from this pattern.",
-        "explanation": "In automated testing, selector consistency is fundamental for test maintainability and reliability. Inconsistent data-testids can cause intermittent failures, make code maintenance difficult, and increase debug time. A well-defined pattern ensures tests are robust and easy to update when the interface changes. Additionally, data-testids are preferable to CSS or XPath selectors as they are more stable and expressive about the test's intent.",
+        "hint": "Observe the challenge-option-X pattern in data-testids and look for the element that doesn't have a data-testid.",
+        "explanation": "In automated testing, the absence of test identifiers is a critical problem that can cause intermittent failures and test instability. Elements without identifiers force the use of fragile selectors like CSS or XPath, which break easily when the interface changes. This results in unreliable tests, maintenance difficulties, and significant increase in debug time. Test identifiers (such as data-testid, data-cy, test-id, etc.) are essential because they are stable, expressive about the test's intent, and resistant to layout or style changes. A consistent identifier pattern ensures tests are robust and easy to maintain.",
         "options": {
           "0": "Save",
           "1": "Delete",
