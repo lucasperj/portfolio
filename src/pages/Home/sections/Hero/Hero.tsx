@@ -117,7 +117,7 @@ const Hero = () => {
                     gap: 2,
                 }}
             >
-                {/* Botão de download do CV */}
+                            {/* Botão de download do CV */}
                 <Tooltip title={t('hero.downloadCV')} placement="left">
                     <Fab
                         data-test-id="download-cv-button"
@@ -135,7 +135,7 @@ const Hero = () => {
                             },
                         }}
                     >
-                        <FileDownloadRoundedIcon />
+                                        <FileDownloadRoundedIcon />
                     </Fab>
                 </Tooltip>
 
@@ -147,8 +147,8 @@ const Hero = () => {
                             color="primary"
                             aria-label="contato"
                             onClick={handleContactClick}
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
+                                        onMouseEnter={handleMouseEnter}
+                                        onMouseLeave={handleMouseLeave}
                             ref={buttonRef}
                             sx={{
                                 backgroundColor: '#fff',
@@ -161,15 +161,15 @@ const Hero = () => {
                                 },
                             }}
                         >
-                            <EmailRoundedIcon />
+                                            <EmailRoundedIcon /> 
                         </Fab>
                     </Tooltip>
 
-                    {/* Dropdown de opções de contato (apenas desktop) */}
-                    {!isMobile && (
-                        <Box
-                            ref={menuRef}
-                            position="absolute"
+                                    {/* Dropdown de opções de contato (apenas desktop) */}
+                                    {!isMobile && (
+                                        <Box
+                                            ref={menuRef}
+                                            position="absolute"
                             right="100%"
                             top="50%"
                             sx={{ 
@@ -177,31 +177,31 @@ const Hero = () => {
                                 zIndex: 1301,
                                 transform: 'translateY(-50%)'
                             }}
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        >
-                            <Collapse in={open} timeout="auto">
-                                <ContactMenu>
-                                    {/* Opção WhatsApp */}
-                                    <ContactOption onClick={handleWhatsAppClick} data-test-id="contact-whatsapp-option">
-                                        <WhatsAppIcon className="whatsapp" />
-                                        <Typography>{t('hero.whatsapp')}</Typography>
-                                    </ContactOption>
-                                    {/* Opção LinkedIn */}
-                                    <ContactOption onClick={handleLinkedInClick} data-test-id="contact-linkedin-option">
-                                        <LinkedInIcon className="linkedin" />
-                                        <Typography>{t('hero.linkedin')}</Typography>
-                                    </ContactOption>
-                                    {/* Opção Email */}
-                                    <ContactOption onClick={handleEmailClick} data-test-id="contact-email-option">
-                                        <EmailIcon className="email" />
-                                        <Typography>{t('hero.email')}</Typography>
-                                    </ContactOption>
-                                </ContactMenu>
-                            </Collapse>
-                        </Box>
-                    )}
-                </Box>
+                                            onMouseEnter={handleMouseEnter}
+                                            onMouseLeave={handleMouseLeave}
+                                        >
+                                            <Collapse in={open} timeout="auto">
+                                                <ContactMenu>
+                                                    {/* Opção WhatsApp */}
+                                                    <ContactOption onClick={handleWhatsAppClick} data-test-id="contact-whatsapp-option">
+                                                        <WhatsAppIcon className="whatsapp" />
+                                                        <Typography>{t('hero.whatsapp')}</Typography>
+                                                    </ContactOption>
+                                                    {/* Opção LinkedIn */}
+                                                    <ContactOption onClick={handleLinkedInClick} data-test-id="contact-linkedin-option">
+                                                        <LinkedInIcon className="linkedin" />
+                                                        <Typography>{t('hero.linkedin')}</Typography>
+                                                    </ContactOption>
+                                                    {/* Opção Email */}
+                                                    <ContactOption onClick={handleEmailClick} data-test-id="contact-email-option">
+                                                        <EmailIcon className="email" />
+                                                        <Typography>{t('hero.email')}</Typography>
+                                                    </ContactOption>
+                                                </ContactMenu>
+                                            </Collapse>
+                                        </Box>
+                                    )}
+                                </Box>
             </Box>
         </StyledHero>
     )

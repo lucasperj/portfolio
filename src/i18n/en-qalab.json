@@ -38,15 +38,15 @@
     },
     "challenges": {
       "0": {
-        "title": "Find the bug in the interface",
-        "description": "One of the buttons has an inconsistent data-testid with the pattern.",
-        "hint": "Observe the button-X pattern in data-testids and look for what deviates from this pattern.",
-        "explanation": "In automated testing, selector consistency is crucial. Inconsistent data-testids can cause test failures and make maintenance difficult.",
+        "title": "Find the bug: Inconsistent data-testid",
+        "description": "One of the buttons has a data-testid that doesn't follow the established pattern. Identify which button has the inconsistent selector.",
+        "hint": "Observe the challenge-option-X pattern in data-testids and look for what deviates from this pattern.",
+        "explanation": "In automated testing, selector consistency is fundamental for test maintainability and reliability. Inconsistent data-testids can cause intermittent failures, make code maintenance difficult, and increase debug time. A well-defined pattern ensures tests are robust and easy to update when the interface changes. Additionally, data-testids are preferable to CSS or XPath selectors as they are more stable and expressive about the test's intent.",
         "options": {
-          "0": "Option 1",
-          "1": "Option 2",
-          "2": "Option 3",
-          "3": "Option 4"
+          "0": "Save",
+          "1": "Delete",
+          "2": "Update",
+          "3": "Cancel"
         }
       },
       "1": {

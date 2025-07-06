@@ -23,7 +23,12 @@ export const challengesData: ChallengeData[] = [
   {
     type: "button",
     solution: 1, // Opção 2 é a incorreta (data-testid="incorrect-button")
-    options: [] // Opções são montadas dinamicamente no componente
+    options: [
+      { bg: "#2E7D32", fg: "#FFFFFF" }, // Verde (Salvar)
+      { bg: "#D32F2F", fg: "#FFFFFF" }, // Vermelho (Deletar) - INCORRETO
+      { bg: "#1976D2", fg: "#FFFFFF" }, // Azul (Atualizar)
+      { bg: "#757575", fg: "#FFFFFF" }  // Cinza (Cancelar)
+    ]
   },
   
   // Desafio 1: Contraste de cores (WCAG)

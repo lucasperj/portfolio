@@ -100,29 +100,72 @@ const ChallengeButton = styled('button')<{
 }));
 
 // Opção de cor para desafios de contraste com design melhorado
-const ColorOption = styled('div')<{ bg: string; fg: string }>(({ bg, fg, theme }) => ({
-    padding: theme.spacing(2),
-    borderRadius: theme.spacing(1.5),
+const ColorOption = styled('div')<{ bg: string; fg: string; isWrong: boolean; attempts: number }>(({ bg, fg, theme, isWrong, attempts }) => ({
+    padding: theme.spacing(3, 4),
+    borderRadius: theme.spacing(2),
     backgroundColor: bg,
     color: fg,
     cursor: 'pointer',
     textAlign: 'center',
-    border: '2px solid rgba(255, 255, 255, 0.2)',
+    border: '3px solid rgba(255, 255, 255, 0.3)',
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-    minHeight: '80px',
+    minHeight: '100px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '1rem',
-    fontWeight: 500,
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+    fontSize: '1.2rem',
+    fontWeight: 600,
+    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
     '&:hover': {
-        transform: 'translateY(-2px) scale(1.02)',
-        boxShadow: '0 6px 20px rgba(0,0,0,0.15)',
-        borderColor: 'rgba(255, 255, 255, 0.4)',
+        transform: 'translateY(-3px) scale(1.03)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+        borderColor: 'rgba(255, 255, 255, 0.5)',
     },
     '&:active': {
-        transform: 'translateY(0) scale(1)',
+        transform: 'translateY(-1px) scale(1.01)',
+    },
+    
+    // Estado errado (amarelo piscando)
+    ...(isWrong && attempts <= 3 && {
+        animation: 'pulseYellow 0.6s ease-in-out',
+        backgroundColor: 'rgba(255, 193, 7, 0.9)',
+        borderColor: '#FFC107',
+        color: '#000000'
+    }),
+    
+    // Estado errado após 3 tentativas (vermelho piscando)
+    ...(isWrong && attempts > 3 && {
+        animation: 'pulseRed 0.6s ease-in-out',
+        backgroundColor: 'rgba(244, 67, 54, 0.9)',
+        borderColor: '#F44336',
+        color: '#FFFFFF'
+    }),
+    
+    // Animações CSS
+    '@keyframes pulseYellow': {
+        '0%, 100%': {
+            backgroundColor: 'rgba(255, 193, 7, 0.9)',
+            borderColor: '#FFC107',
+            color: '#000000'
+        },
+        '50%': {
+            backgroundColor: 'rgba(255, 193, 7, 0.7)',
+            borderColor: '#FFC107',
+            color: '#000000'
+        }
+    },
+    
+    '@keyframes pulseRed': {
+        '0%, 100%': {
+            backgroundColor: 'rgba(244, 67, 54, 0.9)',
+            borderColor: '#F44336',
+            color: '#FFFFFF'
+        },
+        '50%': {
+            backgroundColor: 'rgba(244, 67, 54, 0.7)',
+            borderColor: '#F44336',
+            color: '#FFFFFF'
+        }
     }
 }));
 
@@ -147,12 +190,14 @@ const ChallengeOptions: React.FC<ChallengeOptionsProps> = ({
 }) => {
     return (
         <Grid container spacing={3}>
-            {challenge.type === 'contrast' ? (
+            {(challenge.type === 'contrast' || challenge.type === 'button') ? (
                 challenge.options.map((opt, i) => (
-                    <Grid item xs={6} md={3} key={i}>
+                    <Grid item xs={12} md={6} key={i}>
                         <ColorOption
                             bg={opt.bg}
                             fg={opt.fg}
+                            isWrong={wrongOption === i}
+                            attempts={attempts}
                             onClick={() => onOptionClick(i)}
                             style={{
                                 border: bugFound && i === challenge.solution ? '3px solid #4caf50' : undefined,
@@ -160,7 +205,7 @@ const ChallengeOptions: React.FC<ChallengeOptionsProps> = ({
                                 transform: bugFound && i === challenge.solution ? 'scale(1.05)' : undefined,
                                 boxShadow: bugFound && i === challenge.solution ? '0 8px 24px rgba(76, 175, 80, 0.3)' : undefined
                             }}
-                            data-test-id={`challenge-option-${i}`}
+                            data-test-id={challenge.type === 'button' && i === 1 ? 'incorrect-button' : `challenge-option-${i}`}
                         >
                             {opt.label}
                         </ColorOption>
@@ -175,7 +220,7 @@ const ChallengeOptions: React.FC<ChallengeOptionsProps> = ({
                             attempts={attempts}
                             onClick={() => onOptionClick(i)}
                             disabled={bugFound}
-                            data-test-id={`challenge-option-${i}`}
+                            data-test-id={challenge.type === 'button' && i === 1 ? 'incorrect-button' : `challenge-option-${i}`}
                         >
                             {opt.label}
                         </ChallengeButton>

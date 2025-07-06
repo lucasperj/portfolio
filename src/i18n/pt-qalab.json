@@ -38,15 +38,15 @@
     },
     "challenges": {
       "0": {
-        "title": "Encontre o bug na interface",
-        "description": "Um dos botões tem um data-testid inconsistente com o padrão.",
-        "hint": "Observe o padrão button-X nos data-testids e procure o que foge desse padrão.",
-        "explanation": "Em testes automatizados, a consistência dos seletores é crucial. Data-testids inconsistentes podem causar falhas nos testes e dificultar a manutenção.",
+        "title": "Encontre o bug: Data-testid inconsistente",
+        "description": "Um dos botões tem um data-testid que não segue o padrão estabelecido. Identifique qual botão possui o seletor inconsistente.",
+        "hint": "Observe o padrão challenge-option-X nos data-testids e procure o que foge desse padrão.",
+        "explanation": "Em testes automatizados, a consistência dos seletores é fundamental para a manutenibilidade e confiabilidade dos testes. Data-testids inconsistentes podem causar falhas intermitentes, dificultar a manutenção do código e aumentar o tempo de debug. Um padrão bem definido garante que os testes sejam robustos e fáceis de atualizar quando a interface muda. Além disso, data-testids são preferíveis a seletores CSS ou XPath pois são mais estáveis e expressivos sobre a intenção do teste.",
         "options": {
-          "0": "Opção 1",
-          "1": "Opção 2",
-          "2": "Opção 3",
-          "3": "Opção 4"
+          "0": "Salvar",
+          "1": "Deletar",
+          "2": "Atualizar",
+          "3": "Cancelar"
         }
       },
       "1": {

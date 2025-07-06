@@ -38,15 +38,15 @@
     },
     "challenges": {
       "0": {
-        "title": "Encuentra el bug en la interfaz",
-        "description": "Uno de los botones tiene un data-testid inconsistente con el patrón.",
-        "hint": "Observa el patrón button-X en los data-testids y busca lo que se desvía de este patrón.",
-        "explanation": "En pruebas automatizadas, la consistencia de selectores es crucial. Data-testids inconsistentes pueden causar fallas en las pruebas y dificultar el mantenimiento.",
+        "title": "Encuentra el bug: Data-testid inconsistente",
+        "description": "Uno de los botones tiene un data-testid que no sigue el patrón establecido. Identifica qué botón tiene el selector inconsistente.",
+        "hint": "Observa el patrón challenge-option-X en los data-testids y busca lo que se desvía de este patrón.",
+        "explanation": "En pruebas automatizadas, la consistencia de selectores es fundamental para la mantenibilidad y confiabilidad de las pruebas. Data-testids inconsistentes pueden causar fallas intermitentes, dificultar el mantenimiento del código y aumentar el tiempo de debug. Un patrón bien definido asegura que las pruebas sean robustas y fáciles de actualizar cuando la interfaz cambia. Además, data-testids son preferibles a selectores CSS o XPath ya que son más estables y expresivos sobre la intención de la prueba.",
         "options": {
-          "0": "Opción 1",
-          "1": "Opción 2",
-          "2": "Opción 3",
-          "3": "Opción 4"
+          "0": "Guardar",
+          "1": "Eliminar",
+          "2": "Actualizar",
+          "3": "Cancelar"
         }
       },
       "1": {
