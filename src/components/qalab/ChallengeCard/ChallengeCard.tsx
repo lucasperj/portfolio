@@ -30,13 +30,13 @@ const StyledPaper = styled(Paper)(({theme}) => ({
     },
     '& .sectionIcon': {
         fontSize: '2.5rem',
-        color: theme.palette.primary.main,
+        color: theme.palette.secondary.main,
         marginRight: theme.spacing(2),
         filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
     },
     '& .challenge-title': {
         fontWeight: 600,
-        background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+        background: `linear-gradient(45deg, #4CAF50, #9C27B0)`,
         backgroundClip: 'text',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
@@ -44,8 +44,9 @@ const StyledPaper = styled(Paper)(({theme}) => ({
     },
     '& .challenge-description': {
         lineHeight: 1.6,
-        color: theme.palette.text.secondary,
-        fontSize: '1.1rem'
+        color: '#E0E0E0',
+        fontSize: '1.1rem',
+        fontWeight: 400
     }
 }));
 
@@ -56,16 +57,32 @@ interface ChallengeCardProps {
         options: any[];
     };
     children: React.ReactNode;
+    progressComponent?: React.ReactNode;
+    attemptsCounter?: React.ReactNode;
+    backButton?: React.ReactNode;
 }
 
-const ChallengeCard: React.FC<ChallengeCardProps> = ({ challenge, children }) => {
+const ChallengeCard: React.FC<ChallengeCardProps> = ({ challenge, children, progressComponent, attemptsCounter, backButton }) => {
     return (
         <StyledPaper elevation={0}>
-            <Box display="flex" alignItems="center" mb={3}>
-                <BugReportIcon className="sectionIcon" />
-                <Typography variant="h5" className="challenge-title">
-                    {challenge.title}
-                </Typography>
+            {/* Barra de progresso acima do título */}
+            {progressComponent && (
+                <Box mb={3}>
+                    {progressComponent}
+                </Box>
+            )}
+            
+            <Box display="flex" alignItems="center" justifyContent="space-between" mb={3}>
+                <Box display="flex" alignItems="center">
+                    <BugReportIcon className="sectionIcon" />
+                    <Typography variant="h5" className="challenge-title">
+                        {challenge.title}
+                    </Typography>
+                </Box>
+                <Box display="flex" alignItems="center" gap={2}>
+                    {backButton && backButton}
+                    {attemptsCounter && attemptsCounter}
+                </Box>
             </Box>
             <Typography className="challenge-description" sx={{ mb: 3 }}>
                 {challenge.description}

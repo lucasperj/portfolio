@@ -35,14 +35,14 @@ const ChallengeProgress: React.FC<ChallengeProgressProps> = ({
             <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
                 <Typography 
                     variant="body1" 
-                    color="primary.main" 
+                    color="#FFFFFF" 
                     sx={{ fontWeight: 600 }}
                 >
                     Desafio {currentChallenge + 1} de {totalChallenges}
                 </Typography>
                 <Typography 
                     variant="body2" 
-                    color="text.secondary"
+                    color="#E0E0E0"
                     sx={{ fontWeight: 500 }}
                 >
                     {completedChallenges} de {totalChallenges} completados

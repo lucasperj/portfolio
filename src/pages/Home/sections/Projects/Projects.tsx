@@ -85,11 +85,6 @@ const Projects = () => {
         }
     };
 
-    // Função para rolar suavemente para o topo da página
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
     // Renderização do componente
     return (
         <StyledProjects id="projects">
